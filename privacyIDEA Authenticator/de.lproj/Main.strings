@@ -1,0 +1,48 @@
+
+/* Class = "UILabel"; text = "62332894"; ObjectID = "207-c0-n2d"; */
+"207-c0-n2d.text" = "62332894";
+
+/* Class = "UISegmentedControl"; 7qk-kX-XiW.segmentTitles[0] = "30s"; ObjectID = "7qk-kX-XiW"; */
+"7qk-kX-XiW.segmentTitles[0]" = "30s";
+
+/* Class = "UISegmentedControl"; 7qk-kX-XiW.segmentTitles[1] = "60s"; ObjectID = "7qk-kX-XiW"; */
+"7qk-kX-XiW.segmentTitles[1]" = "60s";
+
+/* Class = "UITextField"; placeholder = "Secret"; ObjectID = "8Wq-52-br0"; */
+"8Wq-52-br0.placeholder" = "Geheimnis";
+
+/* Class = "UILabel"; text = "privacyIDEA - PI / TOTP000902938"; ObjectID = "9ra-Or-rR9"; */
+"9ra-Or-rR9.text" = "privacyIDEA - PI / TOTP000902938";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "BNx-Lr-C2h"; */
+"BNx-Lr-C2h.placeholder" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Scan QR Code"; ObjectID = "TjH-KM-Qnm"; */
+"TjH-KM-Qnm.normalTitle" = "QR scannen";
+
+/* Class = "UISegmentedControl"; dCE-om-JEc.segmentTitles[0] = "HOTP"; ObjectID = "dCE-om-JEc"; */
+"dCE-om-JEc.segmentTitles[0]" = "HOTP";
+
+/* Class = "UISegmentedControl"; dCE-om-JEc.segmentTitles[1] = "TOTP"; ObjectID = "dCE-om-JEc"; */
+"dCE-om-JEc.segmentTitles[1]" = "TOTP";
+
+/* Class = "UISegmentedControl"; pUE-Zq-LC6.segmentTitles[0] = "SHA-1"; ObjectID = "pUE-Zq-LC6"; */
+"pUE-Zq-LC6.segmentTitles[0]" = "SHA-1";
+
+/* Class = "UISegmentedControl"; pUE-Zq-LC6.segmentTitles[1] = "SHA-256"; ObjectID = "pUE-Zq-LC6"; */
+"pUE-Zq-LC6.segmentTitles[1]" = "SHA-256";
+
+/* Class = "UISegmentedControl"; pUE-Zq-LC6.segmentTitles[2] = "SHA-512"; ObjectID = "pUE-Zq-LC6"; */
+"pUE-Zq-LC6.segmentTitles[2]" = "SHA-512";
+
+/* Class = "UIButton"; normalTitle = "Add manually"; ObjectID = "qYb-BY-Ot2"; */
+"qYb-BY-Ot2.normalTitle" = "Manuell";
+
+/* Class = "UISegmentedControl"; yp5-L4-CXx.segmentTitles[0] = "6"; ObjectID = "yp5-L4-CXx"; */
+"yp5-L4-CXx.segmentTitles[0]" = "6";
+
+/* Class = "UISegmentedControl"; yp5-L4-CXx.segmentTitles[1] = "7"; ObjectID = "yp5-L4-CXx"; */
+"yp5-L4-CXx.segmentTitles[1]" = "7";
+
+/* Class = "UISegmentedControl"; yp5-L4-CXx.segmentTitles[2] = "8"; ObjectID = "yp5-L4-CXx"; */
+"yp5-L4-CXx.segmentTitles[2]" = "8";

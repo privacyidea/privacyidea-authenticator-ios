@@ -1,0 +1,24 @@
+PODS:
+  - CryptoSwift (0.12.0)
+  - KeychainSwift (11.0.0)
+  - SwiftOTP (0.1.4):
+    - CryptoSwift (>= 0.10.0)
+
+DEPENDENCIES:
+  - KeychainSwift (~> 11.0)
+  - SwiftOTP
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CryptoSwift
+    - KeychainSwift
+    - SwiftOTP
+
+SPEC CHECKSUMS:
+  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
+  KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
+  SwiftOTP: aa5392fdfb1838c1ae6ff617392d724355bb6ff7
+
+PODFILE CHECKSUM: 0ea15b4975dc7f75ba5173abfffc556521c37106
+
+COCOAPODS: 1.5.3
