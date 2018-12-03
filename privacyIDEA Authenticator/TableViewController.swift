@@ -55,8 +55,8 @@ class TableViewController: UIViewController {
         
         //////////////////////// NAVIGATION BAR SETUP ////////////////////////
         // change the color of the navigationbar, text and back button
-        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.670465749, green: 0.8777691889, blue: 1, alpha: 1)
-      
+        //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0x55 / 255.0, green: 0xb0 / 255.0, blue: 0xe6 / 255.0, alpha: 1.0)
+        
         let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TableViewController.addTapped))
         addBtn.tintColor = .black
         self.navigationItem.rightBarButtonItem = addBtn
@@ -594,5 +594,26 @@ extension TableViewController: QRScanResultDelegate {
         util.saveTokens(list: tokenlist)
         tableView.reloadData()
         }
+    }
+}
+
+// MARK: COLOR EXTENSION FOR RGBA
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int, a: CGFloat = 1.0) {
+        self.init(
+            red: CGFloat(red) / 255.0,
+            green: CGFloat(green) / 255.0,
+            blue: CGFloat(blue) / 255.0,
+            alpha: a
+        )
+    }
+    
+    convenience init(rgb: Int, a: CGFloat = 1.0) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF,
+            a: a
+        )
     }
 }
