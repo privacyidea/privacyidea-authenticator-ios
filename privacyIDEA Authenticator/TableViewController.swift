@@ -15,6 +15,7 @@ import CommonCrypto
 class TableViewController: UIViewController {
 // MARK: Variables
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var versionLabel: UILabel!
     
     @IBOutlet weak var tableViewLeadingC: NSLayoutConstraint!
     @IBOutlet weak var tableViewTrailingC: NSLayoutConstraint!
@@ -52,7 +53,7 @@ class TableViewController: UIViewController {
         
         menuView.layer.borderColor = UIColor.black.cgColor
         menuView.layer.borderWidth = 1.0
-        
+        versionLabel.text = version()
         //////////////////////// NAVIGATION BAR SETUP ////////////////////////
         // change the color of the navigationbar, text and back button
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0x55 / 255.0, green: 0xb0 / 255.0, blue: 0xe6 / 255.0, alpha: 1.0)
@@ -91,6 +92,13 @@ class TableViewController: UIViewController {
             tokenlist[index].counter! += 1
         } else { tokenlist[index].counter = 1 }
         self.tableView.reloadData()
+    }
+    
+    func version() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary["CFBundleShortVersionString"] as! String
+        let build = dictionary["CFBundleVersion"] as! String
+        return "Version \(version) build \(build)"
     }
     
     @objc func addTapped() {
@@ -206,6 +214,10 @@ class TableViewController: UIViewController {
         }
     }
 
+    func refreshTokenlist() {
+        self.tableView.reloadData()
+    }
+    
     // MARK: - 2STEP
     func do2stepinit(t:Token, salt_size:Int, difficulty:Int, output:Int) -> Token {
         // 1. Generate random bytes equal to the "salt" aka phonepart size

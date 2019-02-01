@@ -21,6 +21,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYA-kH-lwo">
                                 <rect key="frame" x="0.0" y="64" width="195" height="603"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fj-5v-DUA">
+                                        <rect key="frame" x="4" y="578.5" width="42" height="20.5"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="SbZ-Pk-tXT">
                                         <rect key="frame" x="5" y="10" width="185" height="117.5"/>
                                         <subviews>
@@ -91,9 +100,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="4Fj-5v-DUA" secondAttribute="bottom" constant="4" id="K9p-Dn-o08"/>
                                     <constraint firstAttribute="trailing" secondItem="SbZ-Pk-tXT" secondAttribute="trailing" constant="5" id="Vd5-Px-Vbc"/>
                                     <constraint firstItem="SbZ-Pk-tXT" firstAttribute="top" secondItem="SYA-kH-lwo" secondAttribute="top" constant="10" id="d1L-yn-OqB"/>
                                     <constraint firstItem="SbZ-Pk-tXT" firstAttribute="leading" secondItem="SYA-kH-lwo" secondAttribute="leading" constant="5" id="gQs-Kc-aWa"/>
+                                    <constraint firstItem="4Fj-5v-DUA" firstAttribute="leading" secondItem="SYA-kH-lwo" secondAttribute="leading" constant="4" id="wKH-O4-DQ7"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ITL-Da-ZiO">
@@ -201,6 +212,7 @@
                         <outlet property="tableViewLeadingC" destination="4vl-WT-90n" id="pKt-l8-btp"/>
                         <outlet property="tableViewTrailingC" destination="1AZ-tu-NU6" id="znE-aU-bFX"/>
                         <outlet property="thirdPartyBtn" destination="grR-yQ-OpC" id="nK0-kY-dUc"/>
+                        <outlet property="versionLabel" destination="4Fj-5v-DUA" id="Yjo-AF-Bbo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hno-hF-hQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,10 +228,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="3uf-vE-ZzK">
-                                <rect key="frame" x="60" y="354" width="255" height="148"/>
+                                <rect key="frame" x="60" y="354" width="215" height="148"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dCE-om-JEc">
-                                        <rect key="frame" x="77" y="0.0" width="101" height="29"/>
+                                        <rect key="frame" x="57" y="0.0" width="101" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="HOTP"/>
@@ -228,7 +240,7 @@
                                         <color key="tintColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="yp5-L4-CXx">
-                                        <rect key="frame" x="92" y="40" width="71" height="29"/>
+                                        <rect key="frame" x="72" y="40" width="71" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="6"/>
@@ -238,7 +250,7 @@
                                         <color key="tintColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pUE-Zq-LC6">
-                                        <rect key="frame" x="20" y="80" width="215" height="29"/>
+                                        <rect key="frame" x="0.0" y="80" width="215" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <rect key="contentStretch" x="0.25" y="0.25" width="1" height="1"/>
                                         <segments>
@@ -249,7 +261,7 @@
                                         <color key="tintColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </segmentedControl>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7qk-kX-XiW">
-                                        <rect key="frame" x="89" y="120" width="77" height="29"/>
+                                        <rect key="frame" x="69" y="120" width="77" height="29"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <segments>
                                             <segment title="30s"/>
@@ -264,7 +276,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MWC-8u-doW">
-                                <rect key="frame" x="0.0" y="602" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="602" width="335" height="49"/>
                                 <color key="backgroundColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
@@ -281,7 +293,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BNx-Lr-C2h">
-                                <rect key="frame" x="60" y="100" width="255" height="30"/>
+                                <rect key="frame" x="60" y="100" width="215" height="30"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="textColor"/>
@@ -289,7 +301,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Secret" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Wq-52-br0">
-                                <rect key="frame" x="60" y="160" width="255" height="30"/>
+                                <rect key="frame" x="60" y="160" width="215" height="30"/>
                                 <color key="tintColor" red="0.670465749" green="0.8777691889" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
