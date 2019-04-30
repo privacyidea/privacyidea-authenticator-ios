@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17A9B685227890F200A1F94E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17A9B684227890F200A1F94E /* GoogleService-Info.plist */; };
 		18BA48158930A681710F0290 /* Pods_privacyIDEA_AuthenticatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE2FA8869F15C9FEDFE33A8 /* Pods_privacyIDEA_AuthenticatorUITests.framework */; };
 		29028DD421198E0C00842BCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29028DD321198E0C00842BCC /* AppDelegate.swift */; };
 		29028DD921198E0C00842BCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29028DD721198E0C00842BCC /* Main.storyboard */; };
@@ -62,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		0DE2FA8869F15C9FEDFE33A8 /* Pods_privacyIDEA_AuthenticatorUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_privacyIDEA_AuthenticatorUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		175EB1002278C05700C2B6BC /* privacyIDEA Authenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "privacyIDEA Authenticator.entitlements"; sourceTree = "<group>"; };
+		17A9B684227890F200A1F94E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29028DD021198E0C00842BCC /* privacyIDEA Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "privacyIDEA Authenticator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29028DD321198E0C00842BCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29028DD821198E0C00842BCC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,6 +146,7 @@
 		29028DC721198E0C00842BCC = {
 			isa = PBXGroup;
 			children = (
+				17A9B684227890F200A1F94E /* GoogleService-Info.plist */,
 				299B77452166352B0057ED4A /* CryptoSwift license.html */,
 				299B77442166352A0057ED4A /* KeychainSwift license.html */,
 				299B77462166352B0057ED4A /* SwiftOTP license.html */,
@@ -170,6 +174,7 @@
 		29028DD221198E0C00842BCC /* privacyIDEA Authenticator */ = {
 			isa = PBXGroup;
 			children = (
+				175EB1002278C05700C2B6BC /* privacyIDEA Authenticator.entitlements */,
 				29028DD321198E0C00842BCC /* AppDelegate.swift */,
 				29028DD721198E0C00842BCC /* Main.storyboard */,
 				29584751211AE75100CE2C6A /* TableViewCell.swift */,
@@ -288,6 +293,11 @@
 				TargetAttributes = {
 					29028DCF21198E0C00842BCC = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					29028DE321198E0D00842BCC = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -306,6 +316,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 29028DC721198E0C00842BCC;
 			productRefGroup = 29028DD121198E0C00842BCC /* Products */;
@@ -325,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				299B77472166352B0057ED4A /* KeychainSwift license.html in Resources */,
+				17A9B685227890F200A1F94E /* GoogleService-Info.plist in Resources */,
 				299B77482166352B0057ED4A /* CryptoSwift license.html in Resources */,
 				299B77492166352B0057ED4A /* SwiftOTP license.html in Resources */,
 				29028DDE21198E0D00842BCC /* LaunchScreen.storyboard in Resources */,
@@ -357,20 +369,26 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOTP/SwiftOTP.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOTP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		902C4B59EB21E0CFC9DFED1B /* [CP] Check Pods Manifest.lock */ = {
@@ -551,9 +569,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -606,8 +628,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -621,16 +647,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 627QALYL3B;
+				DEVELOPMENT_TEAM = LLGX9T57MA;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evosecurity.evo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -644,16 +671,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 627QALYL3B;
+				DEVELOPMENT_TEAM = LLGX9T57MA;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.evosecurity.evo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
@@ -668,7 +696,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = testTests/Info.plist;
+				DEVELOPMENT_TEAM = 5LF5SD8CL9;
+				INFOPLIST_FILE = "privacyIDEA AuthenticatorTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -689,7 +718,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = testTests/Info.plist;
+				DEVELOPMENT_TEAM = 5LF5SD8CL9;
+				INFOPLIST_FILE = "privacyIDEA AuthenticatorTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -709,7 +739,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = testUITests/Info.plist;
+				DEVELOPMENT_TEAM = 5LF5SD8CL9;
+				INFOPLIST_FILE = "privacyIDEA AuthenticatorUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -729,7 +760,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = testUITests/Info.plist;
+				DEVELOPMENT_TEAM = 5LF5SD8CL9;
+				INFOPLIST_FILE = "privacyIDEA AuthenticatorUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
