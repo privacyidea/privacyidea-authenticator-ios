@@ -1,24 +1,124 @@
 PODS:
-  - CryptoSwift (0.12.0)
-  - KeychainSwift (11.0.0)
-  - SwiftOTP (0.1.4):
+  - CryptoSwift (1.0.0)
+  - Firebase/Core (6.5.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.0.4)
+  - Firebase/CoreOnly (6.5.0):
+    - FirebaseCore (= 6.1.0)
+  - Firebase/Messaging (6.5.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.1.1)
+  - FirebaseAnalytics (6.0.4):
+    - FirebaseCore (~> 6.1)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.0.4)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.2.0)
+  - FirebaseCore (6.1.0):
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/Logger (~> 6.0)
+  - FirebaseInstanceID (4.2.2):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.1):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 6.0)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - Protobuf (~> 3.1)
+  - GoogleAppMeasurement (6.0.4):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (6.2.3):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.3)
+  - GoogleUtilities/Logger (6.2.3):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.3):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.3)"
+  - GoogleUtilities/Reachability (6.2.3):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.3):
+    - GoogleUtilities/Logger
+  - KeychainSwift (16.0.1)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.9.0)
+  - SwiftLint (0.34.0)
+  - SwiftOTP (1.0.0):
     - CryptoSwift (>= 0.10.0)
+  - SwiftyRSA (1.5.0):
+    - SwiftyRSA/ObjC (= 1.5.0)
+  - SwiftyRSA/ObjC (1.5.0)
+  - Toast-Swift (4.0.1)
 
 DEPENDENCIES:
-  - KeychainSwift (~> 11.0)
+  - Firebase/Core
+  - Firebase/Messaging
+  - KeychainSwift (~> 16.0)
+  - SwiftLint
   - SwiftOTP
+  - SwiftyRSA
+  - Toast-Swift (~> 4.0.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CryptoSwift
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleAppMeasurement
+    - GoogleUtilities
     - KeychainSwift
+    - nanopb
+    - Protobuf
+    - SwiftLint
     - SwiftOTP
+    - SwiftyRSA
+    - Toast-Swift
 
 SPEC CHECKSUMS:
-  CryptoSwift: 1c07ca50843dd48bc54e6ea53d7a4dba3b645716
-  KeychainSwift: bea6bd9f98af7b8d7ca4aa79fe105c00fab532db
-  SwiftOTP: aa5392fdfb1838c1ae6ff617392d724355bb6ff7
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
+  Firebase: dedc9e48ea3f3649ad5f6b982f8a0c73508a14b5
+  FirebaseAnalytics: 3fb375bc9d13779add4039716f868d233a473fad
+  FirebaseAnalyticsInterop: efbe45c8385ec626e29f9525e5ebd38520dfb6c1
+  FirebaseCore: aecf02fb2274ec361b9bebeac112f5daa18273bd
+  FirebaseInstanceID: 662b8108a09fe9ed01aafdedba100fde8536b0f6
+  FirebaseMessaging: 6bb0bdaf64c55fef7a219b7bb1e94e94a0855ced
+  GoogleAppMeasurement: 183bd916af7f80deb67c01888368f1108d641832
+  GoogleUtilities: d2b0e277a95962e09bb27f5cd42f5f0b6a506c7d
+  KeychainSwift: 4209611373ca4a098e09b1e547eebd87c544dcc4
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  SwiftLint: 79d48a17c6565dc286c37efb8322c7b450f95c67
+  SwiftOTP: c3deebbc468b33fab479bb494d93eb5fb41ba3ed
+  SwiftyRSA: 6e528fb1b1a87d5111c48081083b141d6d65f1cf
+  Toast-Swift: e42a638589a2f95036b4bb7626cfbdde7daf0393
 
-PODFILE CHECKSUM: 0ea15b4975dc7f75ba5173abfffc556521c37106
+PODFILE CHECKSUM: c807e3419e0007fa3111231221c68dff5eee38b2
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

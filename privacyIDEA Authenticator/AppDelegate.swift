@@ -2,49 +2,81 @@
 //  AppDelegate.swift
 //  test
 //
-//  Created by Nils Behlen on 07.08.18.
+//  Created by Nils Behlen on 07.08.18.""
 //  Copyright © 2018 Nils Behlen. All rights reserved.
 //
 
 import UIKit
+import Firebase
+import FirebaseMessaging
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var tableVC: TableViewController?
+    var presenterDelegate: PresenterLifecycleDelegate?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Analytics.setAnalyticsCollectionEnabled(false)
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
+        
+        //U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
         return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-        tableVC?.saveTokenlist()
+        presenterDelegate?.applicationWillResignActive()
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-        tableVC?.saveTokenlist()
+        presenterDelegate?.applicationDidEnterBackground()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        presenterDelegate?.applicationWillEnterForeground()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        tableVC?.refreshTokenlist()
+        presenterDelegate?.applicationDidBecomeActive()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        tableVC?.saveTokenlist()
+        presenterDelegate?.applicationWillTerminate()
     }
-
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+       /* U.log("Setting APN Token to device Token")
+        let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+        U.log("deviceToken: \(tokenString)")
+        Messaging.messaging().apnsToken = deviceToken */
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        
+        //U.log(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will be fired.
+    
+        //U.log(userInfo)
+        presenterDelegate?.fcmMessageReceived(message: userInfo)
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 
 }
 

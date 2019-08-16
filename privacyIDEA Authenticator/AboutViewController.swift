@@ -8,52 +8,39 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class AboutViewController: UIViewController
 {
-    @IBOutlet weak var wVKeychainSwift: UIWebView!
-    @IBOutlet weak var wVSwiftOTP: UIWebView!
-    @IBOutlet weak var wVCryptoSwift: UIWebView!
     
+    private let thirdPartyLibs: [String] = ["KeychainSwift", "CryptoSwift", "SwiftOTP" , "ToastSwift"]
+    
+    @IBOutlet weak var thirdPartyLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
+    
+    @IBOutlet weak var stackView: UIStackView!
     override func viewDidLoad(){
-        // KEYCHAINSWIFT
-        do {
-            guard let filePath = Bundle.main.path(forResource: "KeychainSwift license", ofType: "html")
-            else { print ("File reading error: KeyChainSwift license")
-                return }
-            
-            let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
-            let baseUrl = URL(fileURLWithPath: filePath)
-            wVKeychainSwift.loadHTMLString(contents as String, baseURL: baseUrl)
+        // Put a button for each lib in the stackview
+       webView.isHidden = true
+        for i in 0..<thirdPartyLibs.count {
+            let button = UIButton(type: .custom)
+            button.tag = i
+            button.setTitle(thirdPartyLibs[i], for: .normal)
+            button.addTarget(self, action: #selector(action), for: .touchUpInside)
+            button.backgroundColor = Constants.PI_BLUE
+            stackView.addArrangedSubview(button)
         }
-        catch {
-            print ("File HTML error: KeyChainSwift license")
-        }
-        // CRYPTO SWIFT
-        do {
-            guard let filePath = Bundle.main.path(forResource: "CryptoSwift license", ofType: "html")
-                else { print ("File reading error: CryptoSwift license")
-                    return }
-            
-            let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
-            let baseUrl = URL(fileURLWithPath: filePath)
-            wVCryptoSwift.loadHTMLString(contents as String, baseURL: baseUrl)
-        }
-        catch {
-            print ("File HTML error: CryptoSwift license")
-        }
-        // SWIFT OTP
-        do {
-            guard let filePath = Bundle.main.path(forResource: "SwiftOTP license", ofType: "html")
-                else { print ("File reading error: SwiftOTP license")
-                    return }
-            
-            let contents =  try String(contentsOfFile: filePath, encoding: .utf8)
-            let baseUrl = URL(fileURLWithPath: filePath)
-            wVSwiftOTP.loadHTMLString(contents as String, baseURL: baseUrl)
-        }
-        catch {
-            print ("File HTML error: SwiftOTP license")
+    }
+    
+    @objc func action(_ sender: UIButton!) {
+        webView.isHidden = false
+        let resName: String = thirdPartyLibs[sender.tag] + " license"
+        if let url = Bundle.main.url(forResource: resName, withExtension: "html") {
+            webView.loadFileURL(url, allowingReadAccessTo: url)
+            let request = URLRequest(url: url)
+            webView.load(request)
+        } else {
+            U.log("License file not found for: \(resName)")
         }
     }
 }

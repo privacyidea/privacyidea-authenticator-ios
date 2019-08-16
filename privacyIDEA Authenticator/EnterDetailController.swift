@@ -24,7 +24,7 @@ class EnterDetailController: UIViewController, UITextFieldDelegate {
     let algorithms = ["sha1","sha256","sha512"]
     let periods = [30,60]
     
-    var tableVC: TableViewController?
+    var presenterDelegate: PresenterDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,8 +37,6 @@ class EnterDetailController: UIViewController, UITextFieldDelegate {
         secretTF.delegate = self
         // check for taps to close the keyboard
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
-        
-        
     }
     
     @objc func dismissKeyboard() {
@@ -80,8 +78,8 @@ class EnterDetailController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        let t = Token(type: type, digits: digit, algorithm: algorithm, secret: secret!, label: name, counter: 1, period: period)
-        tableVC?.addToken(token: t)
+        let t = Token(type: type, label: name,serial: name, digits: digit, algorithm: algorithm, secret: secret!, counter: 1, period: period)
+        presenterDelegate?.addManuallyFinished(token: t)
         navigationController?.popViewController(animated: true)
     }
     

@@ -4,71 +4,31 @@
 //
 
 import Foundation
-import KeychainSwift
+
+typealias U = Utilities
 
 class Utilities {
-
-    init(){ }
-
-    func saveTokens(list:[Token]) -> Void {
-        let keychain = KeychainSwift()
-        UserDefaults.standard.set(list.count, forKey: "token_count")
-
-        for i in 0..<list.count {
-            if let tmp = tokenToJSONString(token: list[i]){
-                keychain.set(tmp, forKey: "token\(i)")
-            }
-            else {
-                print("[SAVE TOKEN] Token \(list[i].label) could not be saved")
-            }
+    
+    //MARK: CONVERSIONS
+    func b64Tob64URLSafe(_ string: String) -> String {
+        if string.contains("+") || string.contains("/") {
+            return string.replacingOccurrences(of: "+", with: "-")
+                .replacingOccurrences(of: "/", with: "_")
         }
+        return string
     }
-
-    func loadTokens()-> [Token] {
-        let count = UserDefaults.standard.integer(forKey: "token_count")
-        let keychain = KeychainSwift()
-        var tokens:[Token] = []
-        for i in 0..<count {
-            if let tmp = keychain.get("token\(i)"){
-                if let tmp2 = jsonStringToToken(str: tmp){
-                    tokens.append(tmp2)
-                }
-            } else {
-                print("[LOAD TOKEN] Could not load token \(i) of \(count)")
-            }
+    
+    func b64URLSafeTob64(_ string: String) -> String {
+        if string.contains("-") || string.contains("_") {
+            return string.replacingOccurrences(of: "-", with: "+")
+                .replacingOccurrences(of: "_", with: "/")
         }
-        return tokens
+        return string
     }
-
-
-/**
-    Encode a token to a string in JSON format
-*/
-   private func tokenToJSONString(token: Token) -> String? {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let data = try encoder.encode(token)
-            let res = String(data: data, encoding: .utf8)!
-            return res
-        } catch {
-            print("[ENCODE] Token \(token.label) cannot be encoded: \(error)")
-        }
-        return nil
+    
+    public static func log(_ message: Any, function: String = #function, file: String = #file, line: Int = #line) {
+        let fileStr: String = String(file.split(separator: "/").last ?? "")
+        print("[\(fileStr):\(line)][\(function)] \(message)")
     }
-
-/**
-    Decode an array of Strings in JSON format to an array of tokens
-*/
-    private func jsonStringToToken(str: String) -> Token? {
-        let decoder = JSONDecoder()
-        if let t = try? decoder.decode(Token.self, from: str.data(using: .utf8)!) {
-            return t
-        } else {
-            print("[DECODE] Token \(str) cannot be decoded")
-        }
-        return nil
-    }
-
 }
 

@@ -18,10 +18,22 @@
 	<string>1.0.1</string>
 	<key>CFBundleVersion</key>
 	<string>2</string>
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<true/>
+	<key>FIREBASE_ANALYTICS_COLLECTION_ENABLED</key>
+	<false/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<true/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>QR code scanning</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

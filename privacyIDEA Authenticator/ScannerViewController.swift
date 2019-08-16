@@ -10,10 +10,6 @@ import Foundation
 import AVFoundation
 import UIKit
 
-protocol QRScanResultDelegate {
-    func passScanResult(code:String)
-}
-
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
