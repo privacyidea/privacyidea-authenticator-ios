@@ -160,22 +160,27 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="JKW-FE-gXo">
-                                                    <rect key="frame" x="23" y="99" width="274" height="40"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="JKW-FE-gXo">
+                                                    <rect key="frame" x="15" y="99" width="290" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rolling out..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="gfn-RM-UZ3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="122" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="96" height="40"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H45-ZX-VT6">
-                                                            <rect key="frame" x="152" y="0.0" width="122" height="40"/>
+                                                            <rect key="frame" x="97" y="0.0" width="96" height="40"/>
                                                             <color key="backgroundColor" red="0.33333333329999998" green="0.69019607839999997" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="wOR-A4-7CE"/>
-                                                            </constraints>
                                                             <state key="normal" title="Allow">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eA9-7U-LJM">
+                                                            <rect key="frame" x="194" y="0.0" width="96" height="40"/>
+                                                            <color key="backgroundColor" red="0.33333333329999998" green="0.69019607839999997" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                            <state key="normal" title="Dismiss">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                         </button>
@@ -191,7 +196,7 @@
                                                 <constraint firstItem="WsA-RE-bRZ" firstAttribute="top" secondItem="16d-XQ-DgW" secondAttribute="top" constant="8" id="HoP-bV-n3E"/>
                                                 <constraint firstItem="ar1-SB-695" firstAttribute="top" secondItem="9ra-Or-rR9" secondAttribute="bottom" constant="8" id="IW5-1v-fut"/>
                                                 <constraint firstItem="JKW-FE-gXo" firstAttribute="top" secondItem="ar1-SB-695" secondAttribute="bottom" constant="8" id="JZR-vR-6UV"/>
-                                                <constraint firstItem="JKW-FE-gXo" firstAttribute="leading" secondItem="16d-XQ-DgW" secondAttribute="leadingMargin" constant="8" id="Jds-Ny-CKK"/>
+                                                <constraint firstItem="JKW-FE-gXo" firstAttribute="leading" secondItem="16d-XQ-DgW" secondAttribute="leadingMargin" id="Jds-Ny-CKK"/>
                                                 <constraint firstItem="9ra-Or-rR9" firstAttribute="centerX" secondItem="16d-XQ-DgW" secondAttribute="centerX" id="LAv-7h-ng7"/>
                                                 <constraint firstItem="JKW-FE-gXo" firstAttribute="centerX" secondItem="16d-XQ-DgW" secondAttribute="centerX" id="RIA-oJ-fNN"/>
                                                 <constraint firstItem="207-c0-n2d" firstAttribute="top" secondItem="16d-XQ-DgW" secondAttribute="top" constant="8" id="UGY-tb-2hh"/>
@@ -199,7 +204,7 @@
                                                 <constraint firstItem="9ra-Or-rR9" firstAttribute="leading" secondItem="16d-XQ-DgW" secondAttribute="leadingMargin" constant="16" id="XN6-H8-Fnw"/>
                                                 <constraint firstItem="207-c0-n2d" firstAttribute="centerX" secondItem="16d-XQ-DgW" secondAttribute="centerX" id="Yb6-PO-OkR"/>
                                                 <constraint firstAttribute="trailing" secondItem="ar1-SB-695" secondAttribute="trailing" constant="2" id="b7H-8n-Dtr"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="JKW-FE-gXo" secondAttribute="trailing" constant="8" id="ehP-68-fbC"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="JKW-FE-gXo" secondAttribute="trailing" id="ehP-68-fbC"/>
                                                 <constraint firstAttribute="trailing" secondItem="WsA-RE-bRZ" secondAttribute="trailing" constant="4" id="mTU-Qb-7gk"/>
                                                 <constraint firstItem="ar1-SB-695" firstAttribute="leading" secondItem="16d-XQ-DgW" secondAttribute="leading" constant="2" id="xaf-pX-WKT"/>
                                                 <constraint firstAttribute="trailing" secondItem="207-c0-n2d" secondAttribute="trailing" constant="16" id="yZ0-hu-DIP"/>
@@ -207,6 +212,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="buttonDismissStackV" destination="eA9-7U-LJM" id="FwY-29-Sp3"/>
                                             <outlet property="buttonHOTP" destination="WsA-RE-bRZ" id="j0U-xY-Cds"/>
                                             <outlet property="buttonStackV" destination="H45-ZX-VT6" id="oif-2R-EJt"/>
                                             <outlet property="labelName" destination="9ra-Or-rR9" id="H2U-Jn-DQt"/>

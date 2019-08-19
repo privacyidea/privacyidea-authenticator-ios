@@ -10,7 +10,6 @@ import Foundation
 
 // Encapsulate the modification of data and updating of UI
 extension Presenter: PresenterDelegate {
-    //private typealias U = Utilities
     
     func changeTokenLabel(_ label: String, index: Int) {
         model.getTokenAt(index).label = label
@@ -26,9 +25,7 @@ extension Presenter: PresenterDelegate {
         addToken(token)
     }
     
-    /**
-     Return the token at the index used to fill the cell.
-     */
+    //  Return the token at the index. Used to fill the cell.
     func getTokenForRow(index: Int) -> Token {
         return model.getTokenAt(index)
     }
@@ -37,14 +34,16 @@ extension Presenter: PresenterDelegate {
         return model.getListCount()
     }
     
-    func addPushAuthRequestToToken(_ req: PushAuthRequest) {
+    // Returns false if the token specified (by serial) in the request was not found
+    func addPushAuthRequestToToken(_ req: PushAuthRequest) -> Bool {
         if let t = model.getTokenBySerial(req.serial) {
             t.pendingAuths.append(req)
             datasetChanged()
             U.log("Request added to token")
+            return true
         } else {
             U.log("No token found for serial: \(req.serial)")
-            U.log("no token found for serial \(req.serial)")
+            return false
         }
     }
     
@@ -53,10 +52,11 @@ extension Presenter: PresenterDelegate {
         model.insertTokenAt(token: movedObject, at: dest_index)
         datasetChanged()
     }
-    /** Store the tokenlist and update the UI */
+    
+    // Store the tokenlist and update the UI
     func datasetChanged() {
         Storage.shared.saveTokens(list: model.getList())
-        tokenlistDelegate?.reloadCells()
+        tableViewDelegate?.reloadCells()
     }
     
     func saveTokenlist() {
@@ -69,7 +69,7 @@ extension Presenter: PresenterDelegate {
             Storage.shared.removeKeysFor(token.serial)
             if !model.hasPushtokenLeft() {
                 Storage.shared.deleteFirebaseConfig()
-                tokenlistDelegate?.showMessageWithOKButton(title: "Firebase reset", message: "Restart App to reset Firebase")
+                tableViewDelegate?.showMessageWithOKButton(title: "Firebase reset", message: "Restart App to reset Firebase")
             }
         }
         datasetChanged()
@@ -84,4 +84,26 @@ extension Presenter: PresenterDelegate {
         model.removeToken(t)
         datasetChanged()
     }
+    
+    // Checks all token of push type if there are expired authentication requests. If so the UI is reloaded and notifications are removed if possible.
+    func checkExpiredAuthRequests() {
+        if let expired = model.checkExpiredAuthRequests() {
+            notificationManager?.removeNotifications(forIDs: expired)
+            datasetChanged()
+        }
+    }
+    
+    // Checks all token of push type whose rollout is unfinished for their TTL. If it is expired a message is shown and the token is removed.
+    func checkExpiredRollouts() {
+        if let expiredTokens = model.checkExpiredRollouts() {
+            for t in expiredTokens {
+                model.removeToken(t)
+                tableViewDelegate?.showMessageWithOKButton(title: "Token expired!", message: "\(t.serial) has expired and will be deleted.")
+            }
+            if expiredTokens.count > 0 {
+                datasetChanged()
+            }
+        }
+    }
+    
 }

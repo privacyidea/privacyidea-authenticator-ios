@@ -65,10 +65,6 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
          let url = userInfo["URL"] as! String
          let title = userInfo["TITLE"] as! String
          let question = userInfo["QUESTION"] as! String
-         
-         // TTL of a PushRequest is 2min ? // MARK: PUSH TTL
-         let ttl: Date = Date().addingTimeInterval(Double(2) * 60.0)
-         let req = PushAuthRequest(url: url, nonce: nonce, signature: signature, serial: serial, title: title, question: question, sslVerify: <#T##Bool#>, ttl: Date)
          */
         
         guard let token = presenter.model.getTokenBySerial(serial) else {
@@ -84,12 +80,8 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
     }
     
     func removeNotifications(forIDs: [String]) {
-        U.log("removing notifications for:")
-        U.log(forIDs)
-        let center = UNUserNotificationCenter.current()
-        
-        center.removeDeliveredNotifications(withIdentifiers: forIDs)
-        center.removePendingNotificationRequests(withIdentifiers: forIDs)
+        //U.log("Removing notifications for: \(forIDs)")
+        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: forIDs)
     }
     
     func buildNotification(forRequest: PushAuthRequest) {
@@ -113,6 +105,7 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         // Use the id of the push auth request for the notification, so it can be removed when the request expires
+        U.log("New notification with ID: \(forRequest.id)")
         let request = UNNotificationRequest(identifier: forRequest.id, content: content, trigger: trigger)
         notificationCenter.add(request) { (error) in
             if error != nil {

@@ -43,6 +43,5 @@ class PushAuthRequest: Codable {
         self.sslVerify = sslVerify
         self.ttl = ttl
         self.id = id
-        U.log("new req with ttl: \(ttl)")
     }
 }

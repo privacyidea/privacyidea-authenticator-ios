@@ -58,17 +58,11 @@ class Token: Codable {
         self.secret = secret
         self.counter = counter
         self.digits = (digits == 6) ? 6 : 8
-        // validate the interval and set it
+        // validate the interval
         if type == Tokentype.TOTP {
-            if period != nil {
-                if period! == 30 || period! == 60 {
-                    self.period = period!
-                } else { self.period = 30 }
-            } else { self.period = 30 }
-        } else {
-            self.period = nil
+            ((period ?? 30) == 60) ? (self.period = 60)
+                                    : (self.period = 30)
         }
-        
         self.pendingAuths = []
         self.state = State.FINISHED
     }
@@ -92,7 +86,7 @@ class Token: Codable {
     }
     
     func isStillValid(_ pushAuthRequest: PushAuthRequest) -> Bool {
-       return pushAuthRequest.ttl > Date()
+        return pushAuthRequest.ttl > Date()
     }
     
     func removeAuthRequest(_ req: PushAuthRequest) {

@@ -18,78 +18,58 @@ import UserNotifications
 class Presenter {
     
     var model: Model
-    var tokenlistDelegate: TokenlistDelegate?
+    var tableViewDelegate: TokenlistDelegate?
     var notificationManager: NotificationManager?
     
     init(tokenlistDelegate: TokenlistDelegate) {
-        self.tokenlistDelegate = tokenlistDelegate
+        self.tableViewDelegate = tokenlistDelegate
         self.model = Model(token: Storage.shared.loadTokens())
     }
     
     func startup() {
         // MARK: STARTUP
-        if model.hasPushtokenLeft() {
-            U.log("Pushtoken present on startup")
-            loadAndInitFirebase()
-        } else {
-            U.log("no pushtoken present on startup")
-            Storage.shared.deleteFirebaseConfig()
-        }
+        
+        model.hasPushtokenLeft() ? loadAndInitFirebase() : Storage.shared.deleteFirebaseConfig()
         
         notificationManager = NotificationManager(self)
         notificationManager?.registerForPushNotifications()
         
-        let expiredTokens = model.checkForExpiredRollouts()
-        if expiredTokens != nil {
-            for t in expiredTokens! {
-                tokenExpired(t)
-            }
-        }
+        checkExpiredRollouts()
+        checkExpiredAuthRequests()
     }
     
-    func timerProgress(progress: Int) {
-        let seconds = progress
+    func timerProgress(seconds: Int) {
         // Reload the cells only around the TOTP switching times
         // Reloading the cell closes the menu opened by swiping
-        if (seconds < 31 && seconds > 29 || seconds > 58){
+        if (seconds < 31 && seconds > 29 || seconds > 58) {
             model.refreshTOTP()
-            tokenlistDelegate?.reloadCells()
+            tableViewDelegate?.reloadCells()
         }
-        // Also check for expired PushAuthenticationRequests
-        let expired = model.checkForExpiredAuthRequests()
-        if expired != nil {
-            // Try to remove the notification if there is
-            notificationManager?.removeNotifications(forIDs: expired!)
-            tokenlistDelegate?.reloadCells()
-        }
+      
+        checkExpiredAuthRequests()
+        checkExpiredRollouts()
         
         // Update progressbars
-        for i in 0..<model.getListCount() {
+        for i in 0..<getListCount() {
             let indexPath = IndexPath(row: i, section: 0)
-            tokenlistDelegate?.updateProgressbar(indexPath: indexPath, progress: seconds)
+            tableViewDelegate?.updateProgressbar(indexPath: indexPath, progress: seconds)
         }
-    }
-    
-    func tokenExpired(_ t: Token) {
-        removeToken(t)
-        tokenlistDelegate?.showMessageWithOKButton(title: "Token expired!", message: "\(t.serial) has expired and will be deleted.")
     }
 }
 
-// MARK: CELL BUTTON ONCLICK
+// MARK: CELL BUTTON ONCLICKS
 extension Presenter: PresenterCellDelegate {
     @objc func confirmedPushAuthentication(_ sender: UIButton) {
         U.log("Confirmed push at: \(sender.tag)")
         let t = model.getTokenAt(sender.tag)
         
         if t.type != Tokentype.PUSH || t.pendingAuths.count < 1 {
-            U.log("PushAuth: token is not PUSH type or AuthReq is non existent, count: \(t.pendingAuths.count)")
+            U.log("PushAuth: token is not PUSH type or PAR is not existing")
             return
         }
         
         t.setState(State.AUTHENTICATING)
-        tokenlistDelegate?.reloadCells()
-        //sender.isEnabled = false
+        tableViewDelegate?.reloadCells()
         pushAuthentication(forToken: t)
     }
     
@@ -100,5 +80,18 @@ extension Presenter: PresenterCellDelegate {
             return
         }
         initPushRollout(token)
+    }
+    
+    @objc func dismissPushAuthentication(_ sender: UIButton) {
+        let t = model.getTokenAt(sender.tag)
+        
+        if t.type != Tokentype.PUSH || t.pendingAuths.count < 1 {
+            U.log("PushAuth: token is not PUSH type or PAR is not existing")
+            return
+        }
+        
+        t.pendingAuths.remove(at: 0)
+        t.setLastestError(nil)
+        datasetChanged()
     }
 }

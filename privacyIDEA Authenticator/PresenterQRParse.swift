@@ -12,7 +12,7 @@ import SwiftOTP
 extension Presenter: QRScanResultDelegate {
     func passScanResult(code: String) {
         // create a token from the scan result and add it to the list
-        //U.log("scanned: \(code)")
+        U.log("scanned: \(code)")
         var type: String = Tokentype.HOTP
         var digits: Int = 6
         var algorithm: String = "sha1"
@@ -47,7 +47,7 @@ extension Presenter: QRScanResultDelegate {
             }
             
             label = comp.path
-            label.remove(at: label.startIndex) // remove first /
+            label.remove(at: label.startIndex) // remove first '/'
             serial = label
             for i in 0..<queryItems.count {
                 switch queryItems[i].name {
@@ -152,7 +152,7 @@ extension Presenter: QRScanResultDelegate {
                         ttl = Int(tmp)!
                     }
                     expirationDate = Date().addingTimeInterval(Double(ttl) * 60.0)
-                    U.log("TTL is: \(expirationDate) and current is \(Date())")
+                    //U.log("TTL is: \(expirationDate) and current is \(Date())")
                     break
                 case "v":
                     guard let tmp = queryItems[i].value else {
@@ -160,7 +160,7 @@ extension Presenter: QRScanResultDelegate {
                     }
                     v = Int(tmp)!
                     break
-                case "sslVerify":
+                case "sslverify":
                     guard let tmp = queryItems[i].value else {
                         continue
                     }
@@ -214,7 +214,7 @@ extension Presenter: QRScanResultDelegate {
                 // sends registration to background queue
                 DispatchQueue.global(qos: .background).async {
                     U.log("starting 2step")
-                    let t2 = TwoStepRollout(self.tokenlistDelegate!)
+                    let t2 = TwoStepRollout(self.tableViewDelegate!)
                         .do2stepinit(t: t, salt_size: two_step_salt, difficulty: two_step_difficulty, output: two_step_output)
                     self.addToken(t2)
                 }
@@ -223,7 +223,7 @@ extension Presenter: QRScanResultDelegate {
             }
         } else { // MARK: PUSH START
             if v > 1 {
-                tokenlistDelegate?.showMessageWithOKButton(title: "Error", message: "Push version is higher than the one supported by this phone")
+                tableViewDelegate?.showMessageWithOKButton(title: "Error", message: "Push version is higher than the one supported by this phone")
                 return
             }
             

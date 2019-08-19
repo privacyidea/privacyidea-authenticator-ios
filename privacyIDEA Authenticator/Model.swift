@@ -69,9 +69,6 @@ class Model {
             }
         }
         return false
-        /*return tokenlist.filter({ (t) -> Bool in
-         return t.type == Tokentype.PUSH
-         }).isEmpty */
     }
     
     func getTokenAt(_ index: Int) -> Token {
@@ -92,7 +89,7 @@ class Model {
         tokenlist.insert(token, at: at)
     }
     
-    func checkForExpiredRollouts() -> [Token]? {
+    func checkExpiredRollouts() -> [Token]? {
         return tokenlist.filter({ (t) -> Bool in
             return (t.type == Tokentype.PUSH && t.expirationDate! < Date() && t.getState() == State.UNFINISHED)
         })
@@ -101,19 +98,22 @@ class Model {
     /**
      Returns the IDs of expired authentication requests to delete their notifications
      */
-    func checkForExpiredAuthRequests() -> [String]? {
-        var removedIDs: [String]? = nil
+    func checkExpiredAuthRequests() -> [String]? {
+        var removedIDs: [String] = []
         for t in tokenlist {
             if t.type == Tokentype.PUSH {
                 for a in t.pendingAuths {
                     if a.ttl < Date() {
                         t.removeAuthRequest(a)
-                        removedIDs?.append(a.id)
+                        removedIDs.append(a.id)
                     }
                 }
             }
         }
-        return removedIDs
+        if removedIDs.count > 0 {
+            return removedIDs
+        }
+        return nil
     }
     
 }

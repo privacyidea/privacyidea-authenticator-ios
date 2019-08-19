@@ -10,7 +10,7 @@ import Foundation
 
 extension Presenter: PresenterLifecycleDelegate {
     func fcmMessageReceived(message: [AnyHashable : Any]) {
-        // Pass the message through, this is just an interface
+        // Pass the message through
         processFCMMessage(message: message)
     }
     
@@ -28,7 +28,7 @@ extension Presenter: PresenterLifecycleDelegate {
     
     func applicationDidBecomeActive() {
         model.refreshTOTP()
-        tokenlistDelegate?.reloadCells()
+        tableViewDelegate?.reloadCells()
     }
     
     func applicationWillTerminate() {

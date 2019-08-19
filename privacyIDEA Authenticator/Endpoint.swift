@@ -21,6 +21,7 @@ class Endpoint: NSObject, URLSessionDelegate {
         self.sslVerify = sslVerify
         self.callback = callback
         self.token = token
+        //U.log("endpoint with SSLVerify=\(sslVerify)")
     }
     
     func connect() {
@@ -28,8 +29,13 @@ class Endpoint: NSObject, URLSessionDelegate {
         DispatchQueue.global(qos: .background).async {
             
             let url = URL(string: self.url)!
-            //let session = URLSession.shared
-            let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+            var session: URLSession
+            
+            if !self.sslVerify {
+                session = URLSession(configuration: .default, delegate: self, delegateQueue: nil) }
+            else {
+                session = URLSession(configuration: .default, delegate: nil, delegateQueue: nil) }
+            
             var request = URLRequest(url: url)
             // timeout is 60s by default
             request.httpMethod = "POST"
@@ -41,8 +47,7 @@ class Endpoint: NSObject, URLSessionDelegate {
             }
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("application/json", forHTTPHeaderField: "Accept")
-   
-        
+            
             // create dataTask using the session object to send data to the server
             let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                 

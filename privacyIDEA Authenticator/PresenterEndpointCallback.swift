@@ -72,7 +72,7 @@ extension Presenter: EndpointCallback {
             }
             
             let success: Bool = result[idxValue].value as! Bool
-            U.log("success: \(success)")
+            U.log("Authentication success: \(success)")
             
             guard let idxNonce = response.index(forKey: "nonce") else {
                 U.log("nonce not found in response")
@@ -92,10 +92,10 @@ extension Presenter: EndpointCallback {
             if p.nonce == nonce {
                 if success {
                     token.pendingAuths = token.pendingAuths.filter( { $0 !== p } )
-                    tokenlistDelegate?.showToastMessage(text: "Authentication successful!")
+                    tableViewDelegate?.showToastMessage(text: "Authentication successful!")
                     self.datasetChanged()
                 } else {
-                    tokenlistDelegate?.showToastMessage(text: "Authentication failed!")
+                    tableViewDelegate?.showToastMessage(text: "Authentication failed!")
                 }
                 // TODO remove failed authentication? it is probably impossible to get it right if it fails (without an error from "outside")
             }

@@ -12,17 +12,20 @@ import SwiftOTP
 class TableViewCell: UITableViewCell {
     
     @IBOutlet weak var buttonStackV: UIButton!
+    @IBOutlet weak var buttonDismissStackV: UIButton!
     @IBOutlet weak var buttonHOTP: UIButton!
     
     @IBOutlet weak var stackView: UIStackView!
+    
     @IBOutlet weak var labelStackV: UILabel!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelOTP: UILabel!
     
     @IBOutlet weak var progressBar: UIProgressView!
-    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
     @IBOutlet weak var progressBarHeight: NSLayoutConstraint!
+    
     var presenter: PresenterCellDelegate?
     
     let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -39,16 +42,25 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    // Called for new cells or when TableVC.reloadCells
+    // Called for new cells or when tableVC.reloadCells
     func setupCell(_ token: Token, _ index : Int) {
-    
-        buttonHOTP.tag = index  // set the row's index as tag for the button to later identify which one was tapped
+        
+        // set the row's index as tag for the button to later identify which one was tapped
+        buttonHOTP.tag = index
         buttonStackV.tag = index
+        buttonDismissStackV.tag = index
+        /////////////////////////////////////
         
         labelName.text = token.label
         labelName.numberOfLines = 1
-        labelOTP.text = token.currentOTP
         
+        // Separate the OTP with a whitespace after half the digits for better readability
+        if let otp = token.currentOTP {
+            var step: Int
+            (token.digits ?? 6) == 8 ? (step = 4)
+                : (step = 3)
+            labelOTP.text = String(otp.enumerated().map { $0 > 0 && $0 % step == 0 ? [" ", $1] : [$1]}.joined())
+        }
         
         // Set all other views to gone by default
         labelStackV.isHidden = true
@@ -83,31 +95,29 @@ class TableViewCell: UITableViewCell {
                 labelOTP.text = token.label
                 
                 if token.hasPendingAuths() && presenter != nil {
-                    showButtonInStackView()
-                    showStackView()
-                    buttonStackV.isHidden = false
-                    labelStackV.isHidden = false
-                    
                     // Display the pending Auth
                     labelName.text = token.pendingAuths.first?.title
                     labelStackV.text = token.pendingAuths.first?.question
                     
                     buttonStackV.addTarget(presenter, action: #selector(Presenter.confirmedPushAuthentication(_ :)), for: .touchUpInside)
                     
-                    if token.getLastestError() != nil {
-                        // It is a second+ try
-                        labelName.numberOfLines = 2
-                        labelName.text = token.getLastestError()?.localizedDescription
-                        labelOTP.text = ""
-                        
-                        let atr = NSAttributedString(string: "Retry allow",
-                                                     attributes: color_text_white)
-                        buttonStackV.setAttributedTitle(atr, for: .normal)
-                    } else {
+                    if token.getLastestError() == nil {
                         // First try
                         let atr = NSAttributedString(string: "Allow",
                                                      attributes: color_text_white)
                         buttonStackV.setAttributedTitle(atr, for: .normal)
+                        addToStackView([labelStackV, buttonStackV])
+                    } else {
+                        // It is a second+ try
+                        labelName.numberOfLines = 2
+                        labelName.text = token.getLastestError()?.localizedDescription
+                        labelOTP.text = ""
+                        let atr = NSAttributedString(string: "Retry allow",
+                                                     attributes: color_text_white)
+                        buttonStackV.setAttributedTitle(atr, for: .normal)
+                        // Setup the dismiss button
+                        buttonDismissStackV.addTarget(presenter, action: #selector(Presenter.dismissPushAuthentication(_:)), for:.touchUpInside)
+                        addToStackView([labelStackV,buttonStackV,buttonDismissStackV])
                     }
                 }
                 break
@@ -118,36 +128,30 @@ class TableViewCell: UITableViewCell {
                 
                 if presenter != nil {
                     if token.getLastestError() != nil {
-                        //lbl_otp.text = token.latestError?.localizedDescription
                         labelStackV.isHidden = false
                         labelStackV.text = token.getLastestError()?.localizedDescription
                     }
-                    
-                    showStackView()
-                    showButtonInStackView()
-                    
                     let atr = NSAttributedString(string: "Retry",
                                                  attributes: color_text_white)
                     buttonStackV.setAttributedTitle(atr, for: .normal)
                     buttonStackV.addTarget(presenter, action: #selector(Presenter.retryRollout(_:)), for: .touchUpInside)
+                    addToStackView([labelStackV, buttonStackV])
                 }
                 break
                 
             case State.ENROLLING:
                 labelOTP.text = token.label
                 labelName.text = ""
-                showStackView()
-                showIndicatorInStackView()
-                
+                addToStackView([labelStackV, indicator])
+                indicator.startAnimating()
                 labelStackV.isHidden = false
                 labelStackV.text = "Rolling out..."
                 labelStackV.textAlignment = .right
                 break
                 
             case State.AUTHENTICATING:
-                showIndicatorInStackView()
-                showStackView()
-                
+                addToStackView([labelStackV, indicator])
+                indicator.startAnimating()
                 labelStackV.isHidden = false
                 labelStackV.textAlignment = .right
                 labelStackV.text = "Authenticating..."
@@ -166,33 +170,39 @@ class TableViewCell: UITableViewCell {
         stackViewHeight.constant = 0
     }
     
-    func showIndicatorInStackView() {
-        // Removing from stackview means the view is not managed by it anymore but still displayed so it has to be disabled aswell
-        stackView.removeArrangedSubview(buttonStackV)
-        buttonStackV.isHidden = true
-        buttonStackV.isEnabled = false
-        stackView.removeArrangedSubview(labelStackV)
-        
-        stackView.addArrangedSubview(labelStackV)
-        stackView.addArrangedSubview(indicator)
-        
-        //stackView.insertArrangedSubview(indicator, at: 1)
-        indicator.isHidden = false
-        indicator.startAnimating()
-    }
+    /* func showIndicatorStackView() {
+     addToStackView([labelStackV, indicator])
+     indicator.startAnimating()
+     } */
     
-    func showButtonInStackView() {
+    /*func showSingleButtonStackView() {
+     addToStackView([labelStackV, buttonStackV])
+     } */
+    
+    /* func showDismissableStackView() {
+     buttonDismissStackV.addTarget(presenter, action: #selector(Presenter.dismissPushAuthentication(_:)), for:.touchUpInside)
+     addToStackView([labelStackV,buttonStackV,buttonDismissStackV])
+     } */
+    
+    /* Adds the views in order (from left to right) to the stackView.
+     The stackView is cleared beforehand, hiding all views that were contained.
+     The views that are then added, are set to visible.
+     */
+    private func addToStackView(_ views: [UIView]) {
+        showStackView()
+        // Clear the stackview first
+        // Removing from stackview means the view is not managed by it anymore but still displayed so it has to be hidden aswell
         indicator.stopAnimating()
-        // Removing from stackview means the view is not managed by it anymore but still displayed so it has to be disabled aswell
-        stackView.removeArrangedSubview(indicator)
-        indicator.isHidden = true
+        let elements = stackView.arrangedSubviews
+        for e in elements {
+            stackView.removeArrangedSubview(e)
+            e.isHidden = true
+        }
         
-        stackView.removeArrangedSubview(labelStackV)
-        stackView.addArrangedSubview(labelStackV)
-        stackView.addArrangedSubview(buttonStackV)
-        buttonStackV.isHidden = false
-        buttonStackV.isEnabled = true
-        //stackView.insertArrangedSubview(pushButton, at: 1)
+        for e in views {
+            e.isHidden = false
+            stackView.addArrangedSubview(e)
+        }
     }
     
     /**

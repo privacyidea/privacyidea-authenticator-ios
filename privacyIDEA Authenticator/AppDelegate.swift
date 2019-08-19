@@ -65,7 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will not be fired till the user taps on the notification launching the application.
         
-        //U.log(userInfo)
+        // MARK: PRINT PUSH DATA
+        U.log(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -73,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If you are receiving a notification message while your app is in the background,
         // this callback will be fired.
     
-        //U.log(userInfo)
+        U.log(userInfo)
         presenterDelegate?.fcmMessageReceived(message: userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
     }

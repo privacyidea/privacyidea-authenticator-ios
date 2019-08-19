@@ -165,7 +165,7 @@ class TableViewController: UIViewController {
             seconds += 1
             if seconds > 60 {seconds = 1}
             //U.log(seconds)
-            self.presenterDelegate?.timerProgress(progress: seconds)
+            self.presenterDelegate?.timerProgress(seconds: seconds)
         }
     }
     

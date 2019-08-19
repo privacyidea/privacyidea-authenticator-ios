@@ -13,7 +13,7 @@ import WebKit
 class AboutViewController: UIViewController
 {
     
-    private let thirdPartyLibs: [String] = ["KeychainSwift", "CryptoSwift", "SwiftOTP" , "ToastSwift"]
+    private let thirdPartyLibs: [String] = ["KeychainSwift", "CryptoSwift", "SwiftOTP" , "ToastSwift", "Google Firebase"]
     
     @IBOutlet weak var thirdPartyLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!

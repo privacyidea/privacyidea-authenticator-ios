@@ -39,10 +39,9 @@ extension Presenter {
     
     // Try to load the FirebaseConfig - if there is one, start the init
     func loadAndInitFirebase() {
-        guard let tmp = Storage.shared.loadFirebaseConfig() else {
-            return
+        if let tmp = Storage.shared.loadFirebaseConfig() {
+            firebaseInit(tmp)
         }
-        firebaseInit(tmp)
     }
     
     func initPushRollout(_ token: Token) {
@@ -57,14 +56,15 @@ extension Presenter {
         if expiration < Date() {
             U.log("TTL expired:")
             //U.log(token.expirationDate!)
-            self.tokenExpired(token)
+            self.removeToken(token)
+            tableViewDelegate?.showMessageWithOKButton(title: "Token expired!", message: "\(token.serial) has expired and will be deleted.")
             return
         }
         
         U.log("Preparing for Push rollout:")
         token.setState(State.ENROLLING)
         token.setLastestError(nil)// reset lastestError on new action
-        tokenlistDelegate?.reloadCells()
+        tableViewDelegate?.reloadCells()
         U.log("Getting Firebase Token from InstanceID ...")
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
@@ -107,8 +107,7 @@ extension Presenter {
                   "fbtoken": fbtoken,
                   "pubkey": fullKey ]
             
-            let endpoint = Endpoint(url: enrollment_url, data: parameters, sslVerify: (token.sslVerify ?? true),token: token, callback: self)
-            endpoint.connect()
+            Endpoint(url: enrollment_url, data: parameters, sslVerify: (token.sslVerify ?? true),token: token, callback: self).connect()
         }
     }
     
@@ -117,7 +116,7 @@ extension Presenter {
      */
     func pushAuthentication(forToken: Token) {
         DispatchQueue.global(qos: .background).async {
-            let req = forToken.pendingAuths[0] // TODO always the first
+            let req = forToken.pendingAuths.first! // TODO always the first
             // 0. Check TTL
             Utilities.log("push ttl is: \(req.ttl)")
             if req.ttl < Date() {
@@ -159,8 +158,7 @@ extension Presenter {
             // 3. Assemble data and send it to privacyIDEA
             let params = [ "nonce": req.nonce,
                            "serial": req.serial,
-                           "signature": signature
-            ]
+                           "signature": signature ]
             Endpoint(url: req.url, data: params, sslVerify: req.sslVerify, token: forToken, callback: self).connect()
         }
     }
@@ -202,7 +200,8 @@ extension Presenter {
         let id = UUID().uuidString
         let pushauthreq = PushAuthRequest(id: id, url: url as! String, nonce: nonce as! String, signature: signature as! String, serial: serial as! String, title: title as! String, question: question as! String, sslVerify: sslVerify, ttl: ttl)
         
-        addPushAuthRequestToToken(pushauthreq)
-        notificationManager?.buildNotification(forRequest: pushauthreq)
+        if addPushAuthRequestToToken(pushauthreq) {
+            notificationManager?.buildNotification(forRequest: pushauthreq)
+        }
     }
 }
