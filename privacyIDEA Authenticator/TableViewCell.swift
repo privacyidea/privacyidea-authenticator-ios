@@ -28,9 +28,9 @@ class TableViewCell: UITableViewCell {
     
     var presenter: PresenterCellDelegate?
     
-    let indicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let indicator = UIActivityIndicatorView(style: .gray)
     
-    let color_text_white = [NSAttributedStringKey.foregroundColor : UIColor.white]
+    let color_text_white = [NSAttributedString.Key.foregroundColor : UIColor.white]
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,7 +59,7 @@ class TableViewCell: UITableViewCell {
             var step: Int
             (token.digits ?? 6) == 8 ? (step = 4)
                 : (step = 3)
-            labelOTP.text = String(otp.enumerated().map { $0 > 0 && $0 % step == 0 ? [" ", $1] : [$1]}.joined())
+            labelOTP.text = String(otp.enumerated().map{ $0 > 0 && $0 % step == 0 ? [" ", $1] : [$1] }.joined())
         }
         
         // Set all other views to gone by default
@@ -75,11 +75,11 @@ class TableViewCell: UITableViewCell {
         
         if token.type == Tokentype.HOTP {
             buttonHOTP.isHidden = false
-            let atr = NSAttributedString(string: ">>",
-                                         attributes: color_text_white)
-            buttonHOTP.setAttributedTitle(atr, for: .normal)
+            buttonHOTP.addTarget(presenter, action: #selector(Presenter.increaseHOTP(_ :)), for: .touchUpInside)
+            labelOTP.font = UIFont.boldSystemFont(ofSize: 34.0)
         }
         else if token.type == Tokentype.TOTP {
+            labelOTP.font = UIFont.boldSystemFont(ofSize: 34.0)
             buttonHOTP.isHidden = true
             progressBar.isHidden = false
             progressBarHeight.constant = 5
@@ -87,6 +87,8 @@ class TableViewCell: UITableViewCell {
             // MARK: PUSH CELL
             // Reset the button target - has multiple uses
             buttonStackV.removeTarget(nil, action: nil, for: .allEvents)
+            labelOTP.font = UIFont.systemFont(ofSize: 34.0)
+            
             
             switch token.getState() {
             case State.FINISHED:
@@ -170,24 +172,6 @@ class TableViewCell: UITableViewCell {
         stackViewHeight.constant = 0
     }
     
-    /* func showIndicatorStackView() {
-     addToStackView([labelStackV, indicator])
-     indicator.startAnimating()
-     } */
-    
-    /*func showSingleButtonStackView() {
-     addToStackView([labelStackV, buttonStackV])
-     } */
-    
-    /* func showDismissableStackView() {
-     buttonDismissStackV.addTarget(presenter, action: #selector(Presenter.dismissPushAuthentication(_:)), for:.touchUpInside)
-     addToStackView([labelStackV,buttonStackV,buttonDismissStackV])
-     } */
-    
-    /* Adds the views in order (from left to right) to the stackView.
-     The stackView is cleared beforehand, hiding all views that were contained.
-     The views that are then added, are set to visible.
-     */
     private func addToStackView(_ views: [UIView]) {
         showStackView()
         // Clear the stackview first
@@ -225,6 +209,12 @@ class TableViewCell: UITableViewCell {
         } else {
             progress = time2 / 60
         }
-        progressBar.setProgress(progress, animated: true)
+        if time == 0 {
+            progressBar.setProgress(0, animated: false)
+        } else {
+            UIView.animate(withDuration: 1.2) {
+                self.progressBar.setProgress(progress, animated: true)
+            }
+        }
     }
 }

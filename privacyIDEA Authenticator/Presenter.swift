@@ -94,4 +94,14 @@ extension Presenter: PresenterCellDelegate {
         t.setLastestError(nil)
         datasetChanged()
     }
+    
+    @objc func increaseHOTP(_ sender: UIButton) {
+        model.increaseHOTP(index: sender.tag)
+        sender.isEnabled = false
+        datasetChanged()
+        // Deactivate the button and reactivate it 2s later
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            sender.isEnabled = true
+        }
+    }
 }

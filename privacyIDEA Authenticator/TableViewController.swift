@@ -51,7 +51,7 @@ class TableViewController: UIViewController {
         leftSwipe.direction = .left
         menuView.addGestureRecognizer(leftSwipe)
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         
         menuView.layer.borderColor = UIColor.black.cgColor
@@ -89,10 +89,6 @@ class TableViewController: UIViewController {
             let manualAddVC = segue.destination as! EnterDetailController
             manualAddVC.presenterDelegate = self.presenterDelegate
         }
-    }
-    
-    @IBAction func nextOTPButtonTapped(_ sender: UIButton) {
-        presenterDelegate?.nextButtonTapped(index: sender.tag)
     }
     
     func version() -> String {
@@ -293,8 +289,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
                 if let name = alertController.textFields?[0].text {
                     if name == "" {
                         let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
-                                                      preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                         return
                     }
@@ -320,7 +316,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     // disable the delete and insert action in edit mode
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         //U.log("EditingStyleForRowAt : \(indexPath.row)")
         return .none
     }
@@ -375,8 +371,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
                 if let name = alertController.textFields?[0].text {
                     if name == "" {
                         let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
-                                                      preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                         return
                     }

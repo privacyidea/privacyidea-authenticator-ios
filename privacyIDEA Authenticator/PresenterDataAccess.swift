@@ -75,11 +75,6 @@ extension Presenter: PresenterDelegate {
         datasetChanged()
     }
     
-    func nextButtonTapped(index: Int) {
-        model.increaseHOTP(index: index)
-        datasetChanged()
-    }
-    
     func removeToken(_ t: Token) {
         model.removeToken(t)
         datasetChanged()

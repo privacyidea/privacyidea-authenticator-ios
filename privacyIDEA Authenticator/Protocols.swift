@@ -24,7 +24,6 @@ protocol TokenlistDelegate {
 
 protocol PresenterDelegate {
     func startup()
-    func nextButtonTapped(index: Int)
     func timerProgress(seconds: Int)
     func getTokenForRow(index: Int) -> Token
     func removeTokenAt(index: Int)

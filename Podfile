@@ -12,7 +12,8 @@ pod 'KeychainSwift', '~> 16.0'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'SwiftyRSA'
-pod 'Toast-Swift', '~> 4.0.1'
+pod 'Toast-Swift', '~> 5.0.0'
+
 
   target 'privacyIDEA AuthenticatorTests' do
     inherit! :search_paths
