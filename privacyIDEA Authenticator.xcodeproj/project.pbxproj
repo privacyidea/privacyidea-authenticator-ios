@@ -9,19 +9,36 @@
 /* Begin PBXBuildFile section */
 		18BA48158930A681710F0290 /* Pods_privacyIDEA_AuthenticatorUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DE2FA8869F15C9FEDFE33A8 /* Pods_privacyIDEA_AuthenticatorUITests.framework */; };
 		29028DD421198E0C00842BCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29028DD321198E0C00842BCC /* AppDelegate.swift */; };
-		29028DD921198E0C00842BCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29028DD721198E0C00842BCC /* Main.storyboard */; };
 		29028DDB21198E0D00842BCC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29028DDA21198E0D00842BCC /* Assets.xcassets */; };
-		29028DDE21198E0D00842BCC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29028DDC21198E0D00842BCC /* LaunchScreen.storyboard */; };
 		29028DE921198E0D00842BCC /* testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29028DE821198E0D00842BCC /* testTests.swift */; };
 		29028DF421198E0E00842BCC /* testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29028DF321198E0E00842BCC /* testUITests.swift */; };
+		2903C06822647CF300A86245 /* FirebaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2903C06722647CF300A86245 /* FirebaseConfig.swift */; };
+		290A8138228C3B41006D74CC /* TwoStepRollout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A8137228C3B41006D74CC /* TwoStepRollout.swift */; };
+		290A813A228C3EF3006D74CC /* PresenterDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A8139228C3EF3006D74CC /* PresenterDataAccess.swift */; };
+		290A813C228C4040006D74CC /* PresenterPushFIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A813B228C4040006D74CC /* PresenterPushFIR.swift */; };
+		290F1DC622859DD50025EF81 /* PushAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DC522859DD50025EF81 /* PushAuthRequest.swift */; };
+		290F1DCE2285A7040025EF81 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DCD2285A7030025EF81 /* Storage.swift */; };
+		290F1DD02285A77E0025EF81 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DCF2285A77E0025EF81 /* Crypto.swift */; };
+		2912BE4622B7B5D300809114 /* PresenterEndpointCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2912BE4522B7B5D300809114 /* PresenterEndpointCallback.swift */; };
+		2912BE4822B7B72700809114 /* Lifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2912BE4722B7B72700809114 /* Lifecycle.swift */; };
+		2914092622B3DAA80071C665 /* PresenterQRParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2914092522B3DAA70071C665 /* PresenterQRParse.swift */; };
+		29146506225CBE9E0089A0A4 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29146503225CBE9E0089A0A4 /* Presenter.swift */; };
+		29146507225CBE9E0089A0A4 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29146504225CBE9E0089A0A4 /* Model.swift */; };
+		29146508225CBE9E0089A0A4 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29146505225CBE9E0089A0A4 /* Protocols.swift */; };
+		29226BF722771B1100631598 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29226BF622771B1100631598 /* Endpoint.swift */; };
 		2946876521661B8B0049F0F0 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2946876421661B8B0049F0F0 /* AboutViewController.swift */; };
 		295046E72119B3B400D51D7D /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295046E62119B3B400D51D7D /* ScannerViewController.swift */; };
 		2950471C2119CFB700D51D7D /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2950471B2119CFB700D51D7D /* Token.swift */; };
 		29584752211AE75100CE2C6A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29584751211AE75100CE2C6A /* TableViewCell.swift */; };
-		2968B5A4215B8B1900274253 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2968B5A3215B8B1900274253 /* Default-568h@2x.png */; };
-		299B77472166352B0057ED4A /* KeychainSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 299B77442166352A0057ED4A /* KeychainSwift license.html */; };
-		299B77482166352B0057ED4A /* CryptoSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 299B77452166352B0057ED4A /* CryptoSwift license.html */; };
-		299B77492166352B0057ED4A /* SwiftOTP license.html in Resources */ = {isa = PBXBuildFile; fileRef = 299B77462166352B0057ED4A /* SwiftOTP license.html */; };
+		2960B6AB22785CA8009BA265 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2960B6AA22785CA8009BA265 /* NotificationManager.swift */; };
+		297945BA230AC22400D36DAF /* Google Firebase license.html in Resources */ = {isa = PBXBuildFile; fileRef = 297945B9230AC22300D36DAF /* Google Firebase license.html */; };
+		29826CD32306D4A40093C9CD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29826CD22306D4A40093C9CD /* WebKit.framework */; };
+		29826CDB2306DB7B0093C9CD /* ToastSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CD72306DB7B0093C9CD /* ToastSwift license.html */; };
+		29826CDC2306DB7B0093C9CD /* SwiftOTP license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CD82306DB7B0093C9CD /* SwiftOTP license.html */; };
+		29826CDD2306DB7B0093C9CD /* KeychainSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CD92306DB7B0093C9CD /* KeychainSwift license.html */; };
+		29826CDE2306DB7B0093C9CD /* CryptoSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CDA2306DB7B0093C9CD /* CryptoSwift license.html */; };
+		29A4CB32225CCB9400E2909F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB31225CCB9400E2909F /* Constants.swift */; };
+		29A4CB35225CCFC200E2909F /* OTPGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB33225CCCD600E2909F /* OTPGenerator.swift */; };
 		29B089DF214F9A87009DA14C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B089DE214F9A87009DA14C /* MainNavigationController.swift */; };
 		29C668C521301BA700D6CDD9 /* EnterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C668C421301BA700D6CDD9 /* EnterDetailController.swift */; };
 		339882B0226B9695A7BC9E31 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33988D2A59C46070BB6A0345 /* TableViewController.swift */; };
@@ -74,17 +91,37 @@
 		29028DEF21198E0D00842BCC /* privacyIDEA AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "privacyIDEA AuthenticatorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29028DF321198E0E00842BCC /* testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testUITests.swift; sourceTree = "<group>"; };
 		29028DF521198E0E00842BCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2903C06722647CF300A86245 /* FirebaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConfig.swift; sourceTree = "<group>"; };
+		2903C069226482B600A86245 /* privacyIDEA Authenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "privacyIDEA Authenticator.entitlements"; sourceTree = "<group>"; };
+		290A8137228C3B41006D74CC /* TwoStepRollout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoStepRollout.swift; sourceTree = "<group>"; };
+		290A8139228C3EF3006D74CC /* PresenterDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterDataAccess.swift; sourceTree = "<group>"; };
+		290A813B228C4040006D74CC /* PresenterPushFIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPushFIR.swift; sourceTree = "<group>"; };
+		290F1DC522859DD50025EF81 /* PushAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAuthRequest.swift; sourceTree = "<group>"; };
+		290F1DCD2285A7030025EF81 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = "/Users/nils/Desktop/piauthenticator/privacyIDEA Authenticator/Storage.swift"; sourceTree = "<absolute>"; };
+		290F1DCF2285A77E0025EF81 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		2912BE4522B7B5D300809114 /* PresenterEndpointCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterEndpointCallback.swift; sourceTree = "<group>"; };
+		2912BE4722B7B72700809114 /* Lifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifecycle.swift; sourceTree = "<group>"; };
+		2914092522B3DAA70071C665 /* PresenterQRParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterQRParse.swift; sourceTree = "<group>"; };
+		29146503225CBE9E0089A0A4 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		29146504225CBE9E0089A0A4 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		29146505225CBE9E0089A0A4 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		29226BF622771B1100631598 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		2946876421661B8B0049F0F0 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2946876821662D7C0049F0F0 /* privacyIDEA Authenticator */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "privacyIDEA Authenticator"; sourceTree = "<group>"; };
 		295046E62119B3B400D51D7D /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		2950471B2119CFB700D51D7D /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		29584751211AE75100CE2C6A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		2968B5A3215B8B1900274253 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		299B77442166352A0057ED4A /* KeychainSwift license.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "KeychainSwift license.html"; sourceTree = "<group>"; };
-		299B77452166352B0057ED4A /* CryptoSwift license.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "CryptoSwift license.html"; sourceTree = "<group>"; };
-		299B77462166352B0057ED4A /* SwiftOTP license.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = "SwiftOTP license.html"; sourceTree = "<group>"; };
+		2960B6AA22785CA8009BA265 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		297945B9230AC22300D36DAF /* Google Firebase license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Google Firebase license.html"; sourceTree = "<group>"; };
+		29826CD22306D4A40093C9CD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		29826CD72306DB7B0093C9CD /* ToastSwift license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "ToastSwift license.html"; sourceTree = "<group>"; };
+		29826CD82306DB7B0093C9CD /* SwiftOTP license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "SwiftOTP license.html"; sourceTree = "<group>"; };
+		29826CD92306DB7B0093C9CD /* KeychainSwift license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "KeychainSwift license.html"; sourceTree = "<group>"; };
+		29826CDA2306DB7B0093C9CD /* CryptoSwift license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "CryptoSwift license.html"; sourceTree = "<group>"; };
 		299B774A216640190057ED4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		299B774B216640190057ED4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		29A4CB31225CCB9400E2909F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		29A4CB33225CCCD600E2909F /* OTPGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPGenerator.swift; sourceTree = "<group>"; };
 		29B089DE214F9A87009DA14C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		29C668C421301BA700D6CDD9 /* EnterDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDetailController.swift; sourceTree = "<group>"; };
 		3398879EC13DF72ACC937181 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -104,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29826CD32306D4A40093C9CD /* WebKit.framework in Frameworks */,
 				D638494276AFC0758EF19F04 /* Pods_privacyIDEA_Authenticator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,13 +181,10 @@
 		29028DC721198E0C00842BCC = {
 			isa = PBXGroup;
 			children = (
-				299B77452166352B0057ED4A /* CryptoSwift license.html */,
-				299B77442166352A0057ED4A /* KeychainSwift license.html */,
-				299B77462166352B0057ED4A /* SwiftOTP license.html */,
-				2946876821662D7C0049F0F0 /* privacyIDEA Authenticator */,
-				2968B5A3215B8B1900274253 /* Default-568h@2x.png */,
-				29028DD221198E0C00842BCC /* privacyIDEA Authenticator */,
+				29826CD62306DB7B0093C9CD /* licenses */,
 				29028DE721198E0D00842BCC /* privacyIDEA AuthenticatorTests */,
+				2946876821662D7C0049F0F0 /* privacyIDEA Authenticator */,
+				29028DD221198E0C00842BCC /* privacyIDEA Authenticator */,
 				29028DF221198E0D00842BCC /* privacyIDEA AuthenticatorUITests */,
 				29028DD121198E0C00842BCC /* Products */,
 				14396E629E2FE90FF1475656 /* Pods */,
@@ -171,18 +206,12 @@
 			isa = PBXGroup;
 			children = (
 				29028DD321198E0C00842BCC /* AppDelegate.swift */,
-				29028DD721198E0C00842BCC /* Main.storyboard */,
-				29584751211AE75100CE2C6A /* TableViewCell.swift */,
-				29028DDA21198E0D00842BCC /* Assets.xcassets */,
-				2946876421661B8B0049F0F0 /* AboutViewController.swift */,
-				29028DDC21198E0D00842BCC /* LaunchScreen.storyboard */,
-				29028DDF21198E0D00842BCC /* Info.plist */,
-				295046E62119B3B400D51D7D /* ScannerViewController.swift */,
-				2950471B2119CFB700D51D7D /* Token.swift */,
-				29C668C421301BA700D6CDD9 /* EnterDetailController.swift */,
-				3398879EC13DF72ACC937181 /* Utilities.swift */,
-				33988D2A59C46070BB6A0345 /* TableViewController.swift */,
-				29B089DE214F9A87009DA14C /* MainNavigationController.swift */,
+				290F1DC72285A0930025EF81 /* Model */,
+				290F1DCC2285A5FF0025EF81 /* Info */,
+				290F1DC82285A12E0025EF81 /* Utilities */,
+				290F1DCB2285A5E20025EF81 /* Presenter */,
+				290F1DCA2285A4DB0025EF81 /* Storyboard */,
+				290F1DC92285A4750025EF81 /* ViewControllers */,
 			);
 			path = "privacyIDEA Authenticator";
 			sourceTree = "<group>";
@@ -205,9 +234,95 @@
 			path = "privacyIDEA AuthenticatorUITests";
 			sourceTree = "<group>";
 		};
+		290F1DC72285A0930025EF81 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2903C06722647CF300A86245 /* FirebaseConfig.swift */,
+				2950471B2119CFB700D51D7D /* Token.swift */,
+				290F1DC522859DD50025EF81 /* PushAuthRequest.swift */,
+				29146504225CBE9E0089A0A4 /* Model.swift */,
+			);
+			name = Model;
+			path = "/Users/nils/Desktop/piauthenticator/privacyIDEA Authenticator";
+			sourceTree = "<absolute>";
+		};
+		290F1DC82285A12E0025EF81 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				290F1DCD2285A7030025EF81 /* Storage.swift */,
+				29A4CB33225CCCD600E2909F /* OTPGenerator.swift */,
+				29146505225CBE9E0089A0A4 /* Protocols.swift */,
+				3398879EC13DF72ACC937181 /* Utilities.swift */,
+				29A4CB31225CCB9400E2909F /* Constants.swift */,
+				29226BF622771B1100631598 /* Endpoint.swift */,
+				2960B6AA22785CA8009BA265 /* NotificationManager.swift */,
+				290F1DCF2285A77E0025EF81 /* Crypto.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		290F1DC92285A4750025EF81 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				29584751211AE75100CE2C6A /* TableViewCell.swift */,
+				2946876421661B8B0049F0F0 /* AboutViewController.swift */,
+				295046E62119B3B400D51D7D /* ScannerViewController.swift */,
+				29C668C421301BA700D6CDD9 /* EnterDetailController.swift */,
+				33988D2A59C46070BB6A0345 /* TableViewController.swift */,
+				29B089DE214F9A87009DA14C /* MainNavigationController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		290F1DCA2285A4DB0025EF81 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				29028DD721198E0C00842BCC /* Main.storyboard */,
+				29028DDA21198E0D00842BCC /* Assets.xcassets */,
+				29028DDC21198E0D00842BCC /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		290F1DCB2285A5E20025EF81 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				2914092522B3DAA70071C665 /* PresenterQRParse.swift */,
+				29146503225CBE9E0089A0A4 /* Presenter.swift */,
+				290A8137228C3B41006D74CC /* TwoStepRollout.swift */,
+				290A8139228C3EF3006D74CC /* PresenterDataAccess.swift */,
+				290A813B228C4040006D74CC /* PresenterPushFIR.swift */,
+				2912BE4522B7B5D300809114 /* PresenterEndpointCallback.swift */,
+				2912BE4722B7B72700809114 /* Lifecycle.swift */,
+			);
+			name = Presenter;
+			sourceTree = "<group>";
+		};
+		290F1DCC2285A5FF0025EF81 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				2903C069226482B600A86245 /* privacyIDEA Authenticator.entitlements */,
+				29028DDF21198E0D00842BCC /* Info.plist */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		29826CD62306DB7B0093C9CD /* licenses */ = {
+			isa = PBXGroup;
+			children = (
+				297945B9230AC22300D36DAF /* Google Firebase license.html */,
+				29826CD72306DB7B0093C9CD /* ToastSwift license.html */,
+				29826CD82306DB7B0093C9CD /* SwiftOTP license.html */,
+				29826CD92306DB7B0093C9CD /* KeychainSwift license.html */,
+				29826CDA2306DB7B0093C9CD /* CryptoSwift license.html */,
+			);
+			path = licenses;
+			sourceTree = "<group>";
+		};
 		A2150E99247113E0FCC7336E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				29826CD22306D4A40093C9CD /* WebKit.framework */,
 				C98BBB7DF51853184634D00B /* Pods_privacyIDEA_Authenticator.framework */,
 				B51CF362067AC8B533586072 /* Pods_privacyIDEA_AuthenticatorTests.framework */,
 				0DE2FA8869F15C9FEDFE33A8 /* Pods_privacyIDEA_AuthenticatorUITests.framework */,
@@ -282,19 +397,29 @@
 		29028DC821198E0C00842BCC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0940;
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Nils Behlen";
 				TargetAttributes = {
 					29028DCF21198E0C00842BCC = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					29028DE321198E0D00842BCC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1030;
 						TestTargetID = 29028DCF21198E0C00842BCC;
 					};
 					29028DEE21198E0D00842BCC = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1030;
 						TestTargetID = 29028DCF21198E0C00842BCC;
 					};
 				};
@@ -306,6 +431,7 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 29028DC721198E0C00842BCC;
 			productRefGroup = 29028DD121198E0C00842BCC /* Products */;
@@ -324,13 +450,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				299B77472166352B0057ED4A /* KeychainSwift license.html in Resources */,
-				299B77482166352B0057ED4A /* CryptoSwift license.html in Resources */,
-				299B77492166352B0057ED4A /* SwiftOTP license.html in Resources */,
-				29028DDE21198E0D00842BCC /* LaunchScreen.storyboard in Resources */,
-				2968B5A4215B8B1900274253 /* Default-568h@2x.png in Resources */,
+				297945BA230AC22400D36DAF /* Google Firebase license.html in Resources */,
+				29826CDC2306DB7B0093C9CD /* SwiftOTP license.html in Resources */,
+				29826CDD2306DB7B0093C9CD /* KeychainSwift license.html in Resources */,
+				29826CDB2306DB7B0093C9CD /* ToastSwift license.html in Resources */,
+				29826CDE2306DB7B0093C9CD /* CryptoSwift license.html in Resources */,
 				29028DDB21198E0D00842BCC /* Assets.xcassets in Resources */,
-				29028DD921198E0C00842BCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,20 +482,30 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftOTP/SwiftOTP.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOTP.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		902C4B59EB21E0CFC9DFED1B /* [CP] Check Pods Manifest.lock */ = {
@@ -435,14 +570,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				29B089DF214F9A87009DA14C /* MainNavigationController.swift in Sources */,
+				2960B6AB22785CA8009BA265 /* NotificationManager.swift in Sources */,
 				2950471C2119CFB700D51D7D /* Token.swift in Sources */,
+				290A813C228C4040006D74CC /* PresenterPushFIR.swift in Sources */,
+				290F1DCE2285A7040025EF81 /* Storage.swift in Sources */,
+				290A8138228C3B41006D74CC /* TwoStepRollout.swift in Sources */,
 				295046E72119B3B400D51D7D /* ScannerViewController.swift in Sources */,
+				2903C06822647CF300A86245 /* FirebaseConfig.swift in Sources */,
+				29A4CB35225CCFC200E2909F /* OTPGenerator.swift in Sources */,
+				29146508225CBE9E0089A0A4 /* Protocols.swift in Sources */,
 				2946876521661B8B0049F0F0 /* AboutViewController.swift in Sources */,
+				290A813A228C3EF3006D74CC /* PresenterDataAccess.swift in Sources */,
+				29146506225CBE9E0089A0A4 /* Presenter.swift in Sources */,
+				2914092622B3DAA80071C665 /* PresenterQRParse.swift in Sources */,
 				29C668C521301BA700D6CDD9 /* EnterDetailController.swift in Sources */,
+				29A4CB32225CCB9400E2909F /* Constants.swift in Sources */,
+				290F1DD02285A77E0025EF81 /* Crypto.swift in Sources */,
+				2912BE4822B7B72700809114 /* Lifecycle.swift in Sources */,
+				290F1DC622859DD50025EF81 /* PushAuthRequest.swift in Sources */,
+				29226BF722771B1100631598 /* Endpoint.swift in Sources */,
 				29028DD421198E0C00842BCC /* AppDelegate.swift in Sources */,
 				29584752211AE75100CE2C6A /* TableViewCell.swift in Sources */,
+				29146507225CBE9E0089A0A4 /* Model.swift in Sources */,
 				33988467423754741FFD5BAA /* Utilities.swift in Sources */,
 				339882B0226B9695A7BC9E31 /* TableViewController.swift in Sources */,
+				2912BE4622B7B5D300809114 /* PresenterEndpointCallback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +687,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -551,12 +704,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -596,6 +750,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -606,11 +761,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -619,13 +775,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8B391664000B09C455245DDD /* Pods-privacyIDEA Authenticator.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -633,7 +789,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -642,13 +798,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EFB06C7E85D7EC3E7E98D3F1 /* Pods-privacyIDEA Authenticator.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -656,7 +812,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -668,6 +824,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = testTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -676,7 +833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = netknights.testTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/privacyIDEA Authenticator.app/privacyIDEA Authenticator";
 			};
@@ -689,6 +846,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = testTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -697,7 +855,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = netknights.testTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/privacyIDEA Authenticator.app/privacyIDEA Authenticator";
 			};
@@ -708,7 +866,9 @@
 			baseConfigurationReference = F2F34DD049CB894D3E17D1F7 /* Pods-privacyIDEA AuthenticatorUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = testUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -717,7 +877,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = netknights.testUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = test;
 			};
@@ -728,7 +889,9 @@
 			baseConfigurationReference = 753694AF854A9046E4C760DA /* Pods-privacyIDEA AuthenticatorUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 627QALYL3B;
 				INFOPLIST_FILE = testUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -737,7 +900,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = netknights.testUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = test;
 			};
