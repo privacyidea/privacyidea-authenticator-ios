@@ -253,21 +253,21 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let label: String = self.presenterDelegate?.getTokenForRow(index: indexPath.row).label ?? ""
         
         // 1. Button: Delete
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexpath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("delete", comment: "delete button / row action text")) { (action, indexpath) in
             // show confirmation dialog
             
-            let confirmationController = UIAlertController(title: "",
-                                                           message: "Do you really want to remove \(label) ?"
+            let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
+                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (label will be appended)")  + " \(label) ?"
                 , preferredStyle: .alert)
             
             // delete the token
-            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"), style: .default) { (_) in
                 self.presenterDelegate?.removeTokenAt(index: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }
             
             //the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
             //adding the action to dialogbox
             confirmationController.addAction(confirmAction)
@@ -279,16 +279,16 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = .red
         
         // 2. Button: Rename
-        let renameAction = UITableViewRowAction(style: .normal, title: "Rename")
+        let renameAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("rename", comment: "row action rename text"))
         { (action, indexPath) in
             let alertController = UIAlertController(title: "",
-                                                    message: "Rename \(label)"
+                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)"
                 , preferredStyle: .alert)
             // change the name, save and reload table after confirming
-            let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
                 if let name = alertController.textFields?[0].text {
                     if name == "" {
-                        let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
+                        let alert = UIAlertController(title: NSLocalizedString("new_name_empty_dialog_title", comment: "new name is empty dialog title"), message: NSLocalizedString("new_name_empty_dialog_text", comment: "new name is empty dialog text"),
                                                       preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -299,10 +299,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             // the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
             alertController.addTextField { (textField) in
-                textField.placeholder = "Enter new name"
+                textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field")
             }
             
             alertController.addAction(confirmAction)
@@ -326,7 +326,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     // move items in list
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        U.log("move row at: from: \(sourceIndexPath.row) to \(destinationIndexPath.row)")
+        //U.log("move row at: from: \(sourceIndexPath.row) to \(destinationIndexPath.row)")
         self.presenterDelegate?.switchTokenPositions(src_index: sourceIndexPath.row, dest_index: destinationIndexPath.row)
         self.tableView.reloadData()
     }
@@ -336,18 +336,18 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let label: String = self.presenterDelegate?.getTokenForRow(index: indexPath.row).label ?? ""
         
         // 1. Button: Delete
-        let deleteAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let deleteAction = UIContextualAction(style: .normal, title: NSLocalizedString("delete", comment: "delete button / row action text"), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
             // show confirmation dialog
-            let confirmationController = UIAlertController(title: "",
-                                                           message: "Do you really want to remove \(label)"
+            let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
+                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (label will be appended)")  + " \(label) ?"
                 , preferredStyle: .alert)
             // delete the token
-            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"), style: .default) { (_) in
                 self.presenterDelegate?.removeTokenAt(index: indexPath.row)
             }
             //the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
             //adding the action to dialogbox
             confirmationController.addAction(confirmAction)
@@ -360,17 +360,18 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = .red
         
         // 2. Button: Rename
-        let renameAction = UIContextualAction(style: .normal, title:  "Rename", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let renameAction = UIContextualAction(style: .normal, title: NSLocalizedString("rename", comment: "row action rename text"), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
             let alertController = UIAlertController(title: "",
-                                                    message: "Rename \(label)"
+                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)"
                 , preferredStyle: .alert)
             
             // change the name, save and reload table after confirming
-            let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
                 if let name = alertController.textFields?[0].text {
                     if name == "" {
-                        let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
+                        let alert = UIAlertController(title:NSLocalizedString("new_name_empty_dialog_title", comment: "new name is empty dialog title"),
+                                                      message: NSLocalizedString("new_name_empty_dialog_text", comment: "new name is empty dialog text"),
                                                       preferredStyle: UIAlertController.Style.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -380,9 +381,9 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
                 } else { }
             }
             // the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
-            alertController.addTextField { (textField) in textField.placeholder = "Enter new name" }
+            alertController.addTextField { (textField) in textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field") }
             
             alertController.addAction(confirmAction)
             alertController.addAction(cancelAction)

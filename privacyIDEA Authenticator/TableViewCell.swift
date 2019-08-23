@@ -105,7 +105,7 @@ class TableViewCell: UITableViewCell {
                     
                     if token.getLastestError() == nil {
                         // First try
-                        let atr = NSAttributedString(string: "Allow",
+                        let atr = NSAttributedString(string: NSLocalizedString("allow", comment: "allow button label"),
                                                      attributes: color_text_white)
                         buttonStackV.setAttributedTitle(atr, for: .normal)
                         addToStackView([labelStackV, buttonStackV])
@@ -114,7 +114,7 @@ class TableViewCell: UITableViewCell {
                         labelName.numberOfLines = 2
                         labelName.text = token.getLastestError()?.localizedDescription
                         labelOTP.text = ""
-                        let atr = NSAttributedString(string: "Retry allow",
+                        let atr = NSAttributedString(string: NSLocalizedString("retry", comment: "retry button label"),
                                                      attributes: color_text_white)
                         buttonStackV.setAttributedTitle(atr, for: .normal)
                         // Setup the dismiss button
@@ -125,7 +125,7 @@ class TableViewCell: UITableViewCell {
                 break
                 
             case State.UNFINISHED:
-                labelName.text = Constants.PUSHTOKEN_LABEL + " " + NSLocalizedString(" - Rollout Unfinished", comment: "")
+                labelName.text = Constants.PUSHTOKEN_LABEL + " " + NSLocalizedString(" - Rollout Unfinished", comment: "rollout unfinished label addition")
                 labelOTP.text = token.label
                 
                 if presenter != nil {
@@ -133,7 +133,7 @@ class TableViewCell: UITableViewCell {
                         labelStackV.isHidden = false
                         labelStackV.text = token.getLastestError()?.localizedDescription
                     }
-                    let atr = NSAttributedString(string: "Retry",
+                    let atr = NSAttributedString(string: NSLocalizedString("retry", comment: "retry button label"),
                                                  attributes: color_text_white)
                     buttonStackV.setAttributedTitle(atr, for: .normal)
                     buttonStackV.addTarget(presenter, action: #selector(Presenter.retryRollout(_:)), for: .touchUpInside)
@@ -147,7 +147,7 @@ class TableViewCell: UITableViewCell {
                 addToStackView([labelStackV, indicator])
                 indicator.startAnimating()
                 labelStackV.isHidden = false
-                labelStackV.text = "Rolling out..."
+                labelStackV.text = NSLocalizedString("rolling_out", comment: "rolling out label text")
                 labelStackV.textAlignment = .right
                 break
                 
@@ -156,7 +156,7 @@ class TableViewCell: UITableViewCell {
                 indicator.startAnimating()
                 labelStackV.isHidden = false
                 labelStackV.textAlignment = .right
-                labelStackV.text = "Authenticating..."
+                labelStackV.text = NSLocalizedString("authenticating", comment: "authenticating label text")
                 break;
                 
             default: break
