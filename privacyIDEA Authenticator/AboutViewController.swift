@@ -20,6 +20,9 @@ class AboutViewController: UIViewController
     
     @IBOutlet weak var stackView: UIStackView!
     override func viewDidLoad(){
+        
+        thirdPartyLabel.text = NSLocalizedString("third_party_label", comment: "The privacyIDEA Authenticator uses the following third party libraries")
+        
         // Put a button for each lib in the stackview
        webView.isHidden = true
         for i in 0..<thirdPartyLibs.count {

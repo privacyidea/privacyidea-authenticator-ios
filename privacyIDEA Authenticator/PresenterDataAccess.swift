@@ -69,7 +69,7 @@ extension Presenter: PresenterDelegate {
             Storage.shared.removeKeysFor(token.serial)
             if !model.hasPushtokenLeft() {
                 Storage.shared.deleteFirebaseConfig()
-                tableViewDelegate?.showMessageWithOKButton(title: "Firebase reset", message: "Restart App to reset Firebase")
+                //tableViewDelegate?.showMessageWithOKButton(title: "Firebase reset", message: "Restart App to reset Firebase")
             }
         }
         datasetChanged()
@@ -91,9 +91,10 @@ extension Presenter: PresenterDelegate {
     // Checks all token of push type whose rollout is unfinished for their TTL. If it is expired a message is shown and the token is removed.
     func checkExpiredRollouts() {
         if let expiredTokens = model.checkExpiredRollouts() {
-            for t in expiredTokens {
-                model.removeToken(t)
-                tableViewDelegate?.showMessageWithOKButton(title: "Token expired!", message: "\(t.serial) has expired and will be deleted.")
+            for token in expiredTokens {
+                model.removeToken(token)
+                tableViewDelegate?.showMessageWithOKButton(title: NSLocalizedString("token_expired_dialog_title", comment: "token expired dialog title"),
+                                                           message: "\(token.serial) " + NSLocalizedString("token_expired_dialog_text", comment: "... has expired and will be deleted (label will be prepended)"))
             }
             if expiredTokens.count > 0 {
                 datasetChanged()

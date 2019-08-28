@@ -21,7 +21,6 @@ class Endpoint: NSObject, URLSessionDelegate {
         self.sslVerify = sslVerify
         self.callback = callback
         self.token = token
-        //U.log("endpoint with SSLVerify=\(sslVerify)")
     }
     
     func connect() {

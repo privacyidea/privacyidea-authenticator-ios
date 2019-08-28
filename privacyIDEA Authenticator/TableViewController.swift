@@ -11,7 +11,6 @@ import Toast_Swift
 
 class TableViewController: UIViewController {
     
-    // MARK: Variables
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var versionLabel: UILabel!
     
@@ -41,7 +40,19 @@ class TableViewController: UIViewController {
         presenter?.startup()
         
         runTimer()
+        // Setup buttons of side menu
+        let blackFont = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        addManuallyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("addManually_button_label", comment: "Add Token manually"),
+                                                            attributes: blackFont),
+                                         for: .normal)
         
+        thirdPartyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"),
+                                                      attributes: blackFont),
+                                   for: .normal)
+        
+        sortBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("sort_button_label", comment: "sort list"),
+                                                      attributes: blackFont),
+                                   for: .normal)
         //////////////////////// SIDE MENU SETUP ////////////////////////
         /*menuView.isHidden = true
          let menuTap = UITapGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))
@@ -108,7 +119,7 @@ class TableViewController: UIViewController {
         menuOpen = !menuOpen
         
         if !menuOpen{
-            UIView.animate(withDuration: 0.3/*Animation Duration second*/, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 self.menuView.alpha = 0
             }, completion:  {
                 (value: Bool) in
@@ -124,26 +135,25 @@ class TableViewController: UIViewController {
         }
         
         if self.menuOpen {
-            self.menuView.isHidden = false
-            self.menuView.isOpaque = false
-            self.menuView.layer.zPosition = 1
-            self.tableView.isOpaque = true
-            self.tableView.alpha = 0.4
-            self.tableView.isUserInteractionEnabled = false
-            self.view.layoutIfNeeded()
+            menuView.isHidden = false
+            menuView.isOpaque = false
+            menuView.layer.zPosition = 1
+            tableView.isOpaque = true
+            tableView.alpha = 0.4
+            tableView.isUserInteractionEnabled = false
+            view.layoutIfNeeded()
             // switch menu icon
             let menuBtn2 = UIBarButtonItem(image: UIImage(named: "MenuiconTapped.png"), style: .plain, target: self, action:#selector(TableViewController.menuTapped))
             menuBtn2.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem = menuBtn2
+            navigationItem.leftBarButtonItem = menuBtn2
         } else {
-            self.menuView.isHidden = true
-            self.menuView.isOpaque = true
-            self.menuView.layer.zPosition = 2
-            self.tableView.isOpaque = false
-            self.tableView.alpha = 1.0
-            self.tableView.isUserInteractionEnabled = true
-            
-            self.view.layoutIfNeeded()
+            menuView.isHidden = true
+            menuView.isOpaque = true
+            menuView.layer.zPosition = 2
+            tableView.isOpaque = false
+            tableView.alpha = 1.0
+            tableView.isUserInteractionEnabled = true
+            view.layoutIfNeeded()
             // switch menu icon
             let menuBtn = UIBarButtonItem(image: UIImage(named: "Menuicon.png"), style: .plain, target: self, action: #selector(TableViewController.menuTapped))
             menuBtn.tintColor = UIColor.black
@@ -227,7 +237,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //U.log("You tapped cell number \(indexPath.row).")
     }
-       
+    
     // number of elements in the data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //U.log("tokens count returned: \(tokenlist.count)")
@@ -257,11 +267,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             // show confirmation dialog
             
             let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
-                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (label will be appended)")  + " \(label) ?"
-                , preferredStyle: .alert)
-            
+                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (\(label) available)"),
+                                                           preferredStyle: .alert)
             // delete the token
-            let confirmAction = UIAlertAction(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"), style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("delete", comment: "delete button / row action text"), style: .default) { (_) in
                 self.presenterDelegate?.removeTokenAt(index: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
             }
@@ -282,8 +291,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let renameAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("rename", comment: "row action rename text"))
         { (action, indexPath) in
             let alertController = UIAlertController(title: "",
-                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)"
-                , preferredStyle: .alert)
+                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)",
+                preferredStyle: .alert)
             // change the name, save and reload table after confirming
             let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
                 if let name = alertController.textFields?[0].text {
@@ -340,10 +349,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             
             // show confirmation dialog
             let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
-                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (label will be appended)")  + " \(label) ?"
+                                                           message: String(format: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (\(label) available)"), label)
                 , preferredStyle: .alert)
             // delete the token
-            let confirmAction = UIAlertAction(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"), style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("delete", comment: "delete button / row action text"), style: .default) { (_) in
                 self.presenterDelegate?.removeTokenAt(index: indexPath.row)
             }
             //the cancel action doing nothing

@@ -61,7 +61,6 @@ class TwoStepRollout {
         //let chksm_b32 = base32Encode(chksm)
         U.log("chksm b32: \(base32Encode(chksm))")
         U.log("phonepart b32: \(base32Encode(phonepart))")
-        //let phone_part_b32 = base32Encode(phonepart)
         chksm.append(contentsOf: phonepart)
         
         let chksm_b32 = base32Encode(chksm)
@@ -70,7 +69,7 @@ class TwoStepRollout {
         U.log("show to user: \(toshow)")
         
         // 4. Open dialog and show the phonepart to the user
-        listViewDelegate.showMessageWithOKButton(title: "Your part of the secret", message: toshow)
+        listViewDelegate.showMessageWithOKButton(title: NSLocalizedString("2step_phonepart_dialog_title", comment: "2step phone part of secret"), message: toshow)
         
         return t
     }

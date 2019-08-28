@@ -57,7 +57,8 @@ extension Presenter {
             U.log("TTL expired:")
             //U.log(token.expirationDate!)
             self.removeToken(token)
-            tableViewDelegate?.showMessageWithOKButton(title: "Token expired!", message: "\(token.serial) has expired and will be deleted.")
+            tableViewDelegate?.showMessageWithOKButton(title: NSLocalizedString("token_expired_dialog_title", comment: "token expired dialog title"),
+                                                       message: "\(token.serial) " + NSLocalizedString("token_expired_dialog_text", comment: "... has expired and will be deleted (label will be prepended)"))
             return
         }
         

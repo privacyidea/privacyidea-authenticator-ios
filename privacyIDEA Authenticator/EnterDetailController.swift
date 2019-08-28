@@ -75,7 +75,7 @@ class EnterDetailController: UIViewController, UITextFieldDelegate {
                 secret = text.base32DecodedData!
             } else {
                 sender.isEnabled = true
-                let alert = UIAlertController(title: "Error", message: "The secret is not a valid base32 string", preferredStyle: .alert)
+                let alert = UIAlertController(title: NSLocalizedString("error_title", comment: "error dialog title"), message: NSLocalizedString("secret_not_b32_dialog_text", comment: "The secret is not a valid base32 string"), preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
                 return

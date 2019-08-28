@@ -105,7 +105,7 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         // Use the id of the push auth request for the notification, so it can be removed when the request expires
-        U.log("New notification with ID: \(forRequest.id)")
+        //U.log("New notification with ID: \(forRequest.id)")
         let request = UNNotificationRequest(identifier: forRequest.id, content: content, trigger: trigger)
         notificationCenter.add(request) { (error) in
             if error != nil {
