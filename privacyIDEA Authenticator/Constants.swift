@@ -32,17 +32,17 @@ struct Constants {
     
     static let pubKeyAttr: [String: Any] =
         [kSecAttrKeyType as String:            kSecAttrKeyTypeRSA,
-         kSecAttrKeySizeInBits as String:      4098,
+         kSecAttrKeySizeInBits as String:      4096,
          kSecAttrKeyClass as String:           kSecAttrKeyClassPublic]
     
     static let privKeyAttr: [String: Any] =
         [kSecAttrKeyType as String:            kSecAttrKeyTypeRSA,
-         kSecAttrKeySizeInBits as String:      4098,
+         kSecAttrKeySizeInBits as String:      4096,
          kSecAttrKeyClass as String:           kSecAttrKeyClassPrivate]
     
     static let keyPairAttr: [String: Any] =
         [kSecAttrKeyType as String:            kSecAttrKeyTypeRSA,
-         kSecAttrKeySizeInBits as String:      4098]
+         kSecAttrKeySizeInBits as String:      4096]
     
     static let TOAST_UPTIME_IN_S = 2.0
     
