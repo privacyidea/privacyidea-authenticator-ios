@@ -27,7 +27,8 @@ class TwoStepRollout {
         let res = SecRandomCopyBytes(kSecRandomDefault, salt_size, &phonepart)
         if res != errSecSuccess {
             U.log("random byte generation failed")
-            // TODO handle error display something?
+            listViewDelegate.showMessageWithOKButton(title: NSLocalizedString("2step_byte_generation_failed_title", comment: ""),
+                                                     message: NSLocalizedString("2step_byte_generation_failed_message", comment: ""))
             return t
         }
         
@@ -53,7 +54,6 @@ class TwoStepRollout {
          The first 4 characters of the sha1 hash of the client (phone's) part as checksum.
          client_part being the binary random value that the client (phone) generated:
          b32encode( sha1(client_part)[0:3] + client_part )
-         '=' are removed and characters are displayed in packs of 4
          */
         
         let hash = phonepart.sha1()
@@ -64,30 +64,18 @@ class TwoStepRollout {
         chksm.append(contentsOf: phonepart)
         
         let chksm_b32 = base32Encode(chksm)
-        let split_text = insertPeriodically(text: chksm_b32, insert: " ", period: 4)
+        
+        // Put a ' ' after each 4 digits
+        let split_text = String(chksm_b32.enumerated().map{ $0 > 0 && $0 % 4 == 0 ? [" ", $1] : [$1] }.joined())
+        // Remove the padding characters
         let toshow = split_text.replacingOccurrences(of: "=", with: "")
+        
         U.log("show to user: \(toshow)")
         
         // 4. Open dialog and show the phonepart to the user
         listViewDelegate.showMessageWithOKButton(title: NSLocalizedString("2step_phonepart_dialog_title", comment: "2step phone part of secret"), message: toshow)
         
         return t
-    }
-    
-    func insertPeriodically(text:String, insert:String, period:Int) -> String {
-        var count = 0
-        var res:String = ""
-        for char in text {
-            if(count == period){
-                res.append(insert)
-                res.append(char)
-                count = 1
-                continue
-            }
-            res.append(char)
-            count += 1
-        }
-        return res
     }
 }
 

@@ -39,10 +39,10 @@ extension Presenter: PresenterDelegate {
         if let t = model.getTokenBySerial(req.serial) {
             t.pendingAuths.append(req)
             datasetChanged()
-            U.log("Request added to token")
+            //U.log("Request added to token")
             return true
         } else {
-            U.log("No token found for serial: \(req.serial)")
+            //U.log("No token found for serial: \(req.serial)")
             return false
         }
     }

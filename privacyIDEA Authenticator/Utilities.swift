@@ -27,8 +27,10 @@ class Utilities {
     }
     
     public static func log(_ message: Any, function: String = #function, file: String = #file, line: Int = #line) {
+        #if DEBUG
         let fileStr: String = String(file.split(separator: "/").last ?? "")
         print("[\(fileStr):\(line)][\(function)] \(message)")
+        #endif
     }
 }
 

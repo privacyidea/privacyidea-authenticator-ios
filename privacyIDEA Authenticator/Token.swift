@@ -57,7 +57,7 @@ class Token: Codable {
         self.algorithm = algorithm
         self.secret = secret
         self.counter = counter
-        self.digits = (digits == 6) ? 6 : 8
+        self.digits = (digits == 8) ? 8 : 6
         // validate the interval
         if type == Tokentype.TOTP {
             ((period ?? 30) == 60) ? (self.period = 60)

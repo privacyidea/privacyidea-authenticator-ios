@@ -46,14 +46,12 @@ extension Presenter {
     
     func initPushRollout(_ token: Token) {
         // Verify the tokens ttl
-        var expiration: Date = Date()
         if token.expirationDate == nil {
-            U.log("expiration date nil")
-        } else {
-            expiration = token.expirationDate!
+            token.expirationDate = Date().addingTimeInterval(Double(2) * 60.0)
+            U.log("push rollout expiration date nil, setting it to now +2 minutes")
         }
         
-        if expiration < Date() {
+        if token.expirationDate! < Date() {
             U.log("TTL expired:")
             //U.log(token.expirationDate!)
             self.removeToken(token)
@@ -69,6 +67,8 @@ extension Presenter {
         U.log("Getting Firebase Token from InstanceID ...")
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("unable_to_get_firebase_token", comment: ""))
                 U.log("Error getting Firebase Token: \(error)")
             } else if let result = result {
                 // U.log("Firebase Token: \(result.token)")
@@ -85,30 +85,38 @@ extension Presenter {
         DispatchQueue.global(qos: .background).async {
             U.log("starting push rollout...")
             
-            // 1. Generate a new keypair (RSA 4098bit), the private key is stored with the serial as alias
-            let rawPublicKey = Crypto.shared.generateKeypair(token.serial)
+            // 1. Generate a new keypair (RSA 4096bit), the private key is stored with the serial as alias
+            guard let rawPublicKey = Crypto.shared.generateKeypair(token.serial) else  {
+                self.tableViewDelegate?.showMessageWithOKButton(title: NSLocalizedString("rsa_key_generation_fail_title", comment: ""),
+                                                                message: NSLocalizedString("rsa_key_generation_fail_message", comment: ""))
+                return
+            }
+            
             // Add the PublicKeyInfo manually here
             let fullKey = "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8A" + Utilities().b64Tob64URLSafe(rawPublicKey)
             
-            // Verify parameters are present
+            // Verify parameters are present, if not token will be deleted as it is useless
             guard let enrollment_credential = token.enrollment_credential else {
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("push_enrollment_parameters_missing", comment: ""))
                 U.log("Enrollment credential not present")
                 return
             }
             guard let enrollment_url = token.enrollment_url else {
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("push_enrollment_parameters_missing", comment: ""))
                 U.log("Enrollment url not present")
                 return
             }
-            let serial = token.serial
             
             // Put parameters in dict
             let parameters: [String : String] =
                 [ "enrollment_credential": enrollment_credential,
-                  "serial": serial,
+                  "serial": token.serial,
                   "fbtoken": fbtoken,
                   "pubkey": fullKey ]
             
-            Endpoint(url: enrollment_url, data: parameters, sslVerify: (token.sslVerify ?? true),token: token, callback: self).connect()
+            Endpoint(url: enrollment_url, data: parameters, sslVerify: (token.sslVerify ?? true), token: token, callback: self).connect()
         }
     }
     
@@ -121,6 +129,8 @@ extension Presenter {
             // 0. Check TTL
             Utilities.log("push ttl is: \(req.ttl)")
             if req.ttl < Date() {
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("push_auth_ttl_expired", comment: ""))
                 forToken.removeAuthRequest(req)
                 self.datasetChanged()
                 U.log("ttl expired!")
@@ -132,26 +142,34 @@ extension Presenter {
             let toVerify = req.nonce + "|" + req.url + "|" + req.serial + "|" + req.question + "|" + req.title + "|" + sslv
             
             guard let key = Storage.shared.loadPIPubicKey(req.serial) else {
-                // no key found -> error message?
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("publickey_not_found_message", comment: ""))
                 U.log("no pi pub key found")
                 return
             }
             
             if !Crypto.shared.verifySignature(signature: req.signature, message: toVerify, publicKey: key) {
                 U.log("invalid signature")
-                return // error message, invalid signature
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("signature_invalid", comment: ""))
+                // the request is useless with the wrong signature, so it will be deleted.
+                forToken.removeAuthRequest(req)
+                self.datasetChanged()
+                return
             }
             U.log("valid signature")
             // 2. Sign nonce + "|" + serial
             let toSign = req.nonce + "|" + req.serial
             
             guard let privateKey = Storage.shared.loadPrivateKey(req.serial) else {
-                // no key -> error message
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("privatekey_not_found_message", comment: ""))
                 U.log("privatekey is nil")
                 return
             }
             guard let signature = Crypto.shared.signMessage(message: toSign, privateKey: privateKey) else {
-                // signing error
+                self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
+                                                                message: NSLocalizedString("signing_error", comment: ""))
                 U.log("signing error")
                 return
             }

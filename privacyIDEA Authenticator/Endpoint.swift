@@ -51,19 +51,19 @@ class Endpoint: NSObject, URLSessionDelegate {
             let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
                 
                 guard error == nil else {
-                    U.log("error while sending:")
+                    U.log("error while sending: \(error!.localizedDescription)")
                     self.token.setLastestError(error)
                     self.callback.errorOccured(self.token)
                     return
                 }
                 
-                guard let data = data else {
-                    U.log("data error")
+                guard let data2 = data else {
+                    U.log("empty response data")
                     return
                 }
                 
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
+                    if let json = try JSONSerialization.jsonObject(with: data2, options: .mutableContainers) as? [String: Any] {
                         //U.log("Response: \(json)")
                         self.callback.responseReceived(response: json, self.token)
                         

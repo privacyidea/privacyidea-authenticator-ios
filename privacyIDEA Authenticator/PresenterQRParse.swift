@@ -221,7 +221,7 @@ extension Presenter: QRScanResultDelegate {
             } else {
                 self.addToken(t)
             }
-        } else { // MARK: PUSH START
+        } else { // MARK: PUSH START // VERSION
             if v > 1 {
                 tableViewDelegate?.showMessageWithOKButton(title: "Error", message: "Push version is higher than the one supported by this phone")
                 return

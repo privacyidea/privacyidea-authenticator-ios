@@ -17,14 +17,14 @@ class Crypto {
     private init () {}
     
     // Generate a Keypair, which is stored with the serial as alias
-    // Return the PublicKey as b64String
-    func generateKeypair(_ serial: String) -> String {
+    // Return the PublicKey as b64String or nil if error
+    func generateKeypair(_ serial: String) -> String? {
         U.log("Generating Keypair for serial \(serial)...")
         var error: Unmanaged<CFError>?
         guard let privateKey = SecKeyCreateRandomKey(Constants.keyPairAttr as CFDictionary, &error) else {
             U.log("Error while generating keys:")
             U.log(error!.takeRetainedValue() as Error)
-            return ""
+            return nil
         }
         
         Storage.shared.savePrivateKey(serial: serial, privateKey: privateKey)
@@ -32,7 +32,7 @@ class Crypto {
         let publicKey = SecKeyCopyPublicKey(privateKey)!
         guard let data = SecKeyCopyExternalRepresentation(publicKey, &error) as Data? else {
             U.log(error!.takeRetainedValue() as Error)
-            return ""
+            return nil
         }
         return data.base64EncodedString()
     }
