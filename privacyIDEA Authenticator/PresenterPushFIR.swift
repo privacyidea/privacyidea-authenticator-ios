@@ -100,12 +100,14 @@ extension Presenter {
                 self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
                                                                 message: NSLocalizedString("push_enrollment_parameters_missing", comment: ""))
                 U.log("Enrollment credential not present")
+                self.removeToken(token)
                 return
             }
             guard let enrollment_url = token.enrollment_url else {
                 self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
                                                                 message: NSLocalizedString("push_enrollment_parameters_missing", comment: ""))
                 U.log("Enrollment url not present")
+                self.removeToken(token)
                 return
             }
             
