@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E09A85D4044C73AAF35EFE04E1E3C159"
+               BlueprintIdentifier = "D1286CBB943BFCBB06F8C56DBACCDE2E"
+               BuildableName = "SwiftOTP.framework"
                BlueprintName = "SwiftOTP"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "SwiftOTP.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

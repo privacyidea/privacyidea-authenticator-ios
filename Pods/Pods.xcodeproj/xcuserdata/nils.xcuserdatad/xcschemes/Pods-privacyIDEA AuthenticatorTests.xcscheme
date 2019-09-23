@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "309BFEC4CE47C7F26E1360B62F4DB146"
+               BlueprintIdentifier = "830B19AE44991C1E2ECC9F317E177553"
                BuildableName = "Pods_privacyIDEA_AuthenticatorTests.framework"
                BlueprintName = "Pods-privacyIDEA AuthenticatorTests"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "309BFEC4CE47C7F26E1360B62F4DB146"
+            BlueprintIdentifier = "830B19AE44991C1E2ECC9F317E177553"
             BuildableName = "Pods_privacyIDEA_AuthenticatorTests.framework"
             BlueprintName = "Pods-privacyIDEA AuthenticatorTests"
             ReferencedContainer = "container:Pods.xcodeproj">

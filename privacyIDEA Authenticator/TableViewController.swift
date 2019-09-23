@@ -7,58 +7,74 @@
 //
 
 import UIKit
-import SwiftOTP
-import Security
-import CryptoSwift
-import CommonCrypto
+import Toast_Swift
 
 class TableViewController: UIViewController {
-// MARK: Variables
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var versionLabel: UILabel!
     
     @IBOutlet weak var tableViewLeadingC: NSLayoutConstraint!
     @IBOutlet weak var tableViewTrailingC: NSLayoutConstraint!
     
-    var tokenlist : [Token] = []
-    var util: Utilities = Utilities()
-    var timer: Timer?
-    
-    var menuOpen: Bool = false
+    private var timer: Timer?
+    private var presenterDelegate: PresenterDelegate?
+    private var presenter: Presenter?
+    private var menuOpen: Bool = false
     
     @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var addManuallyBtn: UIButton!
     @IBOutlet weak var thirdPartyBtn: UIButton!
     @IBOutlet weak var sortBtn: UIButton!
     
-// MARK: Overrides
+    // MARK: Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "privacyIDEA Authenticator"
         
+        //////////////////////// ASSEMBLE ////////////////////////
+        presenter = Presenter(tokenlistDelegate: self)
         let del = UIApplication.shared.delegate as! AppDelegate
-        del.tableVC = self
+        del.presenterDelegate = presenter
+        self.presenterDelegate = presenter
+        presenter?.startup()
         
         runTimer()
-        tokenlist.append(contentsOf: util.loadTokens())
+        // Setup buttons of side menu
+        let blackFont = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        addManuallyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("addManually_button_label", comment: "Add Token manually"),
+                                                             attributes: blackFont),
+                                          for: .normal)
         
+        thirdPartyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"),
+                                                            attributes: blackFont),
+                                         for: .normal)
+        
+        sortBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("sort_button_label", comment: "sort list"),
+                                                      attributes: blackFont),
+                                   for: .normal)
         //////////////////////// SIDE MENU SETUP ////////////////////////
         /*menuView.isHidden = true
-        let menuTap = UITapGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))
-        menuView.addGestureRecognizer(menuTap)*/
+         let menuTap = UITapGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))
+         menuView.addGestureRecognizer(menuTap)*/
         
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))
         leftSwipe.direction = .left
         menuView.addGestureRecognizer(leftSwipe)
         
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 150
+        
         menuView.layer.borderColor = UIColor.black.cgColor
         menuView.layer.borderWidth = 1.0
         versionLabel.text = version()
+        
         //////////////////////// NAVIGATION BAR SETUP ////////////////////////
         // change the color of the navigationbar, text and back button
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0x55 / 255.0, green: 0xb0 / 255.0, blue: 0xe6 / 255.0, alpha: 1.0)
         
         let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TableViewController.addTapped))
+        
         addBtn.tintColor = .black
         self.navigationItem.rightBarButtonItem = addBtn
         self.navigationController?.navigationBar.tintColor = .black
@@ -67,7 +83,7 @@ class TableViewController: UIViewController {
         menuBtn.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = menuBtn
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,21 +93,13 @@ class TableViewController: UIViewController {
         if segue.identifier == "scanQR" {
             let scanQRVC = segue.destination as! ScannerViewController
             // set self as delegate to receive the scanned code
-            scanQRVC.qrScanDelegate = self
+            scanQRVC.qrScanDelegate = presenter
         }
         
         if segue.identifier == "ManualAddStart" {
             let manualAddVC = segue.destination as! EnterDetailController
-            manualAddVC.tableVC = self
+            manualAddVC.presenterDelegate = self.presenterDelegate
         }
-    }
-// MARK: Logic
-    @IBAction func nextOTPButtonTapped(_ sender: UIButton) {
-        let index = sender.tag
-        if tokenlist[index].counter != nil {
-            tokenlist[index].counter! += 1
-        } else { tokenlist[index].counter = 1 }
-        self.tableView.reloadData()
     }
     
     func version() -> String {
@@ -103,94 +111,74 @@ class TableViewController: UIViewController {
     
     @objc func addTapped() {
         let scanQRVC = self.storyboard?.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
-        scanQRVC.qrScanDelegate = self
+        scanQRVC.qrScanDelegate = presenter
         navigationController?.pushViewController(scanQRVC, animated: true)
     }
     
     @objc func menuTapped() {
         menuOpen = !menuOpen
-        if self.menuOpen {
-            self.menuView.isHidden = false
-            self.menuView.isOpaque = false
-            self.menuView.layer.zPosition = 1
-            self.tableView.isOpaque = true
-            self.tableView.alpha = 0.4
-            self.tableView.isUserInteractionEnabled = false
-            self.view.layoutIfNeeded()
-            // switch menu icon
-            let menuBtn2 = UIBarButtonItem(image: UIImage(named: "MenuiconTapped.png"), style: .plain, target: self, action:#selector(TableViewController.menuTapped))
-            menuBtn2.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem = menuBtn2
-        } else {
-            self.menuView.isHidden = true
-            self.menuView.isOpaque = true
-            self.menuView.layer.zPosition = 2
-            self.tableView.isOpaque = false
-            self.tableView.alpha = 1.0
-            self.tableView.isUserInteractionEnabled = true
-                
-            self.view.layoutIfNeeded()
-            // switch menu icon
-            let menuBtn = UIBarButtonItem(image: UIImage(named: "Menuicon.png"), style: .plain, target: self, action: #selector(TableViewController.menuTapped))
-            menuBtn.tintColor = UIColor.black
-            self.navigationItem.leftBarButtonItem = menuBtn
-        }
-       
         
-        /*if !menuOpen{
-            UIView.animate(withDuration: 0.3/*Animation Duration second*/, animations: {
+        if !menuOpen{
+            UIView.animate(withDuration: 0.3, animations: {
                 self.menuView.alpha = 0
             }, completion:  {
                 (value: Bool) in
                 self.menuView.isHidden = true
             })
         } else {
-            self.menuView.isHidden = false
             UIView.animate(withDuration: 0.3, animations: {
                 self.menuView.alpha = 1
-            }, completion:  nil)
-        }*/
+            }, completion:  {
+                (value: Bool) in
+                self.menuView.isHidden = false
+            })
+        }
         
-    }
-    
-    func saveTokenlist() {
-        util.saveTokens(list: self.tokenlist)
-    }
-    
-    func addToken(token: Token) {
-        self.tokenlist.append(token)
-        saveTokenlist()
-        self.tableView.reloadData()
+        if self.menuOpen {
+            menuView.isHidden = false
+            menuView.isOpaque = false
+            menuView.layer.zPosition = 1
+            tableView.isOpaque = true
+            tableView.alpha = 0.4
+            tableView.isUserInteractionEnabled = false
+            view.layoutIfNeeded()
+            // switch menu icon
+            let menuBtn2 = UIBarButtonItem(image: UIImage(named: "MenuiconTapped.png"), style: .plain, target: self, action:#selector(TableViewController.menuTapped))
+            menuBtn2.tintColor = UIColor.black
+            navigationItem.leftBarButtonItem = menuBtn2
+        } else {
+            menuView.isHidden = true
+            menuView.isOpaque = true
+            menuView.layer.zPosition = 2
+            tableView.isOpaque = false
+            tableView.alpha = 1.0
+            tableView.isUserInteractionEnabled = true
+            view.layoutIfNeeded()
+            // switch menu icon
+            let menuBtn = UIBarButtonItem(image: UIImage(named: "Menuicon.png"), style: .plain, target: self, action: #selector(TableViewController.menuTapped))
+            menuBtn.tintColor = UIColor.black
+            self.navigationItem.leftBarButtonItem = menuBtn
+        }
     }
     
     /**
-        Start the timer in a background thread to update the progressbars
-        and initiate the update of TOTP tokens
-    */
-    func runTimer()->Void {
+     Start the timer in a background thread to update the progressbars
+     and initiate the update of TOTP tokens
+     */
+    func runTimer() {
         var seconds = 0
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { (t) in
             seconds += 1
             if seconds > 60 {seconds = 1}
-            //print(seconds)
-            if (seconds < 31 && seconds > 29 || seconds > 58){
-                self.tableView.reloadData()
-            }
-            for i in 0..<self.tokenlist.count {
-                let indexPath = IndexPath(row: i, section: 0)
-                let cell = self.tableView.cellForRow(at: indexPath)
-                if cell != nil {
-                    let cell2:TableViewCell = cell as! TableViewCell
-                    cell2.updateProgress(t: self.tokenlist[i], time: seconds)
-                }
-            }
+            //U.log(seconds)
+            self.presenterDelegate?.timerProgress(seconds: seconds)
         }
     }
     
     @IBAction func addManuallyTapped(_ sender: Any) {
         menuTapped() // close the menu
         let aMVC = self.storyboard?.instantiateViewController(withIdentifier: "EnterDetailVC") as! EnterDetailController
-        aMVC.tableVC = self
+        aMVC.presenterDelegate = self.presenterDelegate
         navigationController?.pushViewController(aMVC, animated: true)
     }
     
@@ -213,106 +201,59 @@ class TableViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(TableViewController.sortBtnTapped(_:)))
         }
     }
+}
 
-    func refreshTokenlist() {
-        self.tableView.reloadData()
+// MARK: - Protocol Implementation
+extension TableViewController: TokenlistDelegate {
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
     }
     
-    // MARK: - 2STEP
-    func do2stepinit(t:Token, salt_size:Int, difficulty:Int, output:Int) -> Token {
-        // 1. Generate random bytes equal to the "salt" aka phonepart size
-        var phonepart = [UInt8](repeating: 0, count: salt_size) // array to hold randoms bytes
-
-        // Generate random bytes
-        let res = SecRandomCopyBytes(kSecRandomDefault, salt_size, &phonepart)
-        if res != errSecSuccess {
-            print("random byte generation failed")
-            // TODO handle error display something?
-            return t
+    func showToastMessage(text: String) {
+        DispatchQueue.main.async {
+            self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         }
-        //print(phonepart.count)
-        
-        print("token secret before: \(t.secret.toHexString())")
-        print("phonepart as hex: \(phonepart.toHexString())")
-
-        // 2. PDBKDF2 with the specified parameters
-        
-        let password = t.secret.toHexString()
+    }
     
-        let derivedKeyData: UnsafeMutablePointer<UInt8> = UnsafeMutablePointer<UInt8>.allocate(capacity: (output/8))
-        
-        let cs = CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2), password, password.count, phonepart, phonepart.count, CCPBKDFAlgorithm(kCCPRFHmacAlgSHA1), UInt32(difficulty), derivedKeyData, (output/8))
-        let dat = Data(bytes: derivedKeyData, count: (output/8))
-        
-        print("CCKeyDerivationPBKDF result: \(cs)")
-        print("complete secret: \(dat.toHexString())")
-        
-        t.secret = dat
-        
-        /* 3. Build the result to show to the user as follows:
-        The first 4 characters of the sha1 hash of the client (phone's) part as checksum.
-        client_part being the binary random value that the client (phone) generated:
-        b32encode( sha1(client_part)[0:3] + client_part )
-        '=' are removed and characters are displayed in packs of 4
-        */
-
-        let hash = phonepart.sha1()
-        var chksm:Array<UInt8> = Array(hash.prefix(4))
-        //let chksm_b32 = base32Encode(chksm)
-        print("chksm b32: \(base32Encode(chksm))")
-        print("phonepart b32: \(base32Encode(phonepart))")
-        //let phone_part_b32 = base32Encode(phonepart)
-        chksm.append(contentsOf: phonepart)
-
-        let chksm_b32 = base32Encode(chksm)
-        let split_text = insertPeriodically(text: chksm_b32, insert: " ", period: 4)
-        let toshow = split_text.replacingOccurrences(of: "=", with: "")
-        print("show to user: \(toshow)")
-        
-        // 4. Open dialog and show the phonepart to the user
-        let alert = UIAlertController(title: "Your part of the secret", message: "\(toshow)", preferredStyle: .alert)
-        
+    func showMessageWithOKButton(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true)
-        
-        return t
     }
     
-    func insertPeriodically(text:String, insert:String, period:Int) -> String {
-        var count = 0
-        var res:String = ""
-        for char in text {
-            if(count == period){
-                res.append(insert)
-                res.append(char)
-                count = 1
-                continue
-            }
-            res.append(char)
-            count += 1
+    func reloadCells() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
         }
-        return res
+    }
+    
+    func updateProgressbar(indexPath: IndexPath, progress: Int) {
+        let cell = self.tableView.cellForRow(at: indexPath)
+        if cell != nil {
+            let cell2:TableViewCell = cell as! TableViewCell
+            cell2.updateProgressbar(t: (presenterDelegate?.getTokenForRow(index: indexPath.row))!, time: progress)
+        }
     }
 }
 
 // MARK: - TableView Delegate
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("You tapped cell number \(indexPath.row).")
+        //U.log("You tapped cell number \(indexPath.row).")
     }
-
+    
     // number of elements in the data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //print("tokens count returned: \(tokenlist.count)")
-        return tokenlist.count
+        //U.log("tokens count returned: \(tokenlist.count)")
+        return self.presenterDelegate?.getListCount() ?? 0
     }
     
     // called for every (new) item - configure cell here
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell") as! TableViewCell
-        //print("cellForRowAt: \(indexPath.row)")
-
-        cell.setupCell(tokenlist[indexPath.row], indexPath.row)
+        //U.log("cellForRowAt: \(indexPath.row)")
+        cell.setupCell((self.presenterDelegate?.getTokenForRow(index: indexPath.row))!, indexPath.row)
+        cell.presenter = self.presenter
         return cell
     }
     
@@ -322,111 +263,109 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     // this is used for iOS versions <11
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        //print("EditActionsForRowAt : \(indexPath.row)")
+        //U.log("EditActionsForRowAt : \(indexPath.row)")
+        let label: String = self.presenterDelegate?.getTokenForRow(index: indexPath.row).label ?? ""
+        
         // 1. Button: Delete
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexpath) in
+        let deleteAction = UITableViewRowAction(style: .destructive, title: NSLocalizedString("delete", comment: "delete button / row action text")) { (action, indexpath) in
             // show confirmation dialog
-            let confirmationController = UIAlertController(title: "",
-                    message: "Do you really want to remove \(self.tokenlist[indexPath.row].label) ?", preferredStyle: .alert)
-
+            
+            let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
+                                                           message: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (\(label) available)"),
+                                                           preferredStyle: .alert)
             // delete the token
-            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
-                self.tokenlist.remove(at: indexPath.row)
+            let confirmAction = UIAlertAction(title: NSLocalizedString("delete", comment: "delete button / row action text"), style: .default) { (_) in
+                self.presenterDelegate?.removeTokenAt(index: indexPath.row)
                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                self.util.saveTokens(list: self.tokenlist)
             }
+            
             //the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
+            
             //adding the action to dialogbox
             confirmationController.addAction(confirmAction)
             confirmationController.addAction(cancelAction)
-
+            
             //finally presenting the dialog box
             self.present(confirmationController, animated: true, completion: nil)
         }
         deleteAction.backgroundColor = .red
         
         // 2. Button: Rename
-        let renameAction = UITableViewRowAction(style: .normal, title: "Rename")
+        let renameAction = UITableViewRowAction(style: .normal, title: NSLocalizedString("rename", comment: "row action rename text"))
         { (action, indexPath) in
             let alertController = UIAlertController(title: "",
-                    message: "Rename \(self.tokenlist[indexPath.row].label)", preferredStyle: .alert)
-
+                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)",
+                preferredStyle: .alert)
             // change the name, save and reload table after confirming
-            let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
-                 if let name = alertController.textFields?[0].text {
-                     if name == "" {
-                         let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
-                                 preferredStyle: UIAlertControllerStyle.alert)
-                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                         self.present(alert, animated: true, completion: nil)
-                         return
-                     }
-                     self.tokenlist[indexPath.row].label = name
-                     self.util.saveTokens(list: self.tokenlist)
-                     self.tableView.reloadData()
-                 } else { }
+            let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
+                if let name = alertController.textFields?[0].text {
+                    if name == "" {
+                        let alert = UIAlertController(title: NSLocalizedString("new_name_empty_dialog_title", comment: "new name is empty dialog title"), message: NSLocalizedString("new_name_empty_dialog_text", comment: "new name is empty dialog text"),
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                    self.presenterDelegate?.changeTokenLabel(name, index: indexPath.row)
+                } else { }
             }
-
+            
             // the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
-
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
+            
             alertController.addTextField { (textField) in
-                textField.placeholder = "Enter new name"
+                textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field")
             }
-
+            
             alertController.addAction(confirmAction)
             alertController.addAction(cancelAction)
-
+            
             self.present(alertController, animated: true, completion: nil)
         }
-
+        
         renameAction.backgroundColor = UIColor(red: 0.670465749, green: 0.8777691889, blue: 1, alpha: 1)
         return [deleteAction,renameAction]
     }
-
+    
     // disable the delete and insert action in edit mode
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        //print("EditingStyleForRowAt : \(indexPath.row)")
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        //U.log("EditingStyleForRowAt : \(indexPath.row)")
         return .none
     }
-
+    
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     // move items in list
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //print("move row at: from: \(sourceIndexPath.row) to \(destinationIndexPath.row)")
-        let movedObject = self.tokenlist[sourceIndexPath.row]
-        self.tokenlist.remove(at: sourceIndexPath.row)
-        self.tokenlist.insert(movedObject, at: destinationIndexPath.row)
-        util.saveTokens(list: self.tokenlist)
+        //U.log("move row at: from: \(sourceIndexPath.row) to \(destinationIndexPath.row)")
+        self.presenterDelegate?.switchTokenPositions(src_index: sourceIndexPath.row, dest_index: destinationIndexPath.row)
+        self.tableView.reloadData()
     }
     
     // this is used for iOS versions >= 11
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let label: String = self.presenterDelegate?.getTokenForRow(index: indexPath.row).label ?? ""
+        
         // 1. Button: Delete
-        let deleteAction = UIContextualAction(style: .normal, title:  "Delete", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let deleteAction = UIContextualAction(style: .normal, title: NSLocalizedString("delete", comment: "delete button / row action text"), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
             // show confirmation dialog
-            let confirmationController = UIAlertController(title: "",
-                    message: "Do you really want to remove \(self.tokenlist[indexPath.row].label) ?", preferredStyle: .alert)
-            
+            let confirmationController = UIAlertController(title: NSLocalizedString("confirmation", comment: "removal confirmation dialog title"),
+                                                           message: String(format: NSLocalizedString("removal_confirmation_question", comment: "removal confirmation question (\(label) available)"), label)
+                , preferredStyle: .alert)
             // delete the token
-            let confirmAction = UIAlertAction(title: "Confirm", style: .default) { (_) in
-                self.tokenlist.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                self.util.saveTokens(list: self.tokenlist)
+            let confirmAction = UIAlertAction(title: NSLocalizedString("delete", comment: "delete button / row action text"), style: .default) { (_) in
+                self.presenterDelegate?.removeTokenAt(index: indexPath.row)
             }
             //the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
             //adding the action to dialogbox
             confirmationController.addAction(confirmAction)
             confirmationController.addAction(cancelAction)
             
-            //finally presenting the dialog box
             self.present(confirmationController, animated: true, completion: nil)
             
             success(true)
@@ -434,30 +373,32 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         deleteAction.backgroundColor = .red
         
         // 2. Button: Rename
-        let renameAction = UIContextualAction(style: .normal, title:  "Rename", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+        let renameAction = UIContextualAction(style: .normal, title: NSLocalizedString("rename", comment: "row action rename text"), handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
             
             let alertController = UIAlertController(title: "",
-                    message: "Rename \(self.tokenlist[indexPath.row].label)", preferredStyle: .alert)
-            
+                                                    message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)"
+                , preferredStyle: .alert)
             // change the name, save and reload table after confirming
-            let confirmAction = UIAlertAction(title: "Enter", style: .default) { (_) in
+            let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
                 if let name = alertController.textFields?[0].text {
                     if name == "" {
-                        let alert = UIAlertController(title: "Empty name", message: "Please enter a new name.",
-                                                      preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        let alert = UIAlertController(title:NSLocalizedString("new_name_empty_dialog_title", comment: "new name is empty dialog title"),
+                                                      message: NSLocalizedString("new_name_empty_dialog_text", comment: "new name is empty dialog text"),
+                                                      preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                         return
                     }
-                    self.tokenlist[indexPath.row].label = name
-                    self.util.saveTokens(list: self.tokenlist)
-                    self.tableView.reloadData()
+                    self.presenterDelegate?.changeTokenLabel(name, index: indexPath.row)
                 } else { }
             }
             // the cancel action doing nothing
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
+            let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
-            alertController.addTextField { (textField) in textField.placeholder = "Enter new name" }
+            alertController.addTextField {
+                (textField) in textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field")
+                textField.text = label
+            }
             
             alertController.addAction(confirmAction)
             alertController.addAction(cancelAction)
@@ -465,151 +406,14 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             self.present(alertController, animated: true, completion: nil)
             success(true)
         })
-        renameAction.backgroundColor = UIColor(red: 0.670465749, green: 0.8777691889, blue: 1, alpha: 1)
-        
+        //renameAction.backgroundColor = UIColor(red: 0.670465749, green: 0.8777691889, blue: 1, alpha: 1)
+        renameAction.backgroundColor = Constants.PI_BLUE
         let config = UISwipeActionsConfiguration(actions: [deleteAction,renameAction])
         return config
     }
 }
 
-// MARK: - QRScanResult Delegate
-extension TableViewController: QRScanResultDelegate {
-    func passScanResult(code: String) {
-        // create a token from the scan result and add it to the list
-        //print("scanned: \(code)")
-        var type: String = "hotp"
-        var digits: Int = 6
-        var algorithm: String = "sha1"
-        var secret: Data = base32DecodeToData("ABCDEFGHIJKLMNOP")!
-        var label: String = "Issuer:ID"
-        var counter: Int = 1
-        var period: Int? = nil
-
-        var two_step_init = false
-        var two_step_salt = 10              // default value in bytes, part that is generated by the phone
-        var two_step_difficulty = 10000     // default value pbkdf2 iterations
-        var two_step_output = 160           // default value output size of pbkdf in BIT
-
-        if let comp = URLComponents(string: code), let queryItems = comp.queryItems {
-
-            if comp.host! == "totp" {
-                type = "totp"
-            }
-
-            label = comp.path
-            label.remove(at: label.startIndex) // remove first /
-
-            for i in 0..<queryItems.count {
-                // Usual elements of the key URI format
-                if queryItems[i].name == "secret" {
-                    guard let tmp = queryItems[i].value else {
-                        print("failed for " + queryItems[i].name)
-                        continue
-                    }
-                    secret = base32DecodeToData(tmp)!
-                }
-                if queryItems[i].name == "issuer" {
-                    guard let tmp = queryItems[i].value else {
-                        print("failed for " + queryItems[i].name)
-                        continue
-                    }
-                    let full_label = tmp + ":" + label
-                    label = full_label
-                }
-                if queryItems[i].name == "digits" {
-                    guard let tmp = queryItems[i].value else {
-                        print("failed for " + queryItems[i].name)
-                        continue
-                    }
-                    digits = Int(tmp)!
-                }
-                if queryItems[i].name == "period" {
-                    guard let tmp = queryItems[i].value else {
-                        print("failed for " + queryItems[i].name)
-
-                        continue
-                    }
-                    period = Int(tmp)
-                }
-                if queryItems[i].name == "counter" {
-                    guard let tmp = queryItems[i].value else {
-                        counter = 1
-                        print("failed for " + queryItems[i].name)
-                        continue
-                    }
-                    counter = Int(tmp)!
-                }
-                if queryItems[i].name == "algorithm" {
-                    guard let tmp = queryItems[i].value else {
-                        // use default on error / missing
-                        continue
-                    }
-                    algorithm = tmp
-                }
-
-                ///////////////////////////////////////////////
-                // Additional elements for possible 2step init
-                ///////////////////////////////////////////////
-
-                // if at least one parameter is set, we start 2step init
-                if queryItems[i].name == "2step_salt" {
-                    two_step_init = true
-                    guard let tmp = queryItems[i].value else {
-                        continue
-                    }
-                    two_step_salt = Int(tmp)!
-                    print("2step salt: \(two_step_salt)")
-                }
-
-                if queryItems[i].name == "2step_output" {
-                    two_step_init = true
-                    guard let tmp = queryItems[i].value else {
-                        // if there is no value, we derive it from the tokens algorithm
-                        if algorithm == "sha1" {
-                        } // is already default
-                        if algorithm == "sha256" {
-                            two_step_output = 256
-                        }
-                        if algorithm == "sha512" {
-                            two_step_output = 512
-                        }
-                        continue
-                    }
-                    two_step_output = Int(tmp)! * 8     // comes in byte, we need bit
-                    print("2step output: \(two_step_output)")
-                }
-
-                if queryItems[i].name == "2step_difficulty" {
-                    two_step_init = true
-                    guard let tmp = queryItems[i].value else {
-                        continue
-                    }
-                    two_step_difficulty = Int(tmp)!
-                    print("2step diff: \(two_step_difficulty)")
-                }
-            }
-        }
-
-        let t = Token(type: type, digits: digits, algorithm: algorithm, secret: secret, label: label, counter: counter, period: period)
-        
-        if two_step_init {
-            DispatchQueue.global(qos: .background).async { // sends registration to background queue
-                print("starting 2step")
-                let t2 = self.do2stepinit(t: t, salt_size: two_step_salt, difficulty: two_step_difficulty, output: two_step_output)
-                
-                self.tokenlist.append(t2)
-                self.util.saveTokens(list: self.tokenlist)
-                self.tableView.reloadData()
-            }
-        } else {
-        tokenlist.append(t)
-        util.saveTokens(list: tokenlist)
-        tableView.reloadData()
-        }
-    }
-}
-
-// MARK: COLOR EXTENSION FOR RGBA
+// MARK: - Color Extension For RGBA
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int, a: CGFloat = 1.0) {
         self.init(
