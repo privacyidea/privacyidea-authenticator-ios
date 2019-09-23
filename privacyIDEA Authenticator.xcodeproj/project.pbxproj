@@ -16,6 +16,7 @@
 		290A8138228C3B41006D74CC /* TwoStepRollout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A8137228C3B41006D74CC /* TwoStepRollout.swift */; };
 		290A813A228C3EF3006D74CC /* PresenterDataAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A8139228C3EF3006D74CC /* PresenterDataAccess.swift */; };
 		290A813C228C4040006D74CC /* PresenterPushFIR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290A813B228C4040006D74CC /* PresenterPushFIR.swift */; };
+		290B49EF2338C0E800B3E044 /* ObjCException.m in Sources */ = {isa = PBXBuildFile; fileRef = 290B49EE2338C0E800B3E044 /* ObjCException.m */; };
 		290F1DC622859DD50025EF81 /* PushAuthRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DC522859DD50025EF81 /* PushAuthRequest.swift */; };
 		290F1DCE2285A7040025EF81 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DCD2285A7030025EF81 /* Storage.swift */; };
 		290F1DD02285A77E0025EF81 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290F1DCF2285A77E0025EF81 /* Crypto.swift */; };
@@ -37,6 +38,8 @@
 		29826CDC2306DB7B0093C9CD /* SwiftOTP license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CD82306DB7B0093C9CD /* SwiftOTP license.html */; };
 		29826CDD2306DB7B0093C9CD /* KeychainSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CD92306DB7B0093C9CD /* KeychainSwift license.html */; };
 		29826CDE2306DB7B0093C9CD /* CryptoSwift license.html in Resources */ = {isa = PBXBuildFile; fileRef = 29826CDA2306DB7B0093C9CD /* CryptoSwift license.html */; };
+		29A140FF23101BF4009CC32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29028DD721198E0C00842BCC /* Main.storyboard */; };
+		29A1410423102069009CC32B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29A1410223102068009CC32B /* Localizable.strings */; };
 		29A4CB32225CCB9400E2909F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB31225CCB9400E2909F /* Constants.swift */; };
 		29A4CB35225CCFC200E2909F /* OTPGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB33225CCCD600E2909F /* OTPGenerator.swift */; };
 		29B089DF214F9A87009DA14C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B089DE214F9A87009DA14C /* MainNavigationController.swift */; };
@@ -96,6 +99,9 @@
 		290A8137228C3B41006D74CC /* TwoStepRollout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoStepRollout.swift; sourceTree = "<group>"; };
 		290A8139228C3EF3006D74CC /* PresenterDataAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterDataAccess.swift; sourceTree = "<group>"; };
 		290A813B228C4040006D74CC /* PresenterPushFIR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterPushFIR.swift; sourceTree = "<group>"; };
+		290B49EC2338BCE800B3E044 /* privacyIDEA Authenticator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "privacyIDEA Authenticator-Bridging-Header.h"; sourceTree = "<group>"; };
+		290B49ED2338C0D500B3E044 /* ObjCException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCException.h; sourceTree = "<group>"; };
+		290B49EE2338C0E800B3E044 /* ObjCException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCException.m; sourceTree = "<group>"; };
 		290F1DC522859DD50025EF81 /* PushAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAuthRequest.swift; sourceTree = "<group>"; };
 		290F1DCD2285A7030025EF81 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = "/Users/nils/Desktop/piauthenticator/privacyIDEA Authenticator/Storage.swift"; sourceTree = "<absolute>"; };
 		290F1DCF2285A77E0025EF81 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
@@ -118,8 +124,10 @@
 		29826CD82306DB7B0093C9CD /* SwiftOTP license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "SwiftOTP license.html"; sourceTree = "<group>"; };
 		29826CD92306DB7B0093C9CD /* KeychainSwift license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "KeychainSwift license.html"; sourceTree = "<group>"; };
 		29826CDA2306DB7B0093C9CD /* CryptoSwift license.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "CryptoSwift license.html"; sourceTree = "<group>"; };
-		299B774A216640190057ED4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
-		299B774B216640190057ED4A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		29A1410023101F5B009CC32B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		29A1410123101F5B009CC32B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		29A1410323102068009CC32B /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "privacyIDEA Authenticator/de.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		29A141052310207A009CC32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "privacyIDEA Authenticator/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		29A4CB31225CCB9400E2909F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		29A4CB33225CCCD600E2909F /* OTPGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPGenerator.swift; sourceTree = "<group>"; };
 		29B089DE214F9A87009DA14C /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
@@ -181,6 +189,10 @@
 		29028DC721198E0C00842BCC = {
 			isa = PBXGroup;
 			children = (
+				290B49EE2338C0E800B3E044 /* ObjCException.m */,
+				290B49ED2338C0D500B3E044 /* ObjCException.h */,
+				290B49EC2338BCE800B3E044 /* privacyIDEA Authenticator-Bridging-Header.h */,
+				29A1410223102068009CC32B /* Localizable.strings */,
 				29826CD62306DB7B0093C9CD /* licenses */,
 				29028DE721198E0D00842BCC /* privacyIDEA AuthenticatorTests */,
 				2946876821662D7C0049F0F0 /* privacyIDEA Authenticator */,
@@ -450,6 +462,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29A1410423102069009CC32B /* Localizable.strings in Resources */,
+				29A140FF23101BF4009CC32B /* Main.storyboard in Resources */,
 				297945BA230AC22400D36DAF /* Google Firebase license.html in Resources */,
 				29826CDC2306DB7B0093C9CD /* SwiftOTP license.html in Resources */,
 				29826CDD2306DB7B0093C9CD /* KeychainSwift license.html in Resources */,
@@ -591,6 +605,7 @@
 				29226BF722771B1100631598 /* Endpoint.swift in Sources */,
 				29028DD421198E0C00842BCC /* AppDelegate.swift in Sources */,
 				29584752211AE75100CE2C6A /* TableViewCell.swift in Sources */,
+				290B49EF2338C0E800B3E044 /* ObjCException.m in Sources */,
 				29146507225CBE9E0089A0A4 /* Model.swift in Sources */,
 				33988467423754741FFD5BAA /* Utilities.swift in Sources */,
 				339882B0226B9695A7BC9E31 /* TableViewController.swift in Sources */,
@@ -634,7 +649,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				29028DD821198E0C00842BCC /* Base */,
-				299B774A216640190057ED4A /* de */,
+				29A1410023101F5B009CC32B /* de */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -643,9 +658,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				29028DDD21198E0D00842BCC /* Base */,
-				299B774B216640190057ED4A /* de */,
+				29A1410123101F5B009CC32B /* de */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		29A1410223102068009CC32B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				29A1410323102068009CC32B /* de */,
+				29A141052310207A009CC32B /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -789,6 +813,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/privacyIDEA Authenticator-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -812,6 +837,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/privacyIDEA Authenticator-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

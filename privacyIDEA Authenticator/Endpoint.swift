@@ -64,7 +64,7 @@ class Endpoint: NSObject, URLSessionDelegate {
                 
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data2, options: .mutableContainers) as? [String: Any] {
-                        //U.log("Response: \(json)")
+                        U.log("Response: \(json)")
                         self.callback.responseReceived(response: json, self.token)
                         
                     }

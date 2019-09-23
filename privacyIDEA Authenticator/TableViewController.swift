@@ -43,12 +43,12 @@ class TableViewController: UIViewController {
         // Setup buttons of side menu
         let blackFont = [NSAttributedString.Key.foregroundColor : UIColor.black]
         addManuallyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("addManually_button_label", comment: "Add Token manually"),
-                                                            attributes: blackFont),
-                                         for: .normal)
+                                                             attributes: blackFont),
+                                          for: .normal)
         
         thirdPartyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"),
-                                                      attributes: blackFont),
-                                   for: .normal)
+                                                            attributes: blackFont),
+                                         for: .normal)
         
         sortBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("sort_button_label", comment: "sort list"),
                                                       attributes: blackFont),
@@ -205,6 +205,10 @@ class TableViewController: UIViewController {
 
 // MARK: - Protocol Implementation
 extension TableViewController: TokenlistDelegate {
+    func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func showToastMessage(text: String) {
         DispatchQueue.main.async {
             self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
@@ -374,7 +378,6 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             let alertController = UIAlertController(title: "",
                                                     message: NSLocalizedString("rename_dialog_text", comment: "rename dialog text (label will be appended") + " \(label)"
                 , preferredStyle: .alert)
-            
             // change the name, save and reload table after confirming
             let confirmAction = UIAlertAction(title: NSLocalizedString("enter_button_dialogtext", comment: "enter button dialog text"), style: .default) { (_) in
                 if let name = alertController.textFields?[0].text {
@@ -392,7 +395,10 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             // the cancel action doing nothing
             let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: "cancel button label"), style: .cancel) { (_) in }
             
-            alertController.addTextField { (textField) in textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field") }
+            alertController.addTextField {
+                (textField) in textField.placeholder = NSLocalizedString("enter_new_name_placeholder", comment: "placeholder text for new name input field")
+                textField.text = label
+            }
             
             alertController.addAction(confirmAction)
             alertController.addAction(cancelAction)

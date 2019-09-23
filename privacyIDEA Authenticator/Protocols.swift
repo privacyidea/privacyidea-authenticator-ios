@@ -14,6 +14,7 @@ protocol TokenlistDelegate {
     func updateProgressbar(indexPath: IndexPath, progress: Int)
     func showMessageWithOKButton(title: String, message: String)
     func showToastMessage(text: String)
+    func popViewController()    
     // TODO alert builder via interface
 }
 

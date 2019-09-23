@@ -23,7 +23,16 @@ extension Presenter {
             options.storageBucket = config.projID + ".appspot.com"
             options.projectID = config.projID
             
-            FirebaseApp.configure(options: options)
+            do {
+                try ObjCException.catch {
+                    FirebaseApp.configure(options: options)
+                }
+            } catch {
+                tableViewDelegate?.popViewController()
+                tableViewDelegate?.showMessageWithOKButton(title: NSLocalizedString("firebase_init_error", comment: "") , message: NSLocalizedString("firebase_init_error_message", comment: ""))
+                Storage.shared.deleteFirebaseConfig()
+                U.log("Firebase initialization Error: \(error.localizedDescription)")
+            }
             U.log("Firebase initialized")
         } else {
             U.log("Firebase already initalized for: " + (FirebaseApp.allApps?.description ?? ("default value" as String)))
