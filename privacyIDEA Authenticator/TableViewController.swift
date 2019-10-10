@@ -204,8 +204,10 @@ extension TableViewController: TokenlistDelegate {
     }
     
     func showToastMessage(text: String) {
+        var style = ToastStyle()
+        style.backgroundColor = UIColor(named: "ColorToastBackground")!
         DispatchQueue.main.async {
-            self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: style, completion: nil)
         }
     }
     
