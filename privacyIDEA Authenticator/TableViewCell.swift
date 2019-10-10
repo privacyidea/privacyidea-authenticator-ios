@@ -66,6 +66,7 @@ class TableViewCell: UITableViewCell {
         labelStackV.isHidden = true
         labelStackV.textAlignment = .left
         buttonStackV.isHidden = true
+        buttonDismissStackV.isHidden = true
         hideStackView()
         buttonHOTP.isHidden = true
         progressBar.isHidden = true

@@ -41,18 +41,12 @@ class TableViewController: UIViewController {
         
         runTimer()
         // Setup buttons of side menu
-        let blackFont = [NSAttributedString.Key.foregroundColor : UIColor.black]
-        addManuallyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("addManually_button_label", comment: "Add Token manually"),
-                                                             attributes: blackFont),
-                                          for: .normal)
+        addManuallyBtn.setTitle(NSLocalizedString("addManually_button_label", comment: "Add Token manually"), for: .normal)
         
-        thirdPartyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"),
-                                                            attributes: blackFont),
-                                         for: .normal)
+        thirdPartyBtn.setTitle(NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"), for: .normal)
         
-        sortBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("sort_button_label", comment: "sort list"),
-                                                      attributes: blackFont),
-                                   for: .normal)
+        sortBtn.setTitle(NSLocalizedString("sort_button_label", comment: "sort list"), for: .normal)
+      
         //////////////////////// SIDE MENU SETUP ////////////////////////
         /*menuView.isHidden = true
          let menuTap = UITapGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))

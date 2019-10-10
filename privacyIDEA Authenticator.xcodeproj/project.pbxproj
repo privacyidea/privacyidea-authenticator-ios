@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -103,7 +103,7 @@
 		290B49ED2338C0D500B3E044 /* ObjCException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjCException.h; sourceTree = "<group>"; };
 		290B49EE2338C0E800B3E044 /* ObjCException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjCException.m; sourceTree = "<group>"; };
 		290F1DC522859DD50025EF81 /* PushAuthRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushAuthRequest.swift; sourceTree = "<group>"; };
-		290F1DCD2285A7030025EF81 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = "/Users/nils/Desktop/piauthenticator/privacyIDEA Authenticator/Storage.swift"; sourceTree = "<absolute>"; };
+		290F1DCD2285A7030025EF81 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		290F1DCF2285A77E0025EF81 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		2912BE4522B7B5D300809114 /* PresenterEndpointCallback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterEndpointCallback.swift; sourceTree = "<group>"; };
 		2912BE4722B7B72700809114 /* Lifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifecycle.swift; sourceTree = "<group>"; };
@@ -255,8 +255,7 @@
 				29146504225CBE9E0089A0A4 /* Model.swift */,
 			);
 			name = Model;
-			path = "/Users/nils/Desktop/piauthenticator/privacyIDEA Authenticator";
-			sourceTree = "<absolute>";
+			sourceTree = "<group>";
 		};
 		290F1DC82285A12E0025EF81 /* Utilities */ = {
 			isa = PBXGroup;
@@ -495,27 +494,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftOTP/SwiftOTP.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOTP.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -801,16 +785,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 627QALYL3B;
+				DEVELOPMENT_TEAM = 52NSLTN3S4;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = net.cowism.privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/privacyIDEA Authenticator-Bridging-Header.h";
@@ -825,16 +809,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 627QALYL3B;
+				DEVELOPMENT_TEAM = 52NSLTN3S4;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = net.cowism.privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/privacyIDEA Authenticator-Bridging-Header.h";
