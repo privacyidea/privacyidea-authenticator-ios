@@ -78,8 +78,17 @@ class Storage {
         if let t = try? decoder.decode(Token.self, from: str.data(using: .utf8)!) {
             return t
         } else {
-            U.log("[DECODE] Token \(str) cannot be decoded")
-            return nil
+            // Try to load as an old token, then copy it to the new format
+            if let t = try? decoder.decode(TokenOld.self, from: str.data(using: .utf8)!) {
+                // Make a new token out of the old
+                // Serial was added in the new format to the serial of these will be their current label
+                // Since there were only hotp/totp, the serial is not used anyway
+                let newToken: Token = Token(type: t.type, label: t.label, serial: t.label, secret: t.secret, period: t.period)
+                return newToken
+            } else {
+                U.log("[DECODE] Token \(str) cannot be decoded")
+                return nil
+            }
         }
     }
     
