@@ -46,6 +46,7 @@
 		29C668C521301BA700D6CDD9 /* EnterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C668C421301BA700D6CDD9 /* EnterDetailController.swift */; };
 		339882B0226B9695A7BC9E31 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33988D2A59C46070BB6A0345 /* TableViewController.swift */; };
 		33988467423754741FFD5BAA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3398879EC13DF72ACC937181 /* Utilities.swift */; };
+		494C82702358ECE40099B9F1 /* TokenOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 494C826F2358ECE40099B9F1 /* TokenOld.swift */; };
 		ABDE125AF9C90D24DFFF7B2E /* Pods_privacyIDEA_AuthenticatorTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51CF362067AC8B533586072 /* Pods_privacyIDEA_AuthenticatorTests.framework */; };
 		D638494276AFC0758EF19F04 /* Pods_privacyIDEA_Authenticator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C98BBB7DF51853184634D00B /* Pods_privacyIDEA_Authenticator.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +135,7 @@
 		29C668C421301BA700D6CDD9 /* EnterDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDetailController.swift; sourceTree = "<group>"; };
 		3398879EC13DF72ACC937181 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		33988D2A59C46070BB6A0345 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		494C826F2358ECE40099B9F1 /* TokenOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenOld.swift; sourceTree = "<group>"; };
 		50BCD175485743A0F0B8AFDB /* Pods-privacyIDEA AuthenticatorTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-privacyIDEA AuthenticatorTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-privacyIDEA AuthenticatorTests/Pods-privacyIDEA AuthenticatorTests.release.xcconfig"; sourceTree = "<group>"; };
 		753694AF854A9046E4C760DA /* Pods-privacyIDEA AuthenticatorUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-privacyIDEA AuthenticatorUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-privacyIDEA AuthenticatorUITests/Pods-privacyIDEA AuthenticatorUITests.release.xcconfig"; sourceTree = "<group>"; };
 		8B391664000B09C455245DDD /* Pods-privacyIDEA Authenticator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-privacyIDEA Authenticator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		290F1DC72285A0930025EF81 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				494C826F2358ECE40099B9F1 /* TokenOld.swift */,
 				2903C06722647CF300A86245 /* FirebaseConfig.swift */,
 				2950471B2119CFB700D51D7D /* Token.swift */,
 				290F1DC522859DD50025EF81 /* PushAuthRequest.swift */,
@@ -584,6 +587,7 @@
 				29C668C521301BA700D6CDD9 /* EnterDetailController.swift in Sources */,
 				29A4CB32225CCB9400E2909F /* Constants.swift in Sources */,
 				290F1DD02285A77E0025EF81 /* Crypto.swift in Sources */,
+				494C82702358ECE40099B9F1 /* TokenOld.swift in Sources */,
 				2912BE4822B7B72700809114 /* Lifecycle.swift in Sources */,
 				290F1DC622859DD50025EF81 /* PushAuthRequest.swift in Sources */,
 				29226BF722771B1100631598 /* Endpoint.swift in Sources */,
@@ -787,6 +791,7 @@
 				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 52NSLTN3S4;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
@@ -811,6 +816,7 @@
 				CODE_SIGN_ENTITLEMENTS = "privacyIDEA Authenticator/privacyIDEA Authenticator.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 52NSLTN3S4;
 				INFOPLIST_FILE = "privacyIDEA Authenticator/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
