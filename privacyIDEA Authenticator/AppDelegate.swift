@@ -22,9 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Analytics.setAnalyticsCollectionEnabled(false)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
+        
+        // Check to see if content protection is active before going further
+        // Should fix random token deletion
+        var loopCount = 0
+        while (!application.isProtectedDataAvailable) {
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.2))
+            loopCount += 1
+        }
+        
         _ = Presenter.shared //ensure instance is instantiated and push delegate is set
         
-        U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
+        U.log("didFinishLaunchingWithOptions: \(String(loopCount)) \(String(describing: launchOptions))")
         if let userInfo = launchOptions?[.remoteNotification] as?  [AnyHashable : Any] {
             // Notification received upon launch, app may have been terminated
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
