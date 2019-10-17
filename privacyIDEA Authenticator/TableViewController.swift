@@ -33,11 +33,11 @@ class TableViewController: UIViewController {
         self.title = "privacyIDEA Authenticator"
         
         //////////////////////// ASSEMBLE ////////////////////////
-        presenter = Presenter(tokenlistDelegate: self)
+        presenter = Presenter.shared
         let del = UIApplication.shared.delegate as! AppDelegate
         del.presenterDelegate = presenter
         self.presenterDelegate = presenter
-        presenter?.startup()
+        presenter?.startup(tokenlistDelegate: self)
         
         runTimer()
         // Setup buttons of side menu
@@ -212,9 +212,11 @@ extension TableViewController: TokenlistDelegate {
     }
     
     func showMessageWithOKButton(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     func reloadCells() {

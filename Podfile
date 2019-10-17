@@ -9,7 +9,7 @@ target 'privacyIDEA Authenticator' do
 pod 'SwiftLint'
 pod 'SwiftOTP'
 pod 'KeychainSwift', '~> 16.0'
-pod 'Firebase/Core'
+pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'SwiftyRSA'
 pod 'Toast-Swift', '~> 5.0.0'
