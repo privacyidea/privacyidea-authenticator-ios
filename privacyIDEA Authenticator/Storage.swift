@@ -100,7 +100,7 @@ class Storage {
             let data = try encoder.encode(config)
             let str = String(data: data, encoding: .utf8)!
             //U.log("Saving Firebase Config: \(str)")
-            KeychainSwift().set(str, forKey: Constants.FB_CONFIG)
+            KeychainSwift().set(str, forKey: Constants.FB_CONFIG, withAccess: .accessibleAfterFirstUnlock)
         } catch {
             U.log("[ENCODE] FirebaseConfig cannot be encoded \(error)")
         }
@@ -136,7 +136,7 @@ class Storage {
             U.log(error!.takeRetainedValue() as Error)
             return
         }
-        KeychainSwift().set(data.base64EncodedString(), forKey: "private" + serial)
+        KeychainSwift().set(data.base64EncodedString(), forKey: "private" + serial, withAccess: .accessibleAfterFirstUnlock)
     }
     
     func loadPrivateKey(_ serial: String) -> SecKey? {
@@ -152,14 +152,14 @@ class Storage {
         // Decode the b64String to SecKey before storing to ensure it's a valid key
         let keyStr = Utilities().b64URLSafeTob64(publicKeyStr)
         if Crypto.shared.validateStringIsPublicKey(keyStr) {
-            KeychainSwift().set(publicKeyStr, forKey: "piPub" + serial)
+            KeychainSwift().set(publicKeyStr, forKey: "piPub" + serial, withAccess: .accessibleAfterFirstUnlock)
             U.log("Public Key for \(serial) stored")
             return true
         }
         return false
     }
     
-    func loadPIPubicKey(_ serial: String) -> SecKey? {
+    func loadPIPublicKey(_ serial: String) -> SecKey? {
         U.log("Loading PIs Public Key for \(serial)...")
         guard let str = KeychainSwift().get("piPub" + serial) else {
             U.log("No key data found.")
