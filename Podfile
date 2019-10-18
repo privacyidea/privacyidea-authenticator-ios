@@ -6,9 +6,8 @@ target 'privacyIDEA Authenticator' do
   use_frameworks!
 
   # Pods for privacyIDEA Authenticator
-pod 'SwiftLint'
 pod 'SwiftOTP'
-pod 'KeychainSwift', '~> 16.0'
+pod 'KeychainSwift', '~> 17.0'
 pod 'Firebase/Core'
 pod 'Firebase/Messaging'
 pod 'SwiftyRSA'

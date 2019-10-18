@@ -17,7 +17,7 @@ class Storage {
     // MARK: TOKENLIST
     func saveTokens(list: [Token]) -> Void {
         let keychain = KeychainSwift()
-        UserDefaults.standard.set(list.count, forKey: "token_count")
+        keychain.clear()
         
         for i in 0..<list.count {
             // Check the token state, don't save in ENROLLING or AUTHENTICATING state
@@ -46,22 +46,28 @@ class Storage {
     }
     
     func loadTokens()-> [Token] {
-        let count = UserDefaults.standard.integer(forKey: "token_count")
+        var ret:[Token] = []
         let keychain = KeychainSwift()
-        var tokens:[Token] = []
-        for i in 0..<count {
-            if let tmp = keychain.get("token\(i)"){
-                if let tmp2 = jsonToToken(str: tmp){
-                    tokens.append(tmp2)
+        var cont:Bool = true
+        for i in 0..<99 {
+            if !cont {
+                break
+            }
+            U.log("attempting to load token: token\(i)")
+            if let tmp = keychain.get("token\(i)") {
+                if let tmp2 = jsonToToken(str: tmp) {
+                    ret.append(tmp2)
+                    U.log("done")
                 }
             } else {
-                U.log("[LOAD TOKEN] Could not load token \(i) of \(count)")
+                U.log("loading token returned nil")
+                cont = false
             }
         }
-        return tokens
+        return ret
     }
     
-    private func tokenToJSON(_ token: Token) -> String? {
+    func tokenToJSON(_ token: Token) -> String? {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         do {
@@ -73,7 +79,7 @@ class Storage {
         return nil
     }
     
-    private func jsonToToken(str: String) -> Token? {
+    func jsonToToken(str: String) -> Token? {
         let decoder = JSONDecoder()
         if let t = try? decoder.decode(Token.self, from: str.data(using: .utf8)!) {
             return t
@@ -93,7 +99,7 @@ class Storage {
     }
     
     // MARK: FIREBASE+TOKEN
-   func saveFirebaseConfig(_ config: FirebaseConfig) {
+    func saveFirebaseConfig(_ config: FirebaseConfig) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         do {
@@ -148,7 +154,7 @@ class Storage {
         return Crypto.shared.stringToPrivateKey(str)
     }
     
-   func savePIPublicKey(serial: String, publicKeyStr: String) -> Bool {
+    func savePIPublicKey(serial: String, publicKeyStr: String) -> Bool {
         // Decode the b64String to SecKey before storing to ensure it's a valid key
         let keyStr = Utilities().b64URLSafeTob64(publicKeyStr)
         if Crypto.shared.validateStringIsPublicKey(keyStr) {
