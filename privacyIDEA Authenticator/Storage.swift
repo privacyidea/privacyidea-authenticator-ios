@@ -36,7 +36,7 @@ class Storage {
             }
             if let tmp = tokenToJSON(token) {
                 //U.log("[SAVE TOKEN] \(tmp)")
-                keychain.set(tmp, forKey: "token\(i)")
+                keychain.set(tmp, forKey: "token\(i)", withAccess: .accessibleAlwaysThisDeviceOnly)
             }
             else {
                 U.log("[SAVE TOKEN] Token \(list[i].label) could not be saved")
@@ -100,7 +100,7 @@ class Storage {
             let data = try encoder.encode(config)
             let str = String(data: data, encoding: .utf8)!
             //U.log("Saving Firebase Config: \(str)")
-            KeychainSwift().set(str, forKey: Constants.FB_CONFIG, withAccess: .accessibleAfterFirstUnlock)
+            KeychainSwift().set(str, forKey: Constants.FB_CONFIG, withAccess: .accessibleAlwaysThisDeviceOnly)
         } catch {
             U.log("[ENCODE] FirebaseConfig cannot be encoded \(error)")
         }
@@ -136,7 +136,7 @@ class Storage {
             U.log(error!.takeRetainedValue() as Error)
             return
         }
-        KeychainSwift().set(data.base64EncodedString(), forKey: "private" + serial, withAccess: .accessibleAfterFirstUnlock)
+        KeychainSwift().set(data.base64EncodedString(), forKey: "private" + serial, withAccess: .accessibleAlwaysThisDeviceOnly)
     }
     
     func loadPrivateKey(_ serial: String) -> SecKey? {
@@ -152,7 +152,7 @@ class Storage {
         // Decode the b64String to SecKey before storing to ensure it's a valid key
         let keyStr = Utilities().b64URLSafeTob64(publicKeyStr)
         if Crypto.shared.validateStringIsPublicKey(keyStr) {
-            KeychainSwift().set(publicKeyStr, forKey: "piPub" + serial, withAccess: .accessibleAfterFirstUnlock)
+            KeychainSwift().set(publicKeyStr, forKey: "piPub" + serial, withAccess: .accessibleAlwaysThisDeviceOnly)
             U.log("Public Key for \(serial) stored")
             return true
         }
