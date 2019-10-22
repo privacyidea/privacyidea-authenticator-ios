@@ -13,11 +13,9 @@ class Storage {
     static let shared = Storage()
     
     private init(){ }
-    
-    // MARK: TOKENLIST
+   
     func saveTokens(list: [Token]) -> Void {
         let keychain = KeychainSwift()
-        keychain.clear()
         
         for i in 0..<list.count {
             // Check the token state, don't save in ENROLLING or AUTHENTICATING state
@@ -53,7 +51,6 @@ class Storage {
             if !cont {
                 break
             }
-            U.log("attempting to load token: token\(i)")
             if let tmp = keychain.get("token\(i)") {
                 if let tmp2 = jsonToToken(str: tmp) {
                     ret.append(tmp2)
