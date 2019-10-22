@@ -15,7 +15,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var previewLayer: AVCaptureVideoPreviewLayer!
     var qrScanDelegate : QRScanResultDelegate!
     
-    @IBOutlet weak var view1: UIView!
+    @IBOutlet weak var scannerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
-        view.layer.insertSublayer(previewLayer, below: view1.layer)
+        view.layer.insertSublayer(previewLayer, below: scannerView.layer)
         captureSession.startRunning()
     }
     

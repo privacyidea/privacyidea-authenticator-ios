@@ -16,23 +16,24 @@ import FirebaseInstanceID
 import UserNotifications
 
 class Presenter {
+    static let shared = Presenter()
     
     var model: Model
-    var tableViewDelegate: TokenlistDelegate?
+    var tableViewDelegate: TokenlistDelegate? = nil
     var notificationManager: NotificationManager?
+    var backgroundTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     
-    init(tokenlistDelegate: TokenlistDelegate) {
-        self.tableViewDelegate = tokenlistDelegate
+    init() {
         self.model = Model(token: Storage.shared.loadTokens())
-    }
-    
-    func startup() {
-        // MARK: STARTUP
-        
         model.hasPushtokenLeft() ? loadAndInitFirebase() : Storage.shared.deleteFirebaseConfig()
         
         notificationManager = NotificationManager(self)
         notificationManager?.registerForPushNotifications()
+    }
+    
+    func startup(tokenlistDelegate: TokenlistDelegate) {
+        // MARK: STARTUP
+        self.tableViewDelegate = tokenlistDelegate
         
         checkExpiredRollouts()
         checkExpiredAuthRequests()
@@ -54,6 +55,19 @@ class Presenter {
             let indexPath = IndexPath(row: i, section: 0)
             tableViewDelegate?.updateProgressbar(indexPath: indexPath, progress: seconds)
         }
+    }
+    
+    func registerBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            self?.endBackgroundTask()
+        }
+        assert(backgroundTask != UIBackgroundTaskIdentifier.invalid)
+    }
+    
+    private func endBackgroundTask() {
+        U.log("Background task ended.")
+        UIApplication.shared.endBackgroundTask(backgroundTask)
+        backgroundTask = UIBackgroundTaskIdentifier.invalid
     }
 }
 

@@ -23,7 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.setAnalyticsCollectionEnabled(false)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         
-        //U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
+        _ = Presenter.shared //ensure instance is instantiated and push delegate is set
+        
+        U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
+        if let userInfo = launchOptions?[.remoteNotification] as?  [AnyHashable : Any] {
+            // Notification received upon launch, app may have been terminated
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.presenterDelegate?.fcmMessageReceived(message: userInfo)
+            }
+        }
         return true
     }
     

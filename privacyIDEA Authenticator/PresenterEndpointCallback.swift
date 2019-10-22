@@ -95,7 +95,9 @@ extension Presenter: EndpointCallback {
                     tableViewDelegate?.showToastMessage(text: NSLocalizedString("authentication_successful_toast", comment: "Authentication successful!"))
                     self.datasetChanged()
                 } else {
+                    token.pendingAuths = token.pendingAuths.filter( { $0 !== p } )
                     tableViewDelegate?.showToastMessage(text: NSLocalizedString("authentication_failed_toast", comment: "Authentication failed!"))
+                    self.datasetChanged()
                 }
                 // TODO remove failed authentication? it is probably impossible to get it right if it fails (without an error from "outside")
             }

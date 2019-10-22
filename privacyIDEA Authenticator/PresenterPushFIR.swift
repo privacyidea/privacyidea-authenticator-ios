@@ -152,7 +152,7 @@ extension Presenter {
             let sslv = req.sslVerify ? "1" : "0"
             let toVerify = req.nonce + "|" + req.url + "|" + req.serial + "|" + req.question + "|" + req.title + "|" + sslv
             
-            guard let key = Storage.shared.loadPIPubicKey(req.serial) else {
+            guard let key = Storage.shared.loadPIPublicKey(req.serial) else {
                 self.tableViewDelegate?.showMessageWithOKButton(title: "Error",
                                                                 message: NSLocalizedString("publickey_not_found_message", comment: ""))
                 U.log("no pi pub key found")

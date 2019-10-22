@@ -21,22 +21,28 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
     }
     
     func registerForPushNotifications() {
-        DispatchQueue.main.async {
-            if #available(iOS 10.0, *) {
-                UNUserNotificationCenter.current().delegate = self
-                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-                UNUserNotificationCenter.current().requestAuthorization(
-                    options: authOptions,
-                    completionHandler: {_, _ in })
-            } else {
-                let settings: UIUserNotificationSettings =
-                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-                UIApplication.shared.registerUserNotificationSettings(settings)
-            }
-            Messaging.messaging().delegate = self
-            UIApplication.shared.registerForRemoteNotifications()
-            U.log("Registered for PushNotifications")
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            UIApplication.shared.registerUserNotificationSettings(settings)
         }
+        Messaging.messaging().delegate = self
+        Messaging.messaging().shouldEstablishDirectChannel = false
+        UIApplication.shared.registerForRemoteNotifications()
+        U.log("Registered for PushNotifications")
+        
+        //register for special push responses
+        let allowOption = UNNotificationAction(identifier: "ALLOW_ACTION", title: "Allow", options: [.authenticationRequired])
+        let category = UNNotificationCategory(identifier: "PUSH_AUTHENTICATION", actions: [allowOption], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: [.hiddenPreviewsShowTitle, .hiddenPreviewsShowSubtitle])
+        
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.setNotificationCategories([category])
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -49,28 +55,40 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         U.log(response)
-        
-        // Allow pressed?
-        //presenter.addPushAuthRequestToToken(<#T##req: PushAuthRequest##PushAuthRequest#>)
-        //presenter.pushAuthenticationForToken(T##t: Token##Token)
-        
         let userInfo = response.notification.request.content.userInfo
-        let serial = userInfo["SERIAL"] as! String
-        /*let signature = userInfo["SIGNATURE"] as! String
-         let nonce = userInfo["NONCE"] as! String
-         let sslVerify = userInfo["SSLVERIFY"] as! String
-         let url = userInfo["URL"] as! String
-         let title = userInfo["TITLE"] as! String
-         let question = userInfo["QUESTION"] as! String
-         */
-        
-        guard let token = presenter.model.getTokenBySerial(serial) else {
-            U.log("No token found to start authentication for (serial: \(serial))")
-            return
-        }
-        
-        if response.actionIdentifier == "ALLOW_ACTION" {
-            self.presenter.pushAuthentication(forToken: token)
+        U.log(userInfo)
+        if let serial = userInfo["serial"] as? String,
+            let signature = userInfo["signature"] as? String,
+            let nonce = userInfo["nonce"] as? String,
+            let sslVerifyStr = userInfo["sslverify"] as? String,
+            let url = userInfo["url"] as? String,
+            let title = userInfo["title"] as? String,
+            let question = userInfo["question"] as? String {
+            
+            guard let token = presenter.model.getTokenBySerial(serial) else {
+                U.log("No token found to start authentication for (serial: \(serial))")
+                return
+            }
+            
+            let id = UUID().uuidString
+            var sslVerify = true
+            if let sslVerifyInt = Int(sslVerifyStr) {
+                sslVerify = Bool(sslVerifyInt)
+            }
+            // TTL of a PushRequest is 2min ? // MARK: PUSH TTL
+            let ttl: Date = Date().addingTimeInterval(Double(2) * 60.0)
+            let pushauthreq = PushAuthRequest(id: id, url: url, nonce: nonce, signature: signature, serial: serial, title: title, question: question, sslVerify: sslVerify, ttl: ttl)
+            
+            _ = self.presenter.addPushAuthRequestToToken(pushauthreq)
+            
+            //send the confirmation if the user tapped allow from the notification
+            if response.actionIdentifier == "ALLOW_ACTION" {
+                token.setState(State.AUTHENTICATING)
+                self.presenter.tableViewDelegate?.reloadCells()
+                //start a background task to ensure the push can be sent
+                self.presenter.registerBackgroundTask()
+                self.presenter.pushAuthentication(forToken: token)
+            }
         }
         
         completionHandler()
@@ -82,28 +100,24 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
     }
     
     func buildNotification(forRequest: PushAuthRequest) {
-        //let allowOption = UNNotificationAction(identifier: "ALLOW_ACTION", title: "Allow", options: UNNotificationActionOptions(rawValue: 0))
-        let category = UNNotificationCategory(identifier: "PUSH_AUTHENTICATION", actions: [], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: .hiddenPreviewsShowTitle)
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.setNotificationCategories([category])
         let content = UNMutableNotificationContent()
         content.title = forRequest.title
         content.body = forRequest.question
         content.categoryIdentifier = "PUSH_AUTHENTICATION"
-        content.userInfo = ["SERIAL" : forRequest.serial,
-                            "SIGNATURE" : forRequest.signature,
-                            "NONCE" : forRequest.nonce,
-                            "SSLVERIFY" : forRequest.sslVerify,
-                            "TTL" : forRequest.ttl,
-                            "URL" : forRequest.url,
-                            "TITLE" : forRequest.title,
-                            "QUESTION" : forRequest.question]
+        content.userInfo = ["serial" : forRequest.serial,
+                            "signature" : forRequest.signature,
+                            "nonce" : forRequest.nonce,
+                            "sslverify" : forRequest.sslVerify,
+                            "ttl" : forRequest.ttl,
+                            "url" : forRequest.url,
+                            "title" : forRequest.title,
+                            "question" : forRequest.question]
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
         // Use the id of the push auth request for the notification, so it can be removed when the request expires
         //U.log("New notification with ID: \(forRequest.id)")
         let request = UNNotificationRequest(identifier: forRequest.id, content: content, trigger: trigger)
+        let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.add(request) { (error) in
             if error != nil {
                 U.log("Error while adding notification: \(error!.localizedDescription)")

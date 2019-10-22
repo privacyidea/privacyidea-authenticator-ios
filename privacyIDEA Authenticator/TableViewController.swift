@@ -33,26 +33,20 @@ class TableViewController: UIViewController {
         self.title = "privacyIDEA Authenticator"
         
         //////////////////////// ASSEMBLE ////////////////////////
-        presenter = Presenter(tokenlistDelegate: self)
+        presenter = Presenter.shared
         let del = UIApplication.shared.delegate as! AppDelegate
         del.presenterDelegate = presenter
         self.presenterDelegate = presenter
-        presenter?.startup()
+        presenter?.startup(tokenlistDelegate: self)
         
         runTimer()
         // Setup buttons of side menu
-        let blackFont = [NSAttributedString.Key.foregroundColor : UIColor.black]
-        addManuallyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("addManually_button_label", comment: "Add Token manually"),
-                                                             attributes: blackFont),
-                                          for: .normal)
+        addManuallyBtn.setTitle(NSLocalizedString("addManually_button_label", comment: "Add Token manually"), for: .normal)
         
-        thirdPartyBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"),
-                                                            attributes: blackFont),
-                                         for: .normal)
+        thirdPartyBtn.setTitle(NSLocalizedString("thirdParty_button_label", comment: "Legal Notices"), for: .normal)
         
-        sortBtn.setAttributedTitle(NSAttributedString(string: NSLocalizedString("sort_button_label", comment: "sort list"),
-                                                      attributes: blackFont),
-                                   for: .normal)
+        sortBtn.setTitle(NSLocalizedString("sort_button_label", comment: "sort list"), for: .normal)
+      
         //////////////////////// SIDE MENU SETUP ////////////////////////
         /*menuView.isHidden = true
          let menuTap = UITapGestureRecognizer(target: self, action: #selector(TableViewController.menuTapped))
@@ -210,15 +204,19 @@ extension TableViewController: TokenlistDelegate {
     }
     
     func showToastMessage(text: String) {
+        var style = ToastStyle()
+        style.backgroundColor = UIColor(named: "ColorToastBackground")!
         DispatchQueue.main.async {
-            self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            self.tableView.makeToast(text, duration: Constants.TOAST_UPTIME_IN_S, position: .center, title: nil, image: nil, style: style, completion: nil)
         }
     }
     
     func showMessageWithOKButton(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     func reloadCells() {
