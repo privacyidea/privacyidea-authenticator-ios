@@ -21,28 +21,28 @@ class NotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenter
     }
     
     func registerForPushNotifications() {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            UIApplication.shared.registerUserNotificationSettings(settings)
-        }
-        Messaging.messaging().delegate = self
-        Messaging.messaging().shouldEstablishDirectChannel = false
-        UIApplication.shared.registerForRemoteNotifications()
-        U.log("Registered for PushNotifications")
-        
-        //register for special push responses
-        let allowOption = UNNotificationAction(identifier: "ALLOW_ACTION", title: "Allow", options: [.authenticationRequired])
-        let category = UNNotificationCategory(identifier: "PUSH_AUTHENTICATION", actions: [allowOption], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: [.hiddenPreviewsShowTitle, .hiddenPreviewsShowSubtitle])
-        
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.setNotificationCategories([category])
+         if #available(iOS 10.0, *) {
+         UNUserNotificationCenter.current().delegate = self
+         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+         UNUserNotificationCenter.current().requestAuthorization(
+         options: authOptions,
+         completionHandler: {_, _ in })
+         } else {
+         let settings: UIUserNotificationSettings =
+         UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+         UIApplication.shared.registerUserNotificationSettings(settings)
+         }
+         Messaging.messaging().delegate = self
+         Messaging.messaging().shouldEstablishDirectChannel = false
+         UIApplication.shared.registerForRemoteNotifications()
+         U.log("Registered for PushNotifications")
+         
+         //register for special push responses
+         let allowOption = UNNotificationAction(identifier: "ALLOW_ACTION", title: "Allow", options: [.authenticationRequired])
+         let category = UNNotificationCategory(identifier: "PUSH_AUTHENTICATION", actions: [allowOption], intentIdentifiers: [], hiddenPreviewsBodyPlaceholder: "", options: [.hiddenPreviewsShowTitle, .hiddenPreviewsShowSubtitle])
+         
+         let notificationCenter = UNUserNotificationCenter.current()
+         notificationCenter.setNotificationCategories([category])
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {

@@ -43,7 +43,6 @@
 		29A4CB32225CCB9400E2909F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB31225CCB9400E2909F /* Constants.swift */; };
 		29A4CB35225CCFC200E2909F /* OTPGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A4CB33225CCCD600E2909F /* OTPGenerator.swift */; };
 		29B089DF214F9A87009DA14C /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B089DE214F9A87009DA14C /* MainNavigationController.swift */; };
-		29BCC50C2355F69B00C5C8AF /* TokenOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BCC50B2355F69B00C5C8AF /* TokenOld.swift */; };
 		29C668C521301BA700D6CDD9 /* EnterDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C668C421301BA700D6CDD9 /* EnterDetailController.swift */; };
 		339882B0226B9695A7BC9E31 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33988D2A59C46070BB6A0345 /* TableViewController.swift */; };
 		33988467423754741FFD5BAA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3398879EC13DF72ACC937181 /* Utilities.swift */; };
@@ -500,27 +499,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftOTP/SwiftOTP.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyRSA/SwiftyRSA.framework",
-				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftOTP.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyRSA.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -817,7 +801,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -843,7 +827,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0.2;
+				MARKETING_VERSION = 2.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = privacyidea.authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
