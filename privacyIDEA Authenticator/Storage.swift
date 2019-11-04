@@ -15,7 +15,7 @@ class Storage {
     private init(){ }
     
     func saveTokens(list: [Token]) -> Void {
-        U.log("Saving tokenlist with size=\(list.count)")
+        //U.log("Saving tokenlist with size=\(list.count)")
         for i in 0..<list.count {
             // Check the token state, don't save in ENROLLING or AUTHENTICATING state
             // This DOES NOT use a copy of the token, so the list needs to be saved before going into
@@ -42,7 +42,7 @@ class Storage {
                 U.log("[SAVE TOKEN] Token \(list[i].label) could not be saved")
             }
         }
-        U.log("Tokenlist saved.")
+        //U.log("Tokenlist saved.")
     }
     
     func saveToKeychain(for key: String, _ value: String, _ position: String)  {
@@ -58,7 +58,7 @@ class Storage {
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
             if (status == errSecDuplicateItem) {
-                U.log("Duplicate Item, updating...")
+                //U.log("Duplicate Item, updating...")
                 let attr: [String: Any] =  [kSecAttrAccount as String: key,
                                             kSecValueData as String: password]
                 //kSecAttrComment as String: position]
@@ -100,7 +100,7 @@ class Storage {
     }
     
     func loadOldTokenFromKeychain() -> [String] {
-        U.log("LOADING OLD TOKENS")
+        //U.log("LOADING OLD TOKEN")
         let query: [String: Any] = [
             kSecClass as String : kSecClassGenericPassword,
             kSecReturnData as String  : kCFBooleanTrue as Any,
@@ -135,7 +135,7 @@ class Storage {
                 }
             }
         }
-        U.log("FOUND OLD TOKEN: \(values)")
+        //U.log("FOUND OLD TOKEN: \(values)")
         UserDefaults.standard.set(true, forKey: Constants.UPDATED)
         return values
     }
@@ -167,12 +167,10 @@ class Storage {
                     if key.starts(with: "piPub") || key.starts(with: "private") || key.starts(with: Constants.FB_CONFIG) {
                         continue
                     }
-                    //U.log("ITEM: \(item)")
                     guard let position = Int(item[kSecAttrLabel as String] as? String ?? "") else {
                         //U.log("position is not an int: \(item[kSecAttrService as String] as? String ?? "")")
                         continue
                     }
-                    U.log("FOUND label(pos): \(position)")
                     values[position] = String(data: value, encoding:.utf8)
                 }
             }
@@ -226,7 +224,7 @@ class Storage {
         }
         /////////// END LOADING OLD DATA /////////////
         let dict = getAllTokenEntriesFromKeychain()
-        U.log("Found dict: \(dict as AnyObject)")
+        //U.log("Found dict: \(dict as AnyObject)")
       
         for i in 0..<dict.count {
             if let json = dict[i] {

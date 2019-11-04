@@ -74,14 +74,12 @@ extension Presenter: PresenterDelegate {
         }
         Storage.shared.removeFromKeychain(key: token.serial)
         datasetChanged()
-        Storage.shared.listKeychainEntries()
     }
     
     func removeToken(_ t: Token) {
         model.removeToken(t)
         Storage.shared.removeFromKeychain(key: t.serial)
         datasetChanged()
-        Storage.shared.listKeychainEntries()
     }
     
     // Checks all token of push type if there are expired authentication requests. If so the UI is reloaded and notifications are removed if possible.
