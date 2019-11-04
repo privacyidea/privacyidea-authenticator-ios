@@ -30,8 +30,7 @@ class Utilities {
     public static func log(_ message: Any, function: String = #function, file: String = #file, line: Int = #line) {
         #if DEBUG
         let fileStr: String = String(file.split(separator: "/").last ?? "")
-        os_log("%{public}s", "[\(fileStr):\(line)][\(function)] \(message)")
+        os_log("%{public}s", "[\(fileStr):\(line)][\(function)]\n\(message)")
         #endif
     }
 }
-

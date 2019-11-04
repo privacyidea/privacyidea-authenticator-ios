@@ -72,12 +72,16 @@ extension Presenter: PresenterDelegate {
                 //tableViewDelegate?.showMessageWithOKButton(title: "Firebase reset", message: "Restart App to reset Firebase")
             }
         }
+        Storage.shared.removeFromKeychain(key: token.serial)
         datasetChanged()
+        Storage.shared.listKeychainEntries()
     }
     
     func removeToken(_ t: Token) {
         model.removeToken(t)
+        Storage.shared.removeFromKeychain(key: t.serial)
         datasetChanged()
+        Storage.shared.listKeychainEntries()
     }
     
     // Checks all token of push type if there are expired authentication requests. If so the UI is reloaded and notifications are removed if possible.
@@ -93,6 +97,8 @@ extension Presenter: PresenterDelegate {
         if let expiredTokens = model.checkExpiredRollouts() {
             for token in expiredTokens {
                 model.removeToken(token)
+                Storage.shared.removeKeysFor(token.serial)
+                Storage.shared.removeFromKeychain(key: token.serial)
                 tableViewDelegate?.showMessageWithOKButton(title: NSLocalizedString("token_expired_dialog_title", comment: "token expired dialog title"),
                                                            message: "\(token.serial) " + NSLocalizedString("token_expired_dialog_text", comment: "... has expired and will be deleted (label will be prepended)"))
             }

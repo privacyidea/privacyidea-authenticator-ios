@@ -25,13 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         _ = Presenter.shared //ensure instance is instantiated and push delegate is set
         
-        U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
+        //U.log("didFinishLaunchingWithOptions: \(String(describing: launchOptions))")
         if let userInfo = launchOptions?[.remoteNotification] as?  [AnyHashable : Any] {
             // Notification received upon launch, app may have been terminated
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self.presenterDelegate?.fcmMessageReceived(message: userInfo)
             }
         }
+        //Storage.shared.deleteAllFromKeychain()
+        
         return true
     }
     
@@ -64,10 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        /* U.log("Setting APN Token to device Token")
-         let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
-         U.log("deviceToken: \(tokenString)")
-         Messaging.messaging().apnsToken = deviceToken */
+        /*
+        U.log("Setting APN Token to device Token")
+        let tokenString = deviceToken.reduce("", {$0 + String(format: "%02X",    $1)})
+        U.log("deviceToken: \(tokenString)")
+        Messaging.messaging().apnsToken = deviceToken */
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {

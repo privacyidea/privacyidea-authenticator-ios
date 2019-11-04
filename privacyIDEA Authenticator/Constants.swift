@@ -46,6 +46,8 @@ struct Constants {
     
     static let TOAST_UPTIME_IN_S = 2.0
     
+    static let UPDATED = "updated"
+    
     static let PI_BLUE = UIColor(red: 0, green: 0.705882352, blue: 1, alpha: 1)
     
 }
