@@ -1,15 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8e052963-8ddb-442d-9b3f-328163cad142" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/privacyidea-authenticator-ios.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AEAD/AEAD.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AEAD/AEAD.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AEAD/AEADChaCha20Poly1305.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AEAD/AEADChaCha20Poly1305.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AES.Cryptors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AES.Cryptors.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AES.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/AES.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Array+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Array+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Authenticator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Authenticator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BatchedCollection.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BatchedCollection.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Bit.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Bit.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockCipher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockCipher.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockDecryptor.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockDecryptor.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockEncryptor.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockEncryptor.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/BlockMode.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/BlockMode.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/BlockModeOptions.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/BlockModeOptions.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CBC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CBC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CFB.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CFB.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CTR.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CTR.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CipherModeWorker.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/CipherModeWorker.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/ECB.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/ECB.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/GCM.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/GCM.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/OFB.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/OFB.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/PCBC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/BlockMode/PCBC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Blowfish.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Blowfish.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/CMAC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/CMAC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/ChaCha20.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/ChaCha20.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Checksum.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Checksum.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cipher.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cipher.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Collection+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Collection+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/CompactMap.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/CompactMap.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cryptor.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cryptor.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cryptors.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Cryptors.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Digest.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Digest.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/DigestType.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/DigestType.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/AES+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/AES+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Array+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Array+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Blowfish+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Blowfish+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/ChaCha20+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/ChaCha20+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Data+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Data+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/HMAC+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/HMAC+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Rabbit+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Rabbit+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/String+FoundationExtension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/String+FoundationExtension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Utils+Foundation.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Foundation/Utils+Foundation.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Generics.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Generics.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/HKDF.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/HKDF.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/HMAC.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/HMAC.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Int+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Int+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/MD5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/MD5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/NoPadding.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/NoPadding.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PBKDF1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PBKDF1.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PBKDF2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PBKDF2.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS5.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS5.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS7.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS7.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS7Padding.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/PKCS/PKCS7Padding.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Padding.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Padding.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Poly1305.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Poly1305.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Rabbit.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Rabbit.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/RandomBytesSequence.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA1.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA1.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA2.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA2.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA3.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SHA3.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SecureBytes.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/SecureBytes.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/StreamEncryptor.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/StreamEncryptor.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/String+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/String+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt128.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt128.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt16+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt16+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt32+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt32+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt64+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt64+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt8+Extension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/UInt8+Extension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Updatable.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Updatable.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Utils.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/Utils.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/ZeroPadding.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/CryptoSwift/Sources/CryptoSwift/ZeroPadding.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/KeychainSwift/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/KeychainSwift/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/KeychainSwift/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/KeychainSwift/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Manifest.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/SwiftOTP/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SwiftOTP/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Base32/Base32.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Base32/Base32.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Base32/StringExtension.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Base32/StringExtension.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Generator.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/SwiftOTP/SwiftOTP/Generator.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/CryptoSwift/CryptoSwift.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/CryptoSwift/CryptoSwift.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/KeychainSwift/KeychainSwift.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/KeychainSwift/KeychainSwift.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-acknowledgements.markdown" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-acknowledgements.markdown" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-acknowledgements.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-acknowledgements.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator-frameworks.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA Authenticator/Pods-privacyIDEA Authenticator.release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorTests/Pods-privacyIDEA AuthenticatorTests.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorTests/Pods-privacyIDEA AuthenticatorTests.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorTests/Pods-privacyIDEA AuthenticatorTests.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorTests/Pods-privacyIDEA AuthenticatorTests.release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorUITests/Pods-privacyIDEA AuthenticatorUITests.debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorUITests/Pods-privacyIDEA AuthenticatorUITests.debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorUITests/Pods-privacyIDEA AuthenticatorUITests.release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/Pods-privacyIDEA AuthenticatorUITests/Pods-privacyIDEA AuthenticatorUITests.release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pods/Target Support Files/SwiftOTP/SwiftOTP.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/Pods/Target Support Files/SwiftOTP/SwiftOTP.xcconfig" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_a690b1608eb8577aaa66249e47b12debf5e7d127" />
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1Uvtv1vgr2wtNwb1kGmNP7d3kIw" />
+  <component name="ProjectId" id="1UvvF2UqilkGSxrv0kbH0fNzUaq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
-    <configuration name="test" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="test" TARGET_NAME="test" CONFIG_NAME="Debug" SCHEME_NAME="test" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="test" RUN_TARGET_NAME="test" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+    <configuration name="privacyIDEA Authenticator" type="AppleRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="privacyIDEA Authenticator" TARGET_NAME="privacyIDEA Authenticator" CONFIG_NAME="Debug" SCHEME_NAME="privacyIDEA Authenticator" IS_LOCATION_SIMULATION_ALLOWED="true" LOCATION_SCENARIO_ID="com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier" LOCATION_SCENARIO_TYPE="1" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" RUN_TARGET_PROJECT_NAME="privacyIDEA Authenticator" RUN_TARGET_NAME="privacyIDEA Authenticator" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
       <EXTENSION ID="org.jetbrains.appcode.reveal.RevealRunConfigurationExtension">
         <REVEAL_SETTINGS autoInject="false" autoInstall="true" askToEnableAutoInstall="true" />
       </EXTENSION>
@@ -18,5 +142,93 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e052963-8ddb-442d-9b3f-328163cad142" name="Default Changelist" comment="" />
+      <created>1576249775818</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576249775818</updated>
+      <workItem from="1576249787011" duration="672000" />
+      <workItem from="1576253588753" duration="894000" />
+      <workItem from="1576351633121" duration="726000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="125" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576250020849">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="184" y="125" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1576250020848" />
+    <state x="237" y="66" key="CommitChangelistDialog2" timestamp="1576356140552">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="237" y="66" key="CommitChangelistDialog2/0.23.1440.877@0.23.1440.877" timestamp="1576356140551" />
+    <state width="1358" height="217" key="GridCell.Tab.0.bottom" timestamp="1576355554058">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.0.bottom/0.23.1440.877@0.23.1440.877" timestamp="1576355554058" />
+    <state width="1358" height="217" key="GridCell.Tab.0.center" timestamp="1576355554058">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.0.center/0.23.1440.877@0.23.1440.877" timestamp="1576355554058" />
+    <state width="1358" height="217" key="GridCell.Tab.0.left" timestamp="1576355554057">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.0.left/0.23.1440.877@0.23.1440.877" timestamp="1576355554057" />
+    <state width="1358" height="217" key="GridCell.Tab.0.right" timestamp="1576355554058">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.0.right/0.23.1440.877@0.23.1440.877" timestamp="1576355554058" />
+    <state width="1358" height="217" key="GridCell.Tab.1.bottom" timestamp="1576355554060">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.1.bottom/0.23.1440.877@0.23.1440.877" timestamp="1576355554060" />
+    <state width="1358" height="217" key="GridCell.Tab.1.center" timestamp="1576355554059">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.1.center/0.23.1440.877@0.23.1440.877" timestamp="1576355554059" />
+    <state width="1358" height="217" key="GridCell.Tab.1.left" timestamp="1576355554059">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.1.left/0.23.1440.877@0.23.1440.877" timestamp="1576355554059" />
+    <state width="1358" height="217" key="GridCell.Tab.1.right" timestamp="1576355554060">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state width="1358" height="217" key="GridCell.Tab.1.right/0.23.1440.877@0.23.1440.877" timestamp="1576355554060" />
+    <state x="327" y="261" key="git4idea.merge.GitPullDialog" timestamp="1576355763028">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="327" y="261" key="git4idea.merge.GitPullDialog/0.23.1440.877@0.23.1440.877" timestamp="1576355763028" />
   </component>
 </project>
