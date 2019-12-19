@@ -65,3 +65,9 @@ Pods/Pods.xcodeproj/xcuserdata/nils.xcuserdatad/xcschemes/CryptoSwift.xcscheme
 
 # File-based project format
 *.iws
+
+#
+# Cocoapods
+#
+
+Pods/
