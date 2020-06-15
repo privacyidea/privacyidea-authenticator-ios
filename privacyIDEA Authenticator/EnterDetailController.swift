@@ -87,8 +87,9 @@ class EnterDetailController: UIViewController, UITextFieldDelegate {
         default: // Normal
             break
         }
-        
-        let t = Token(type: type, label: name,serial: name, digits: digit, algorithm: algorithm, secret: secret!, counter: 1, period: period)
+        // Generate a random serial, it's just for indentification purposes internally
+        let serial: String = UUID.init().uuidString
+        let t = Token(type: type, label: name,serial: serial, digits: digit, algorithm: algorithm, secret: secret!, counter: 1, period: period)
         presenterDelegate?.addManuallyFinished(token: t)
         navigationController?.popViewController(animated: true)
     }

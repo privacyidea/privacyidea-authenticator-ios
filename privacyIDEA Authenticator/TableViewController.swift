@@ -135,7 +135,7 @@ class TableViewController: UIViewController {
             tableView.isOpaque = true
             tableView.alpha = 0.4
             tableView.isUserInteractionEnabled = false
-            view.layoutIfNeeded()
+            //view.layoutIfNeeded()
             // switch menu icon
             let menuBtn2 = UIBarButtonItem(image: UIImage(named: "MenuiconTapped.png"), style: .plain, target: self, action:#selector(TableViewController.menuTapped))
             menuBtn2.tintColor = UIColor.black
@@ -147,7 +147,7 @@ class TableViewController: UIViewController {
             tableView.isOpaque = false
             tableView.alpha = 1.0
             tableView.isUserInteractionEnabled = true
-            view.layoutIfNeeded()
+            //view.layoutIfNeeded()
             // switch menu icon
             let menuBtn = UIBarButtonItem(image: UIImage(named: "Menuicon.png"), style: .plain, target: self, action: #selector(TableViewController.menuTapped))
             menuBtn.tintColor = UIColor.black

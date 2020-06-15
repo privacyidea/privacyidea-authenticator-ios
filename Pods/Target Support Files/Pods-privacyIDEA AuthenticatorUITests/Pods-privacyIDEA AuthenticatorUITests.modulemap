@@ -1,6 +1,0 @@
-framework module Pods_privacyIDEA_AuthenticatorUITests {
-  umbrella header "Pods-privacyIDEA AuthenticatorUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
