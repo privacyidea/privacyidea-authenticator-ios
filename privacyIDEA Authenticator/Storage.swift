@@ -53,7 +53,7 @@ class Storage {
                                     kSecValueData as String: password,
                                     kSecAttrLabel as String: position,
                                     //kSecAttrComment as String: position,
-            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly]
+            kSecAttrAccessible as String: kSecAttrAccessibleAfterFirstUnlock]
         
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
