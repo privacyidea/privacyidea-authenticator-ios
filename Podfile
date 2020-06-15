@@ -7,7 +7,7 @@ target 'privacyIDEA Authenticator' do
 
   # Pods for privacyIDEA Authenticator
 pod 'SwiftOTP'
-pod 'KeychainSwift', '~> 17.0'
+pod 'KeychainSwift', '~> 19.0'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'SwiftyRSA'

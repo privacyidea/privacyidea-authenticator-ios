@@ -63,6 +63,12 @@ class TableViewController: UIViewController {
         menuView.layer.borderWidth = 1.0
         versionLabel.text = version()
         
+        //add triple tap handler for version text to implement hidden reset feature
+        let tripletap = UITapGestureRecognizer(target: self, action: #selector(handleVersionTripleTap))
+        tripletap.numberOfTapsRequired = 3
+        versionLabel.isUserInteractionEnabled = true
+        versionLabel.addGestureRecognizer(tripletap)
+        
         //////////////////////// NAVIGATION BAR SETUP ////////////////////////
         // change the color of the navigationbar, text and back button
         //self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0x55 / 255.0, green: 0xb0 / 255.0, blue: 0xe6 / 255.0, alpha: 1.0)
@@ -76,6 +82,28 @@ class TableViewController: UIViewController {
         let menuBtn = UIBarButtonItem(image: UIImage(named: "Menuicon.png"), style: .plain, target: self, action: #selector(TableViewController.menuTapped))
         menuBtn.tintColor = UIColor.black
         self.navigationItem.leftBarButtonItem = menuBtn
+    }
+    
+    @objc
+    func handleVersionTripleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: NSLocalizedString("reset_app_title", comment: "reset title"), message: NSLocalizedString("reset_app_alert", comment: "reset text"), preferredStyle: .alert)
+        
+        // Create OK button
+        let OKAction = UIAlertAction(title: NSLocalizedString("reset_button_text", comment: "Reset"), style: .destructive) { (action:UIAlertAction!) in
+            // Reset the keychain and exit the app
+            U.log("User has confirmed application reset")
+            Storage.shared.clearKeychain()
+            exit(0);
+        }
+        alert.addAction(OKAction)
+        
+        // Create Cancel button
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel_button_text", comment: "Cancel"), style: .cancel) { (action:UIAlertAction!) in
+            U.log("User cancelled application reset")
+        }
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {
