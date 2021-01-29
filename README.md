@@ -1,3 +1,5 @@
+# This app is superseded by [the new app](https://github.com/privacyidea/pi-authenticator) therefore this repo is archived.
+
 # privacyIDEA
 
 The privacyIDEA is a modular authentication server that can be used to enhance the security of your existing applications like local login, VPN, remote access, SSH connections, access to web sites or web portals with two factor authentication. Originally it was used for OTP (One Time Password) authentication devices – being an OTP server. But other “devices” like challenge response, U2F, Yubikeys, SSH keys and x509 certificates are also available. It runs on Linux and is completely Open Source, licensed under the AGPLv3.
